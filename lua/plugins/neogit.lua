@@ -114,7 +114,7 @@ return {
             }
         })
 
-        vim.keymap.set('n', '<leader>gs', ':Neogit<CR>', { noremap = true, silent = true })
+        vim.keymap.set('n', '<leader>gs', ':Neogit<CR>', { desc = 'status', noremap = true, silent = true })
     end,
 
 }

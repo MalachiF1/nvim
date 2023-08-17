@@ -12,13 +12,13 @@ keymap("i", "<ESC>", "<ESC>:set iminsert=0<CR>", opts)
 keymap("i", "<C-[>", "<C-[>:set iminsert=0<CR>", opts)
 
 -- clear highlights
-keymap("n", "<leader>nh", ":nohl<CR>", opts)
+keymap("n", "<C-h>", ":nohl<CR>", opts)
 
 -- don't copy into register when deleting single character
 keymap("n", "x", '"_x', opts)
 
 -- paste over text without without copying into register
-keymap("x", "<leader>p", "\"_dP", opts)
+keymap("x", "<leader>p", "\"_dP", { desc = "paste", noremap = true, silent = true })
 
 -- keep mouse in the middle of the screen when searching or using ctrl+u/ctrl+d
 keymap("n", "<C-d>", "<C-d>zz", opts)
@@ -32,14 +32,26 @@ keymap("v", "gg", "gg0", opts)
 keymap("n", "G", "G$", opts)
 keymap("v", "G", "G$", opts)
 
--- search and replace
+--search and replace
 keymap("n", "S", ":%s//g<left><left>", opts)
 
 -- window management
-keymap("n", "<leader>wv", ":vsplit<CR>", opts)  -- split window vertically
-keymap("n", "<leader>wh", ":split<CR>", opts)   -- split window horizontally
-keymap("n", "<leader>wx", ":close<CR>", opts)   -- close current window
-keymap("n", "<leader>bx", ":bdelete<CR>", opts) -- close current buffer
+keymap("n", "<leader>wv", ":vsplit<CR>", { desc = "vertically split", noremap = true, silent = true })
+keymap("n", "<leader>wh", ":split<CR>", { desc = "horizontally split", noremap = true, silent = true })
+keymap("n", "<leader>wx", ":close<CR>", { desc = "close", noremap = true, silent = true })
+keymap("n", "<leader>w>", ":vertical resize +2.5<CR>", { desc = "increase width", noremap = true, silent = true })
+keymap("n", "<leader>w<", ":vertical resize -2.5<CR>", { desc = "decrease width", noremap = true, silent = true })
+keymap("n", "<leader>w+", ":resize +2.5<CR>", { desc = "increase height", noremap = true, silent = true })
+keymap("n", "<leader>w-", ":resize -2.5<CR>", { desc = "decrease height", noremap = true, silent = true })
+keymap("n", "<leader>w|", ":set ead=hor ea noea<CR>", { desc = "equalize windows width", noremap = true, silent = true })
+keymap("n", "<leader>w_", ":set ead=ver ea noea<CR>", { desc = "equalize windows hight", noremap = true, silent = true })
+keymap("n", "<leader>wJ", "<C-w>J", { desc = "move down", noremap = true, silent = true })
+keymap("n", "<leader>wK", "<C-w>K", { desc = "move up", noremap = true, silent = true })
+keymap("n", "<leader>wH", "<C-w>H", { desc = "move left", noremap = true, silent = true })
+keymap("n", "<leader>wL", "<C-w>L", { desc = "move right", noremap = true, silent = true })
+
+-- buffer management
+keymap("n", "<leader>bx", ":bdelete<CR>", { desc = "close", noremap = true, silent = true })
 
 -- move highlighted text
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
@@ -56,12 +68,13 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- save and quit
-keymap("n", "<leader>w", ":w<CR>", opts)
-keymap("n", "<leader>q", ":q<CR>", opts)
-keymap("n", "<leader>wq", ":wq<CR>", opts)
+keymap("n", "<leader>ss", ":w<CR>", { desc = "save", noremap = true, silent = true })
+keymap("n", "<leader>qq", ":q<CR>", { desc = "quit", noremap = true, silent = true })
+keymap("n", "<leader>q!", ":q<CR>", { desc = "quit!", noremap = true, silent = true })
+keymap("n", "<leader>sq", ":wq<CR>", { desc = "save and quit", noremap = true, silent = true })
 
 -- open netrw
-keymap("n", "<leader>pv", ":Ex<CR>", opts)
+keymap("n", "<leader>pv", ":Ex<CR>", { desc = "netrw", noremap = true, silent = true })
 
 -- switch to hebrew in insert mode (and back to english)
 keymap("i", "<A-h>", "<C-^>", opts)

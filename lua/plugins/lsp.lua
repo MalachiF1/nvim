@@ -57,20 +57,30 @@ return {
         })
 
         lsp.on_attach(function(client, bufnr)
-            local opts = { buffer = bufnr, remap = false }
-
-            vim.keymap.set("n", "<leader>lgd", function() telescope.lsp_definitions {} end, opts)                       -- go to definition
-            vim.keymap.set("n", "<leader>lvd", function() telescope.lsp_definitions { jump_type = "never" } end, opts) -- view defintion
-            vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.hover() end, opts)                                -- show documentation
-            vim.keymap.set("n", "<leader>lw", function() telescope.lsp_workspace_symbols { bufnr = 0 } end, opts)
-            vim.keymap.set("n", "<leader>ln", function() vim.lsp.buf.goto_next() end, opts)                            -- go to next diagnostic
-            vim.keymap.set("n", "<leader>lp", function() vim.lsp.buf.goto_prev() end, opts)                            -- go to previos diagnostic
-            vim.keymap.set("n", "<leader>lca", function() vim.lsp.buf.code_action() end, opts)                         -- view available code actions
-            vim.keymap.set("n", "<leader>lrr", function() telescope.lsp_references() end, opts)                        -- view references
-            vim.keymap.set("n", "<leader>lrn", function() vim.lsp.buf.rename() end, opts)                              -- smart rename
-            vim.keymap.set("n", "<leader>lsh", function() vim.lsp.buf.signature_help() end, opts)                      -- show signature help
-            vim.keymap.set("n", "<leader>lsd", function() telescope.diagnostics { bufnr = 0 } end, opts)               -- show all diagnostics
-            vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end, opts)                               -- formats buffer
+            vim.keymap.set("n", "<leader>lgd", function() telescope.lsp_definitions {} end,
+                { buffer = bufnr, remap = false, desc = 'definition' })
+            vim.keymap.set("n", "<leader>ld", function() telescope.lsp_definitions { jump_type = "never" } end,
+                { buffer = bufnr, remap = false, desc = 'view definition' })
+            vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.hover() end,
+                { buffer = bufnr, remap = false, desc = 'show documentation' })
+            vim.keymap.set("n", "<leader>lw", function() telescope.lsp_workspace_symbols { bufnr = 0 } end,
+                { buffer = bufnr, remap = false, desc = 'workspace symbols' })
+            vim.keymap.set("n", "<leader>lgn", function() vim.diagnostic.goto_next() end,
+                { buffer = bufnr, remap = false, desc = 'next diagnostic' })
+            vim.keymap.set("n", "<leader>lgp", function() vim.diagnostic.goto_prev() end,
+                { buffer = bufnr, remap = false, desc = 'previous diagnostic' })
+            vim.keymap.set("n", "<leader>lc", function() vim.lsp.buf.code_action() end,
+                { buffer = bufnr, remap = false, desc = 'code actions' })
+            vim.keymap.set("n", "<leader>lr", function() telescope.lsp_references() end,
+                { buffer = bufnr, remap = false, desc = 'references' })
+            vim.keymap.set("n", "<leader>ln", function() vim.lsp.buf.rename() end,
+                { buffer = bufnr, remap = false, desc = 'rename' })
+            vim.keymap.set("n", "<leader>ls", function() vim.lsp.buf.signature_help() end,
+                { buffer = bufnr, remap = false, desc = 'signature help' })
+            vim.keymap.set("n", "<leader>lv", function() telescope.diagnostics { bufnr = 0 } end,
+                { buffer = bufnr, remap = false, desc = 'view diagnostics' })
+            vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end,
+                { buffer = bufnr, remap = false, desc = 'format' })
         end)
 
         lsp.setup()
