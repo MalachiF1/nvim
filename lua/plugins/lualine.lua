@@ -3,22 +3,10 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
 
     config = function()
-        -- get lualine nightfly theme
-        local ayu_dark = require("lualine.themes.ayu_dark")
-
-        -- add different color for command mode
-        ayu_dark.command = {
-            a = {
-                gui = "bold",
-                bg = "#D2A6FF",
-                fg = "#000000",
-            },
-        }
-
         require('lualine').setup({
             options = {
                 icons_enabled = true,
-                theme = ayu_dark,
+                theme = 'catppuccin',
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
                 disabled_filetypes = {
