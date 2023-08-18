@@ -12,7 +12,7 @@ keymap("i", "<ESC>", "<ESC>:set iminsert=0<CR>", opts)
 keymap("i", "<C-[>", "<C-[>:set iminsert=0<CR>", opts)
 
 -- clear highlights
-keymap("n", "<C-h>", ":nohl<CR>", opts)
+keymap("n", "<C-n>", ":nohl<CR>", opts)
 
 -- don't copy into register when deleting single character
 keymap("n", "x", '"_x', opts)
