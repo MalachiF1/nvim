@@ -24,7 +24,7 @@ vim.opt.background = "dark"
 vim.opt.signcolumn = "yes"
 
 -- search highlighting
-vim.opt.hlsearch = fasle
+-- vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 -- backspace

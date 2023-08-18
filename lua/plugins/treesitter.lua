@@ -1,6 +1,9 @@
 return {
     {
         'nvim-treesitter/nvim-treesitter',
+        dependencies = {
+            'nvim-treesitter/playground',
+        },
         build = ':TSUpdate',
 
         config = function()
@@ -43,5 +46,4 @@ return {
         end
     },
 
-    'nvim-treesitter/playground',
 }
