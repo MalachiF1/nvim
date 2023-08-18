@@ -8,6 +8,10 @@ return {
     config = function()
         local dap = require('dap')
 
+        require("plugins.daps.adapters.lldb")
+
+        require("plugins.daps.settings.cpp")
+        require("plugins.daps.settings.rust")
 
         local dapui = require('dapui')
         dapui.setup({
