@@ -22,6 +22,7 @@ return {
                 { mode = 'n', keys = '<leader>p',   desc = '+Project' },
                 { mode = 'n', keys = '<leader>g',   desc = '+Git' },
                 { mode = 'n', keys = '<leader>l',   desc = '+Lsp' },
+                { mode = 'n', keys = '<leader>d',   desc = '+Debug' },
                 { mode = 'n', keys = '<leader>lg',  desc = '+Go to' },
                 { mode = 'n', keys = '<leader>w<',  postkeys = '<leader>w' },  -- for hydra like submodes
                 { mode = 'n', keys = '<leader>w>',  postkeys = '<leader>w' },  -- for hydra like submodes
