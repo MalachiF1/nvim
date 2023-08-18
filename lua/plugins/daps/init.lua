@@ -13,6 +13,8 @@ return {
         require("plugins.daps.settings.cpp")
         require("plugins.daps.settings.rust")
 
+        require("nvim-dap-virtual-text").setup({})
+
         local dapui = require('dapui')
         dapui.setup({
             controls = {
@@ -94,7 +96,6 @@ return {
         vim.fn.sign_define('DapBreakpoint', { text = '🔴' })
 
         -- keymaps --
-
         -- Start debugging session
         vim.keymap.set("n", "<leader>ds", function()
                 dap.continue()
