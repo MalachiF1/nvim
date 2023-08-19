@@ -47,6 +47,7 @@ return {
             inactive_winbar = {},
             extensions = {
                 "fzf",
+                "toggleterm",
             }
         })
     end,
