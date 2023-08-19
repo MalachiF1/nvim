@@ -1,17 +1,19 @@
 return {
     'nvim-telescope/telescope.nvim',
-    -- version = '0.1.2',
     branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-ui-select.nvim'
+    },
 
     config = function()
         local builtin = require('telescope.builtin')
         local actions = require('telescope.actions')
+        local themes = require('telescope.themes')
+        local telescope = require('telescope')
 
-        require('telescope').setup({
+        telescope.setup({
             defaults = {
-                -- Default configuration for telescope goes here:
-                -- config_key = value,
                 mappings = {
                     i = {
                         ["<C-k>"] = actions.move_selection_previous,
@@ -20,8 +22,16 @@ return {
                 }
             },
             pickers = {},
-            extensions = {}
+            extensions = {
+                ["ui-select"] = {
+                    themes.get_dropdown {
+                        -- even more opts
+                    }
+                }
+            }
         })
+        telescope.load_extension("ui-select")
+
 
         vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'files', noremap = true, silent = true })
         vim.keymap.set('n', '<leader>pg', builtin.git_files, { desc = 'git files', noremap = true, silent = true })
