@@ -70,7 +70,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- save and quit
 keymap("n", "<leader>ss", ":w<CR>", { desc = "save", noremap = true, silent = true })
 keymap("n", "<leader>qq", ":q<CR>", { desc = "quit", noremap = true, silent = true })
-keymap("n", "<leader>q!", ":q<CR>", { desc = "quit!", noremap = true, silent = true })
+keymap("n", "<leader>qf", ":q!<CR>", { desc = "force quit", noremap = true, silent = true })
 keymap("n", "<leader>sq", ":wq<CR>", { desc = "save and quit", noremap = true, silent = true })
 
 -- open netrw

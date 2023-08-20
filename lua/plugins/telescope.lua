@@ -35,8 +35,6 @@ return {
 
         vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'files', noremap = true, silent = true })
         vim.keymap.set('n', '<leader>pg', builtin.git_files, { desc = 'git files', noremap = true, silent = true })
-        -- vim.keymap.set('n', '<C-j>', builtin.move_selection_next, {})
-        -- vim.keymap.set('n', '<C-k>', builtin.move_selection_previous, {})
         vim.keymap.set('n', '<leader>ps', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") });
         end, { desc = 'grep string', noremap = true, silent = true })
