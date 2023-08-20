@@ -108,6 +108,13 @@ return {
 
                     Pmenu = { fg = colors.teal },
                     PmenuSel = { fg = colors.blue },
+
+                    diffremoved = { fg = colors.overlay1, bg = colors.surface2 },
+                    diffRemoved = { fg = colors.overlay1, bg = colors.surface2 },
+                    diffadded = { fg = colors.green, bg = colors.surface2 },
+                    diffAdded = { fg = colors.green, bg = colors.surface2 },
+                    diffchanged = { fg = colors.yellow, bg = colors.surface2 },
+                    diffChanged = { fg = colors.yellow, bg = colors.surface2 },
                 }
             end,
             integrations = {
