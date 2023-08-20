@@ -64,6 +64,5 @@ return {
         vim.keymap.set('n', '<leader>ps', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") });
         end, { desc = 'grep string', noremap = true, silent = true })
-        vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = 'undo', noremap = true, silent = true })
     end,
 }
