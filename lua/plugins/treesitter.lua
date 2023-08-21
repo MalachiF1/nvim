@@ -7,7 +7,7 @@ return {
         build = ':TSUpdate',
 
         config = function()
-            require 'nvim-treesitter.configs'.setup({
+            require('nvim-treesitter.configs').setup({
                 highlight = {
                     enable = true,
                     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -45,6 +45,11 @@ return {
                 auto_install = true,
 
             })
+
+            -- fixsome highlighting issues
+            vim.api.nvim_set_hl(0, "@type.qualifier", { link = "Keyword" })
+            vim.api.nvim_set_hl(0, "@function.builtin", { link = "Function" })
+            vim.api.nvim_set_hl(0, "@typemod.class.constructorOrDestructor.cpp", { link = "Function" })
         end
     },
 
