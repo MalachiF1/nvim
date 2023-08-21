@@ -66,6 +66,9 @@ return {
             },
             custom_highlights = function(colors)
                 return {
+                    Type = { fg = colors.mauve },
+                    Variable = { fg = colors.text },
+
                     CursorLineNr = { fg = colors.blue },
                     IncSearch = { bg = colors.teal },
 
