@@ -106,8 +106,8 @@ return {
                     NeogitHunkHeaderHighlight = { fg = colors.surface2, bg = colors.red },
                     NeogitCommitViewHeader = { fg = colors.surface2, bg = colors.red },
 
-                    Pmenu = { fg = colors.teal },
-                    PmenuSel = { fg = colors.blue },
+                    -- Pmenu = { fg = colors.teal },
+                    -- PmenuSel = { fg = colors.blue },
 
                     diffremoved = { fg = colors.overlay1, bg = colors.surface2 },
                     diffRemoved = { fg = colors.overlay1, bg = colors.surface2 },

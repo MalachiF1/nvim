@@ -4,56 +4,42 @@ return {
     dependencies = {
         -- LSP Support
         {
-            'neovim/nvim-lspconfig', -- Required
+            'neovim/nvim-lspconfig',
             dependencies = {
-                -- for lua debugging
-                "folke/neodev.nvim", -- Optional, but needs to be loaded before lspconfig
+                -- for lua debugging, need to be loaded before lspconfig
+                "folke/neodev.nvim",
             },
         },
-        'williamboman/mason.nvim', -- Optional
-        'williamboman/mason-lspconfig.nvim', -- Optional
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
 
         -- Autocompletion
-        'hrsh7th/nvim-cmp', -- Required
-        'hrsh7th/cmp-nvim-lsp', -- Required
-        'hrsh7th/cmp-buffer', -- Optional
-        'hrsh7th/cmp-path', -- Optional
-        'hrsh7th/cmp-cmdline', -- Optional
-        'L3MON4D3/LuaSnip', -- Required
-        'saadparwaiz1/cmp_luasnip', -- Optional
-        'rafamadriz/friendly-snippets', -- Optional
+        {
+            'hrsh7th/nvim-cmp',
+            dependencies = {
+                'onsails/lspkind.nvim',
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-path',
+                'hrsh7th/cmp-cmdline',
+                'L3MON4D3/LuaSnip',
+                'saadparwaiz1/cmp_luasnip',
+                'rafamadriz/friendly-snippets',
+            }
+        },
     },
 
     config = function()
+        -- for debugging neovim configuration
         local neodev = require('neodev')
-        neodev.setup({
-            library = {
-                enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
-                -- these settings will be used for your Neovim config directory
-                runtime = true, -- runtime path
-                types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-                plugins = true, -- installed opt or start plugins in packpath
-                -- you can also specify the list of plugins to make available as a workspace library
-                -- plugins = {"nvim-dap-ui", "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-            },
-            setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
-            -- for your Neovim config directory, the config.library settings will be used as is
-            -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
-            -- for any other directory, config.library.enabled will be set to false
-            override = function(root_dir, options) end,
-            -- With lspconfig, Neodev will automatically setup your lua-language-server
-            -- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
-            -- in your lsp start options
-            lspconfig = true,
-            -- much faster, but needs a recent built of lua-language-server
-            -- needs lua-language-server >= 3.6.0
-            pathStrict = true,
-        })
+        neodev.setup({})
 
         local lsp = require('lsp-zero')
-        local telescope = require("telescope.builtin")
 
-        lsp.preset('recommended')
+        lsp.preset({
+            name = 'recommended',
+            manage_nvim_cmp = false, -- override settings from the preset (i do this manualy down the file)
+        })
 
         lsp.ensure_installed({
             'tsserver',
@@ -69,42 +55,70 @@ return {
             'sqlls',
         })
 
-        require("luasnip.loaders.from_vscode").lazy_load()
+        -- gutter signs for diagnostics
+        lsp.set_sign_icons({
+            error = '', -- ✘, ,
+            warn = '', -- ▲, ,
+            hint = '', -- ⚑, , 
+            info = '' -- », , 
+        })
 
+        -- lsp keybinds
+        local telescope = require("telescope.builtin")
+        lsp.on_attach(function(client, bufnr)
+            local keymap = vim.keymap.set
+            local opts = function(desc) return { buffer = bufnr, remap = false, desc = desc } end
 
+            keymap("n", "<leader>lgd", function() telescope.lsp_definitions() end, opts('definition'))
+            keymap("n", "<leader>ld", function() telescope.lsp_definitions({ jump_type = "never" }) end,
+                opts('view definition'))
+            keymap("n", "<leader>li", function() telescope.lsp_implementations() end, opts('implementations'))
+            keymap("n", "<leader>lh", function() vim.lsp.buf.hover() end, opts('show documentation'))
+            keymap("n", "<leader>lw", function() telescope.lsp_workspace_symbols({ bufnr = 0 }) end,
+                opts('workspace symbols'))
+            keymap("n", "<leader>lgn", function() vim.diagnostic.goto_next() end, opts('next diagnostic'))
+            keymap("n", "<leader>lgp", function() vim.diagnostic.goto_prev() end, opts('previous diagnostic'))
+            keymap("n", "<leader>lc", function() vim.lsp.buf.code_action() end, opts('code actions'))
+            keymap("n", "<leader>lr", function() telescope.lsp_references() end, opts('references'))
+            keymap("n", "<leader>ln", function() vim.lsp.buf.rename() end, opts('rename'))
+            keymap("n", "<leader>ls", function() vim.lsp.buf.signature_help() end, opts('signature help'))
+            keymap("n", "<leader>lv", function() telescope.diagnostics({
+                    severity_limit = vim.diagnostic.severity.HINT,
+                    severity_bound = vim.diagnostic.severity.ERROR,
+                    bufnr = 0,
+                })
+            end, opts('view diagnostics'))
+            keymap("n", "<leader>lf", function() vim.lsp.buf.format() end, opts('format'))
+        end)
+
+        -- cmp
         local cmp = require('cmp')
+        local lspkind = require('lspkind') -- vscode like icons for cmp
         local cmp_action = lsp.cmp_action()
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
-        local cmp_mappings = lsp.defaults.cmp_mappings({
-            ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
-            ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-            ['<tab>'] = cmp.mapping.confirm({ select = true }),
-            ['<C-Space>'] = cmp.mapping.complete(),
 
-            -- Navigatge between snippet placeholders
-            ['<C-n>'] = cmp_action.luasnip_jump_forward(),
-            ['<C-p>'] = cmp_action.luasnip_jump_backward(),
-        })
-
-        cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
-                { name = 'path' }
-            }, {
-                { name = 'cmdline' }
-            })
-        })
-
+        -- load snippets
+        require("luasnip.loaders.from_vscode").lazy_load()
 
         cmp.setup({
+            mapping = {
+                ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(cmp_select), { 'i', 'c' }),
+                ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(cmp_select), { 'i', 'c' }),
+                ['<tab>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'i', 'c' }),
+                ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+
+                -- Navigatge between snippet placeholders
+                ['<C-n>'] = cmp_action.luasnip_jump_forward(),
+                ['<C-p>'] = cmp_action.luasnip_jump_backward(),
+            },
             window = {
                 completion = cmp.config.window.bordered({
-                    border = 'rounded',
+                    border = 'none',
                     winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
                     scrollbar = false,
                 }),
                 documentation = cmp.config.window.bordered({
-                    border = 'rounded',
+                    border = 'none',
                     winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
                     scrollbar = false,
                 }),
@@ -119,60 +133,43 @@ return {
             },
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
-                -- { name = 'vsnip' }, -- For vsnip users.
-                { name = 'luasnip' }, -- For luasnip users.
-                -- { name = 'snippy' }, -- For snippy users.
-                -- { name = 'ultisnips' }, -- For ultisnips users.
+                { name = 'luasnip' },
             }, {
                 { name = 'buffer' },
+            }),
+            formatting = {
+                format = lspkind.cmp_format({
+                    mode = 'symbol_text', -- symbol/text/symbol_text
+                    maxwidth = 30, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                    ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+
+                    -- The function below will be called before any actual modifications from lspkind
+                    -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+                    -- before = function(entry, vim_item)
+                    --     ...
+                    --     return vim_item
+                    -- end
+                })
+            }
+        })
+
+        -- `/` cmdline setup.
+        cmp.setup.cmdline('/', {
+            sources = {
+                { name = 'buffer' }
+            }
+        })
+
+        -- `:` cmdline setup.
+        cmp.setup.cmdline(':', {
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
             })
         })
 
-        lsp.set_sign_icons({
-            error = '', -- ✘, ,
-            warn = '', -- ▲, ,
-            hint = '', -- ⚑, , 
-            info = '' -- », , 
-        })
-
-        lsp.setup_nvim_cmp({
-            mapping = cmp_mappings
-        })
-
-        lsp.on_attach(function(client, bufnr)
-            vim.keymap.set("n", "<leader>lgd", function() telescope.lsp_definitions {} end,
-                { buffer = bufnr, remap = false, desc = 'definition' })
-            vim.keymap.set("n", "<leader>ld", function() telescope.lsp_definitions { jump_type = "never" } end,
-                { buffer = bufnr, remap = false, desc = 'view definition' })
-            vim.keymap.set("n", "<leader>li", function() telescope.lsp_implementations() end,
-                { buffer = bufnr, remap = false, desc = 'implementations' })
-            vim.keymap.set("n", "<leader>lh", function() vim.lsp.buf.hover() end,
-                { buffer = bufnr, remap = false, desc = 'show documentation' })
-            vim.keymap.set("n", "<leader>lw", function() telescope.lsp_workspace_symbols { bufnr = 0 } end,
-                { buffer = bufnr, remap = false, desc = 'workspace symbols' })
-            vim.keymap.set("n", "<leader>lgn", function() vim.diagnostic.goto_next() end,
-                { buffer = bufnr, remap = false, desc = 'next diagnostic' })
-            vim.keymap.set("n", "<leader>lgp", function() vim.diagnostic.goto_prev() end,
-                { buffer = bufnr, remap = false, desc = 'previous diagnostic' })
-            vim.keymap.set("n", "<leader>lc", function() vim.lsp.buf.code_action() end,
-                { buffer = bufnr, remap = false, desc = 'code actions' })
-            vim.keymap.set("n", "<leader>lr", function() telescope.lsp_references() end,
-                { buffer = bufnr, remap = false, desc = 'references' })
-            vim.keymap.set("n", "<leader>ln", function() vim.lsp.buf.rename() end,
-                { buffer = bufnr, remap = false, desc = 'rename' })
-            vim.keymap.set("n", "<leader>ls", function() vim.lsp.buf.signature_help() end,
-                { buffer = bufnr, remap = false, desc = 'signature help' })
-            vim.keymap.set("n", "<leader>lv", function() telescope.diagnostics({
-                    severity_limit = vim.diagnostic.severity.HINT,
-                    severity_bound = vim.diagnostic.severity.ERROR,
-                    bufnr = 0,
-                })
-            end,
-                { buffer = bufnr, remap = false, desc = 'view diagnostics' })
-            vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format() end,
-                { buffer = bufnr, remap = false, desc = 'format' })
-        end)
-
+        -- need to put this at the end
         lsp.setup()
     end,
 
