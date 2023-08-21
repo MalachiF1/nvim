@@ -4,8 +4,10 @@ return {
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-ui-select.nvim',
-        { 'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build =
+            'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
         },
         "debugloop/telescope-undo.nvim",
     },
@@ -26,18 +28,20 @@ return {
                 },
                 layout_strategy = "vertical",
                 layout_config = {
-                    preview_cutoff = 30,
-                    preview_height = 0.65,
-                    prompt_position = 'bottom',
+                    vertical = {
+                        preview_cutoff = 30,
+                        preview_height = 0.65,
+                        prompt_position = 'bottom',
+                    }
                 },
             },
             pickers = {},
             extensions = {
                 fzf = {
-                    fuzzy = true, -- false will only do exact matching
+                    fuzzy = true,                   -- false will only do exact matching
                     override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true, -- override the file sorter
-                    case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+                    override_file_sorter = true,    -- override the file sorter
+                    case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                 },
                 ["ui-select"] = {
                     themes.get_dropdown {

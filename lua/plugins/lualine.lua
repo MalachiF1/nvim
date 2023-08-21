@@ -14,9 +14,9 @@ return {
                     winbar = {},
                 },
                 ignore_focus = {
-                    "dapui_watches", "dapui_breakpoints",
-                    "dapui_scopes", "dapui_console",
-                    "dapui_stacks", "dap-repl" --dap-repl and not dap_repl -.-
+                    -- "dapui_watches", "dapui_breakpoints",
+                    -- "dapui_scopes", "dapui_console",
+                    -- "dapui_stacks", "dap-repl" --dap-repl and not dap_repl -.-
                 },
                 always_divide_middle = true,
                 globalstatus = false,
@@ -30,17 +30,17 @@ return {
                 lualine_a = { 'mode' },
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
                 lualine_c = { 'filename' },
-                lualine_x = { 'encoding', 'fileformat', 'filetype' },
+                lualine_x = { 'searchcount', 'fileformat', 'filetype' },
                 lualine_y = { 'progress' },
                 lualine_z = { 'location' }
             },
             inactive_sections = {
                 lualine_a = {},
-                lualine_b = {},
+                lualine_b = { 'branch' },
                 lualine_c = { 'filename' },
-                lualine_x = { 'location' },
-                lualine_y = {},
-                lualine_z = {}
+                lualine_x = {},
+                lualine_y = { 'progress' },
+                lualine_z = { 'location' }
             },
             tabline = {},
             winbar = {},
@@ -48,6 +48,8 @@ return {
             extensions = {
                 "fzf",
                 "toggleterm",
+                "lazy",
+                "nvim-dap-ui",
             }
         })
     end,

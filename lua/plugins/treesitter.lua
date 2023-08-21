@@ -8,7 +8,6 @@ return {
 
         config = function()
             require 'nvim-treesitter.configs'.setup({
-
                 highlight = {
                     enable = true,
                     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -36,7 +35,10 @@ return {
                     "latex",
                     "scss",
                     "regex",
-                    "sql"
+                    "sql",
+                    "bash",
+                    "toml",
+                    "yaml",
                 },
 
                 sync_install = false,

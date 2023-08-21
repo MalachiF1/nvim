@@ -1,28 +1,28 @@
 return {
     "catppuccin/nvim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
 
     config = function()
         require("catppuccin").setup({
             flavour = "mocha", -- latte, frappe, macchiato, mocha
-            background = { -- :h background
+            background = {     -- :h background
                 light = "latte",
                 dark = "mocha",
             },
             transparent_background = false, -- disables setting the background color.
-            show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-            term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+            show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
+            term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
             dim_inactive = {
-                enabled = false, -- dims the background color of inactive window
+                enabled = false,            -- dims the background color of inactive window
                 shade = "dark",
-                percentage = 0.15, -- percentage of the shade to apply to the inactive window
+                percentage = 0.15,          -- percentage of the shade to apply to the inactive window
             },
-            no_italic = false, -- Force no italic
-            no_bold = false, -- Force no bold
-            no_underline = false, -- Force no underline
-            styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-                comments = { "italic" }, -- Change the style of comments
+            no_italic = false,              -- Force no italic
+            no_bold = false,                -- Force no bold
+            no_underline = false,           -- Force no underline
+            styles = {                      -- Handles the styles of general hi groups (see `:h highlight-args`):
+                comments = { "italic" },    -- Change the style of comments
                 conditionals = {},
                 loops = {},
                 functions = {},
@@ -91,6 +91,13 @@ return {
                     LspDiagnosticsHint = { fg = colors.teal },
                     LspDiagnosticsUnderlineHint = { fg = colors.teal },
 
+                    diffremoved = { fg = colors.overlay1, bg = colors.surface2 },
+                    diffRemoved = { fg = colors.overlay1, bg = colors.surface2 },
+                    diffadded = { fg = colors.green, bg = colors.surface2 },
+                    diffAdded = { fg = colors.green, bg = colors.surface2 },
+                    diffchanged = { fg = colors.yellow, bg = colors.surface2 },
+                    diffChanged = { fg = colors.yellow, bg = colors.surface2 },
+
                     GitSignsDelete = { fg = colors.overlay1 },
                     GitSignsDeleteNr = { fg = colors.overlay1 },
                     GitSignsDeletePreview = { fg = colors.overlay1, bg = colors.surface2 },
@@ -107,22 +114,17 @@ return {
                     NeogitCommitViewHeader = { fg = colors.surface2, bg = colors.red },
 
                     -- Pmenu = { fg = colors.teal },
-                    -- PmenuSel = { fg = colors.blue },
+                    -- PmenuSel = { fg = colors.surface1, bg = colors.teal, style = { 'bold' } },
+                    CmpItemAbbrMatch = { fg = colors.teal },
+                    CmpItemAbbrMatchFuzzy = { fg = colors.teal },
 
-                    diffremoved = { fg = colors.overlay1, bg = colors.surface2 },
-                    diffRemoved = { fg = colors.overlay1, bg = colors.surface2 },
-                    diffadded = { fg = colors.green, bg = colors.surface2 },
-                    diffAdded = { fg = colors.green, bg = colors.surface2 },
-                    diffchanged = { fg = colors.yellow, bg = colors.surface2 },
-                    diffChanged = { fg = colors.yellow, bg = colors.surface2 },
+                    DapBreakpoint = { fg = colors.overlay1 },
                 }
             end,
             integrations = {
                 cmp = true,
                 gitsigns = true,
-                nvimtree = true,
                 treesitter = true,
-                notify = false,
                 mini = true,
                 indent_blankline = {
                     enabled = true,
@@ -152,6 +154,9 @@ return {
                 },
                 rainbow_delimiters = true,
                 telescope = true,
+                mason = true,
+                neogit = true,
+                illuminate = true,
                 -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
             },
 
