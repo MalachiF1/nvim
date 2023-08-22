@@ -30,7 +30,15 @@ return {
                 lualine_a = { 'mode' },
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
                 lualine_c = { 'filename' },
-                lualine_x = { 'searchcount', 'fileformat', 'filetype' },
+                lualine_x = {
+                    { 'filetype' },
+                    {
+                        require("noice").api.status.search.get,
+                        cond = require("noice").api.status.search.has,
+                        -- color = { fg = "#ff9e64" },
+                    },
+                },
+
                 lualine_y = { 'progress' },
                 lualine_z = { 'location' }
             },

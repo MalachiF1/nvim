@@ -21,7 +21,7 @@ return {
                 start_in_insert = true,
 
                 -- These are passed to nvim_open_win
-                border = "rounded",
+                border = "single",
                 -- 'editor' and 'win' will default to being centered
                 relative = "cursor",
 
@@ -36,7 +36,7 @@ return {
                 buf_options = {},
                 win_options = {
                     -- Window transparency (0-100)
-                    winblend = 10,
+                    winblend = 30,
                     -- Disable line wrapping
                     wrap = false,
                     -- Indicator for when text exceeds window
@@ -106,14 +106,14 @@ return {
                     size = nil,
                     relative = "editor",
                     border = {
-                        style = "rounded",
+                        style = "single",
                     },
                     buf_options = {
                         swapfile = false,
                         filetype = "DressingSelect",
                     },
                     win_options = {
-                        winblend = 10,
+                        winblend = 30,
                     },
                     max_width = 80,
                     max_height = 40,
@@ -124,14 +124,14 @@ return {
                 -- Options for built-in selector
                 builtin = {
                     -- These are passed to nvim_open_win
-                    border = "rounded",
+                    border = "single",
                     -- 'editor' and 'win' will default to being centered
                     relative = "editor",
 
                     buf_options = {},
                     win_options = {
                         -- Window transparency (0-100)
-                        winblend = 10,
+                        winblend = 30,
                         cursorline = true,
                         cursorlineopt = "both",
                     },

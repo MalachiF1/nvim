@@ -122,6 +122,35 @@ return {
                     CmpItemAbbrMatchFuzzy = { fg = colors.teal },
 
                     DapBreakpoint = { fg = colors.overlay1 },
+
+                    NoiceCmdlineIcon = { style = { "bold" } },
+                    NotifyERRORTitle = { fg = colors.overlay1 },
+                    NotifyERRORBorder = { fg = colors.overlay1 },
+                    NotifyERRORIcon = { fg = colors.overlay1 },
+                    NotifyWARNTitle = { fg = colors.sky },
+                    NotifyWARNBorder = { fg = colors.sky },
+                    NotifyWARNIcon = { fg = colors.sky },
+                    NotifyINFOTitle = { fg = colors.yellow },
+                    NotifyINFOBorder = { fg = colors.yellow },
+                    NotifyINFOIcon = { fg = colors.yellow },
+                    NotifyTRACETitle = { fg = colors.teal },
+                    NotifyTRACEBorder = { fg = colors.teal },
+                    NotifyTRACEInfo = { fg = colors.teal },
+                    NotifyDEBUGTitle = { fg = colors.teal },
+                    NotifyDEBUGBorder = { fg = colors.teal },
+                    NotifyDEBUGInfo = { fg = colors.teal },
+
+                    TelescopePromptPrefix = { bg = colors.surface0 },
+                    TelescopePromptNormal = { bg = colors.surface0 },
+                    TelescopeResultsNormal = { bg = colors.mantle },
+                    TelescopePreviewNormal = { bg = colors.mantle },
+                    TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
+                    TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
+                    TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
+                    TelescopePromptTitle = { bg = colors.pink, fg = colors.mantle },
+                    TelescopeResultsTitle = { fg = colors.mantle },
+                    TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
+                    TelescopeSelectionCaret = { fg = colors.teal },
                 }
             end,
             integrations = {
@@ -160,6 +189,8 @@ return {
                 mason = true,
                 neogit = true,
                 illuminate = true,
+                noice = true,
+                notify = true,
                 -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
             },
 

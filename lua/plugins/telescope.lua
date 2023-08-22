@@ -30,11 +30,14 @@ return {
                 layout_strategy = "vertical",
                 layout_config = {
                     vertical = {
-                        preview_cutoff = 30,
-                        preview_height = 0.65,
-                        prompt_position = 'bottom',
-                    }
+                        preview_cutoff = 25,
+                        preview_height = 0.60,
+                        prompt_position = 'top',
+                        mirror = true,
+                    },
                 },
+                borderchars = { "─", "│", "─", "│", "┌", "┐", "┙", "┕" },
+                -- ┚ ┕
             },
             pickers = {},
             extensions = {
@@ -45,9 +48,7 @@ return {
                     case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                 },
                 ["ui-select"] = {
-                    themes.get_dropdown {
-                        -- even more opts
-                    }
+                    themes.get_dropdown()
                 },
                 undo = {
                     side_by_side = true,
