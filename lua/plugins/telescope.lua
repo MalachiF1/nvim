@@ -10,6 +10,7 @@ return {
             'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
         },
         "debugloop/telescope-undo.nvim",
+        "nvim-telescope/telescope-file-browser.nvim",
     },
 
     config = function()
@@ -56,11 +57,25 @@ return {
                         preview_height = 0.8,
                     },
                 },
+                file_browser = {
+                    theme = "ivy",
+                    -- disables netrw and use telescope-file-browser in its place
+                    hijack_netrw = true,
+                    mappings = {
+                        ["i"] = {
+                            -- your custom insert mode mappings
+                        },
+                        ["n"] = {
+                            -- your custom normal mode mappings
+                        },
+                    },
+                },
             }
         })
         telescope.load_extension("fzf")
         telescope.load_extension("ui-select")
         telescope.load_extension("undo")
+        telescope.load_extension("file_browser")
 
 
         vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'files', noremap = true, silent = true })
@@ -69,5 +84,10 @@ return {
             builtin.grep_string({ search = vim.fn.input("Grep > ") });
         end, { desc = 'grep string', noremap = true, silent = true })
         vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = 'undo', noremap = true, silent = true })
+        -- open file_browser with the path of the current buffer
+        vim.keymap.set(
+            "n", "<space>pb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+            { desc = "browser", noremap = true, silent = true }
+        )
     end,
 }
