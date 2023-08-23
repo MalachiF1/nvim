@@ -38,6 +38,7 @@ return {
                 "bash",
                 "toml",
                 "yaml",
+                "python",
             },
 
             sync_install = false,

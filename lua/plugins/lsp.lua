@@ -12,6 +12,13 @@ return {
         },
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
+        'jay-babu/mason-nvim-dap.nvim',
+        {
+            'jay-babu/mason-null-ls.nvim',
+            dependencies = {
+                'jose-elias-alvarez/null-ls.nvim',
+            },
+        },
 
         -- Autocompletion
         {
@@ -53,6 +60,23 @@ return {
             'texlab',
             'pyright',
             'sqlls',
+        })
+
+        -- automatically install formatters with mason
+        require("mason-null-ls").setup({
+            ensure_installed = {
+                'clang-format',
+                'isort',
+                'black',
+            },
+            automatic_installation = false,
+            handlers = {},
+        })
+        -- automatically install dap addapters with mason
+        require('mason-nvim-dap').setup({
+            ensure_installed = { 'python', },
+            automatic_installation = true,
+            handlers = {}, -- sets up dap in the predefined manner
         })
 
         -- gutter signs for diagnostics
@@ -169,6 +193,6 @@ return {
 
         -- need to put this at the end
         lsp.setup()
+        require('null-ls').setup()
     end,
-
 }

@@ -3,15 +3,18 @@ return {
     dependencies = {
         "theHamsta/nvim-dap-virtual-text",
         "rcarriga/nvim-dap-ui",
+        "mfussenegger/nvim-dap-python",
     },
 
     config = function()
         local dap = require('dap')
 
         require("plugins.daps.adapters.lldb")
+        require("plugins.daps.adapters.debugpy")
 
         require("plugins.daps.settings.cpp")
         require("plugins.daps.settings.rust")
+        require("plugins.daps.settings.python")
 
         require("nvim-dap-virtual-text").setup({})
 
