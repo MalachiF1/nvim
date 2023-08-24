@@ -80,3 +80,15 @@ vim.opt.undofile = true
 
 -- shorter starup times
 vim.loader.enable()
+
+-- enable cursorline only on focused window
+vim.cmd([[
+    augroup CursorLine
+        au!
+        au VimEnter * setlocal cursorline
+        au WinEnter * setlocal cursorline
+        au BufWinEnter * setlocal cursorline
+        au WinLeave * setlocal nocursorline
+        au FileType TelescopePrompt* setlocal nocursorline " disable cursorline in Telescope Prompt
+    augroup END
+]])

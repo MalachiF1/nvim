@@ -42,6 +42,7 @@ return {
 				"python",
 				"regex",
 				"comment",
+				"vim",
 			},
 
 			sync_install = false,
