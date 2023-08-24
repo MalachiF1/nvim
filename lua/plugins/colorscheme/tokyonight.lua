@@ -60,5 +60,8 @@ require("tokyonight").setup({
 			bg = c.bg,
 			fg = c.bg,
 		}
+		hl.DapBreakpoint = {
+			fg = c.red,
+		}
 	end,
 })
