@@ -39,7 +39,11 @@ return {
                 borderchars = { "─", "│", "─", "│", "┌", "┐", "┙", "┕" },
                 -- ┚ ┕
             },
-            pickers = {},
+            pickers = {
+                colorscheme = {
+                    enable_preview = true
+                }
+            },
             extensions = {
                 fzf = {
                     fuzzy = true,                   -- false will only do exact matching
@@ -89,6 +93,10 @@ return {
         vim.keymap.set(
             "n", "<space>pb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
             { desc = "browser", noremap = true, silent = true }
+        )
+        vim.keymap.set(
+            "n", "<space>c", ":Telescope colorscheme<CR>",
+            { desc = "colorscheme", noremap = true, silent = true }
         )
     end,
 }

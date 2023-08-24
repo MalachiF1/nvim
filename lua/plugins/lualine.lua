@@ -3,10 +3,20 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
 
     config = function()
+        -- get the colorscheme
+        local colorscheme;
+        if vim.g.colors_name == 'tokyonight' then
+            colorscheme = 'tokyonight'
+        elseif vim.g.colors_name == 'catppuccin' then
+            colorscheme = 'catppuccin'
+        else
+            colorscheme = 'default'
+        end
+
         require('lualine').setup({
             options = {
                 icons_enabled = true,
-                theme = 'catppuccin',
+                theme = colorscheme,
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
                 disabled_filetypes = {
