@@ -28,6 +28,7 @@ return {
                 "html",
                 "css",
                 "markdown",
+                "markdown_inline",
                 "bash",
                 "vim",
                 "gitignore",
@@ -39,6 +40,8 @@ return {
                 "toml",
                 "yaml",
                 "python",
+                "regex",
+                "comment",
             },
 
             sync_install = false,

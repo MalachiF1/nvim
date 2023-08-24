@@ -3,7 +3,11 @@ return {
     dependencies = {
         "theHamsta/nvim-dap-virtual-text",
         "rcarriga/nvim-dap-ui",
-        "mfussenegger/nvim-dap-python",
+        {
+            "mfussenegger/nvim-dap-python",
+            ft = "python",
+        },
+
     },
 
     config = function()
