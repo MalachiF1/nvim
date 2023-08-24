@@ -18,7 +18,7 @@ keymap("n", "<C-n>", ":nohl<CR>", opts)
 keymap("n", "x", '"_x', opts)
 
 -- paste over text without without copying into register
-keymap("x", "<leader>p", "\"_dP", { desc = "paste", noremap = true, silent = true })
+keymap("x", "<leader>p", '"_dP', { desc = "paste", noremap = true, silent = true })
 
 -- keep mouse in the middle of the screen when searching or using ctrl+u/ctrl+d
 keymap("n", "<C-d>", "<C-d>zz", opts)
@@ -43,8 +43,18 @@ keymap("n", "<leader>w>", ":vertical resize +2.5<CR>", { desc = "increase width"
 keymap("n", "<leader>w<", ":vertical resize -2.5<CR>", { desc = "decrease width", noremap = true, silent = true })
 keymap("n", "<leader>w+", ":resize +2.5<CR>", { desc = "increase height", noremap = true, silent = true })
 keymap("n", "<leader>w-", ":resize -2.5<CR>", { desc = "decrease height", noremap = true, silent = true })
-keymap("n", "<leader>w|", ":set ead=hor ea noea<CR>", { desc = "equalize windows width", noremap = true, silent = true })
-keymap("n", "<leader>w_", ":set ead=ver ea noea<CR>", { desc = "equalize windows hight", noremap = true, silent = true })
+keymap(
+	"n",
+	"<leader>w|",
+	":set ead=hor ea noea<CR>",
+	{ desc = "equalize windows width", noremap = true, silent = true }
+)
+keymap(
+	"n",
+	"<leader>w_",
+	":set ead=ver ea noea<CR>",
+	{ desc = "equalize windows hight", noremap = true, silent = true }
+)
 keymap("n", "<leader>wJ", "<C-w>J", { desc = "move down", noremap = true, silent = true })
 keymap("n", "<leader>wK", "<C-w>K", { desc = "move up", noremap = true, silent = true })
 keymap("n", "<leader>wH", "<C-w>H", { desc = "move left", noremap = true, silent = true })
