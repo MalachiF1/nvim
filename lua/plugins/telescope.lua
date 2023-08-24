@@ -58,7 +58,7 @@ return {
 					layout_strategy = "vertical",
 					layout_config = {
 						preview_cutoff = 0,
-						preview_height = 0.8,
+						preview_height = 0.60,
 					},
 				},
 				file_browser = {
