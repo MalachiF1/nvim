@@ -11,27 +11,21 @@ return {
         -- OPTIONAL:
         --   `nvim-notify` is only needed, if you want to use the notification view.
         --   If not available, we use `mini` as the fallback
-        "rcarriga/nvim-notify",
+        {
+            "rcarriga/nvim-notify",
+            opts = {
+                fps = 30,
+                render = "compact", -- default, compact, minimal, simple
+                stages = "fade",    -- fade, fade_in_slide_out, slide, static
+                timeout = 2000,
+                top_down = true,
+                level = 2,
+            },
+        }
+
     },
 
     config = function()
-        require('notify').setup({
-            fps = 30,
-            icons = {
-                DEBUG = "",
-                ERROR = "",
-                INFO = "",
-                TRACE = "✎",
-                WARN = ""
-            },
-            level = 3,
-            minimum_width = 50,
-            render = "compact",
-            stages = "fade",
-            timeout = 1000,
-            top_down = true
-        })
-
         require("noice").setup({
             lsp = {
                 -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -43,7 +37,7 @@ return {
 
                 hover = {
                     enabled = true,
-                    silent = false, -- set to true to not show a message if hover is not available
+                    silent = true,  -- set to true to not show a message if hover is not available
                     view = 'popup', -- when nil, use defaults from documentation
                 },
             },
@@ -59,9 +53,21 @@ return {
                 enabled = true,   -- enables the Noice cmdline UI
                 view = "cmdline", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
             },
+            messages = {
+                enabled = true,
+                view = "notify",
+                view_error = "notify",
+                view_warn = "notify",
+                view_history = "messages",
+                view_search = "virtualtext",
+            },
+            popupmenu = {
+                enabled = true,
+                backend = "nui",
+            },
             notify = {
-                enabled = false,
-                view = 'notify'
+                enabled = true,
+                view = 'notify',
             }
 
         })
