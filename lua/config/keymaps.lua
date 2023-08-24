@@ -63,6 +63,10 @@ keymap("n", "<leader>wL", "<C-w>L", { desc = "move right", noremap = true, silen
 -- buffer management
 keymap("n", "<leader>bx", ":bdelete<CR>", { desc = "close", noremap = true, silent = true })
 
+-- buffer navigation
+keymap("n", "<S-h>", "<Cmd>BufferPrevious<CR>", opts)
+keymap("n", "<S-l>", "<Cmd>BufferNext<CR>", opts)
+
 -- move highlighted text
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
@@ -72,10 +76,6 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-
--- buffer navigation
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- save and quit
 keymap("n", "<leader>ss", ":w<CR>", { desc = "save", noremap = true, silent = true })

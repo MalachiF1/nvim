@@ -145,6 +145,10 @@ require("catppuccin").setup({
 			TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
 			TelescopePreviewTitle = { bg = colors.mantle, fg = colors.mantle },
 			TelescopeSelectionCaret = { fg = colors.teal },
+
+			BufferCurrent = { fg = colors.text },
+			BufferCurrentMod = { fg = colors.red },
+			BufferInactive = { fg = colors.overlay2 },
 		}
 	end,
 	integrations = {

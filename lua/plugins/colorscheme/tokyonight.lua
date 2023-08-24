@@ -63,5 +63,11 @@ require("tokyonight").setup({
 		hl.DapBreakpoint = {
 			fg = c.red,
 		}
+		hl.BufferCurrentSign = {
+			fg = c.blue,
+		}
+		hl.BufferCurrentSignRight = {
+			fg = c.blue,
+		}
 	end,
 })
