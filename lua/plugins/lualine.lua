@@ -10,7 +10,7 @@ return {
         elseif vim.g.colors_name == 'catppuccin' then
             colorscheme = 'catppuccin'
         else
-            colorscheme = 'default'
+            colorscheme = 'auto'
         end
 
         require('lualine').setup({
