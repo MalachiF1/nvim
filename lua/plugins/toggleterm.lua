@@ -1,7 +1,31 @@
 return {
 	-- amongst your other plugins
 	"akinsho/toggleterm.nvim",
+
 	version = "*",
+
+	cmd = "ToggleTerm",
+
+	init = function()
+		vim.keymap.set(
+			"n",
+			"<leader>th",
+			":ToggleTerm size=15 direction=horizontal<CR>",
+			{ desc = "horizontal", noremap = true, silent = true }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>tf",
+			":ToggleTerm size=15 direction=float<CR>",
+			{ desc = "float", noremap = true, silent = true }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>tv",
+			":ToggleTerm size=50 direction=vertical<CR>",
+			{ desc = "vertical", noremap = true, silent = true }
+		)
+	end,
 
 	config = function()
 		local toggleterm = require("toggleterm")
@@ -30,25 +54,6 @@ return {
 				},
 			},
 		})
-
-		vim.keymap.set(
-			"n",
-			"<leader>th",
-			":ToggleTerm size=15 direction=horizontal<CR>",
-			{ desc = "horizontal", noremap = true, silent = true }
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>tf",
-			":ToggleTerm size=15 direction=float<CR>",
-			{ desc = "float", noremap = true, silent = true }
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>tv",
-			":ToggleTerm size=50 direction=vertical<CR>",
-			{ desc = "vertical", noremap = true, silent = true }
-		)
 
 		function _G.set_terminal_keymaps()
 			local opts = { buffer = 0 }

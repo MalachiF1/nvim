@@ -1,5 +1,8 @@
 return {
 	"nvim-lualine/lualine.nvim",
+
+	event = "VeryLazy",
+
 	dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
 
 	config = function()
@@ -43,8 +46,8 @@ return {
 				lualine_x = {
 					{ "filetype" },
 					{
-						require("noice").api.status.search.get,
-						cond = require("noice").api.status.search.has,
+						-- require("noice").api.status.search.get,
+						-- cond = require("noice").api.status.search.has,
 						-- color = { fg = "#ff9e64" },
 					},
 				},

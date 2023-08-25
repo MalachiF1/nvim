@@ -1,4 +1,3 @@
-require("dap-python").setup("/usr/bin/python3")
 table.insert(require("dap").configurations.python, {
 	type = "python",
 	request = "launch",

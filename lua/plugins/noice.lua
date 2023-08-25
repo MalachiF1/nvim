@@ -34,7 +34,8 @@ return {
 				hover = {
 					enabled = true,
 					silent = true, -- set to true to not show a message if hover is not available
-					view = "popup", -- when nil, use defaults from documentation
+					-- view = "popup", -- when nil, use defaults from documentation
+					view = "hover",
 				},
 			},
 			-- you can enable a preset for easier configuration

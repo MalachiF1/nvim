@@ -1,6 +1,12 @@
 return {
 	"NeogitOrg/neogit",
 
+	init = function()
+		vim.keymap.set("n", "<leader>gs", ":Neogit<CR>", { desc = "status", noremap = true, silent = true })
+	end,
+
+	cmd = "Neogit",
+
 	dependencies = {
 		"nvim-lua/plenary.nvim", -- required
 		"nvim-telescope/telescope.nvim", -- optional
@@ -120,7 +126,5 @@ return {
 				},
 			},
 		})
-
-		vim.keymap.set("n", "<leader>gs", ":Neogit<CR>", { desc = "status", noremap = true, silent = true })
 	end,
 }

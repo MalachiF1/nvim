@@ -1,8 +1,12 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+
+	event = "BufReadPre",
+
 	dependencies = {
 		"nvim-treesitter/playground",
 	},
+
 	build = ":TSUpdate",
 
 	config = function()

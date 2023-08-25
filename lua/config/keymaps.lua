@@ -84,7 +84,7 @@ keymap("n", "<leader>qf", ":q!<CR>", { desc = "force quit", noremap = true, sile
 keymap("n", "<leader>sq", ":wq<CR>", { desc = "save and quit", noremap = true, silent = true })
 
 -- open netrw
-keymap("n", "<leader>pv", ":Ex<CR>", { desc = "netrw", noremap = true, silent = true })
+-- keymap("n", "<leader>pv", ":Ex<CR>", { desc = "netrw", noremap = true, silent = true })
 
 -- switch to hebrew in insert mode (and back to english)
 keymap("i", "<A-h>", "<C-^>", opts)

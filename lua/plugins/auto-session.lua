@@ -1,6 +1,8 @@
 return {
 	"rmagatti/auto-session",
 
+	event = "VimEnter",
+
 	config = function()
 		require("auto-session").setup({
 			log_level = "error",
@@ -15,18 +17,10 @@ return {
 				post_cwd_changed_hook = nil, -- function: This is called after auto_session code runs for the `DirChanged` autocmd
 			},
 
-			-- cwd_change_handling = {
-			-- 	restore_upcoming_session = true, -- already the default, no need to specify like this, only here as an example
-			-- 	pre_cwd_changed_hook = nil, -- already the default, no need to specify like this, only here as an example
-			-- 	post_cwd_changed_hook = function() -- example refreshing the lualine status line _after_ the cwd changes
-			-- 		require("lualine").refresh() -- refresh lualine so the new session name is displayed in the status bar
-			-- 	end,
-			-- },
-
 			session_lens = {
 				-- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
 				buftypes_to_ignore = {}, -- list of buffer types what should not be deleted from current session
-				load_on_setup = true,
+				load_on_setup = false,
 				theme_conf = { border = true },
 				previewer = false,
 			},
