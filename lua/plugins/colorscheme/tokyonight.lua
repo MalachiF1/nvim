@@ -69,5 +69,8 @@ require("tokyonight").setup({
 		hl.BufferCurrentSignRight = {
 			fg = c.blue,
 		}
+		hl.DashboardHeader = {
+			fg = c.magenta,
+		}
 	end,
 })

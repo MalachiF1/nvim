@@ -20,8 +20,8 @@ return {
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
-					statusline = {},
-					winbar = {},
+					statusline = { "alpha", "dashboard" },
+					winbar = { "alpha", "dashboard" },
 				},
 				ignore_focus = {
 					-- "dapui_watches", "dapui_breakpoints",

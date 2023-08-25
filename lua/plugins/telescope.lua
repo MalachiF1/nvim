@@ -85,6 +85,7 @@ return {
 		local keymap = vim.keymap.set
 		keymap("n", "<leader>pf", builtin.find_files, { desc = "files", noremap = true, silent = true })
 		keymap("n", "<leader>pg", builtin.git_files, { desc = "git files", noremap = true, silent = true })
+		keymap("n", "<leader>pr", builtin.oldfiles, { desc = "recent files", noremap = true, silent = true })
 		keymap("n", "<leader>ps", function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
 		end, { desc = "grep string", noremap = true, silent = true })

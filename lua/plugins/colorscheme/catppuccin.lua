@@ -149,6 +149,8 @@ require("catppuccin").setup({
 			BufferCurrent = { fg = colors.text },
 			BufferCurrentMod = { fg = colors.red },
 			BufferInactive = { fg = colors.overlay2 },
+
+			DashboardHeader = { fg = colors.teal },
 		}
 	end,
 	integrations = {
@@ -189,6 +191,7 @@ require("catppuccin").setup({
 		illuminate = true,
 		noice = true,
 		notify = true,
+		alpha = true,
 		-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 	},
 })
