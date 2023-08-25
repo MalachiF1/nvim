@@ -1,55 +1,57 @@
+local opt = vim.opt
+
 -- line numbers
-vim.opt.relativenumber = true
-vim.opt.number = true
+opt.relativenumber = true
+opt.number = true
 
 -- tabs and indtation
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.autoindent = true
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.autoindent = true
 
 -- line wraping
-vim.opt.wrap = false
+opt.wrap = false
 
 -- search settings
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+opt.ignorecase = true
+opt.smartcase = true
 
 -- cursor line
-vim.opt.cursorline = true
+opt.cursorline = true
 
 -- appearance
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-vim.opt.signcolumn = "yes"
+opt.termguicolors = true
+opt.background = "dark"
+opt.signcolumn = "yes"
 
 -- search highlighting
--- vim.opt.hlsearch = false
-vim.opt.incsearch = true
+-- opt.hlsearch = false
+opt.incsearch = true
 
 -- backspace
-vim.opt.backspace = "indent,eol,start"
+opt.backspace = "indent,eol,start"
 
 -- clipboard
 vim.api.nvim_set_option("clipboard", "unnamed")
 
 -- split windows
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+opt.splitright = true
+opt.splitbelow = true
 
 -- `-` counts as part of word
-vim.opt.iskeyword:append("-")
+opt.iskeyword:append("-")
 
 -- don't insert current comment leader automatically
-vim.opt.formatoptions:remove({ "c", "r", "o" })
+opt.formatoptions:remove({ "c", "r", "o" })
 
 -- alow mouse to be used in neovim
-vim.opt.mouse = "a"
+opt.mouse = "a"
 
 -- always keep 8 lines off edges unless at end or beggining of file
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.isfname:append("@-@")
 
 -- highlight text when yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -62,24 +64,27 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 --don't show the mode (lualine will still show it)
-vim.opt.showmode = false
+opt.showmode = false
 
 -- get rid of `~` character on blank buffers
-vim.opt.fillchars = { eob = " " }
+opt.fillchars = { eob = " " }
 
 -- make vim commands work when in hebrew
-vim.opt.keymap = "hebrew"
-vim.opt.iminsert = 0
-vim.opt.imsearch = -1
+opt.keymap = "hebrew"
+opt.iminsert = 0
+opt.imsearch = -1
 
 -- disable backups, but let undotree remember lots of changes in a backup file
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
 
 -- shorter starup times
 vim.loader.enable()
+
+-- when running macros and regexes on a large file, lazy redraw tells neovim/vim not to draw the screen, which greatly speeds it up
+-- opt.lazyredraw = true
 
 -- enable cursorline only on focused window
 vim.cmd([[
