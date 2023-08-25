@@ -80,25 +80,28 @@ return {
 		telescope.load_extension("ui-select")
 		telescope.load_extension("undo")
 		telescope.load_extension("file_browser")
+		telescope.load_extension("session-lens")
 
-		vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "files", noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "git files", noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>ps", function()
+		local keymap = vim.keymap.set
+		keymap("n", "<leader>pf", builtin.find_files, { desc = "files", noremap = true, silent = true })
+		keymap("n", "<leader>pg", builtin.git_files, { desc = "git files", noremap = true, silent = true })
+		keymap("n", "<leader>ps", function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
 		end, { desc = "grep string", noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "undo", noremap = true, silent = true })
+		keymap("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "undo", noremap = true, silent = true })
 		-- open file_browser with the path of the current buffer
-		vim.keymap.set(
+		keymap(
 			"n",
 			"<space>pb",
 			":Telescope file_browser path=%:p:h select_buffer=true<CR>",
 			{ desc = "browser", noremap = true, silent = true }
 		)
-		vim.keymap.set(
+		keymap("n", "<space>c", ":Telescope colorscheme<CR>", { desc = "colorscheme", noremap = true, silent = true })
+		keymap(
 			"n",
-			"<space>c",
-			":Telescope colorscheme<CR>",
-			{ desc = "colorscheme", noremap = true, silent = true }
+			"<leader>r",
+			":Telescope session-lens<CR>",
+			{ desc = "restore session", noremap = true, silent = true }
 		)
 	end,
 }
