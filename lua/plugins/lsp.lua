@@ -106,7 +106,7 @@ return {
 		-- LSP Support
 		"neovim/nvim-lspconfig",
 		cmd = "LspInfo",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufRead", "BufNewFile" },
 		dependencies = {
 			"jose-elias-alvarez/null-ls.nvim",
 			"hrsh7th/cmp-nvim-lsp",
