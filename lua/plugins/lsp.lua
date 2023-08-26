@@ -156,6 +156,11 @@ return {
 			})
 
 			local lsp_capablities = require("cmp_nvim_lsp").default_capabilities()
+            -- enable folding for nvim-ufo
+			lsp_capablities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
 			local lsp_attach = function(client, bufnr)
 				local telescope = require("telescope.builtin")
 				local keymap = vim.keymap.set

@@ -27,6 +27,7 @@ return {
 				{ mode = "n", keys = "<leader>l", desc = "+Lsp" },
 				{ mode = "n", keys = "<leader>d", desc = "+Debug" },
 				{ mode = "n", keys = "<leader>t", desc = "+Terminal" },
+				{ mode = "n", keys = "<leader>f", desc = "+Fold" },
 				{ mode = "n", keys = "<leader>o", desc = "+Options" },
 				{ mode = "n", keys = "<leader>lg", desc = "+Go to" },
 				{ mode = "n", keys = "<leader>bm", desc = "+Move" },
