@@ -164,7 +164,7 @@ return {
 				end
 
 				keymap("n", "<leader>lgd", function()
-					telescope.lsp_definitions()
+					telescope.lsp_definitions() -- <C-o> to return
 				end, opts("definition"))
 				keymap("n", "<leader>ld", function()
 					telescope.lsp_definitions({ jump_type = "never" })
