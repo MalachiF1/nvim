@@ -14,6 +14,9 @@ keymap("i", "<C-[>", "<C-[>:set iminsert=0<CR>", opts)
 -- clear highlights
 keymap("n", "<C-n>", ":nohl<CR>", opts)
 
+-- toggle whitespace indicators
+keymap("n", "<leader>ow", ":set list!<CR>", { desc = "toggle whitespace", noremap = true, silent = true })
+
 -- don't copy into register when deleting single character
 keymap("n", "x", '"_x', opts)
 

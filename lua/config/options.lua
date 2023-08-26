@@ -25,6 +25,20 @@ opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 
+-- show whitespace
+opt.encoding = "utf-8"
+opt.list = true
+opt.listchars = {
+	tab = "│·", -- ——
+	space = "·",
+	trail = "·",
+	extends = "❯", -- »
+	precedes = "❮", -- «
+}
+
+-- get rid of `~` character on blank buffers
+opt.fillchars = { eob = " " }
+
 -- search highlighting
 -- opt.hlsearch = false
 opt.incsearch = true
@@ -65,9 +79,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 --don't show the mode (lualine will still show it)
 opt.showmode = false
-
--- get rid of `~` character on blank buffers
-opt.fillchars = { eob = " " }
 
 -- make vim commands work when in hebrew
 opt.keymap = "hebrew"

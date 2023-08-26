@@ -27,6 +27,7 @@ return {
 				{ mode = "n", keys = "<leader>l", desc = "+Lsp" },
 				{ mode = "n", keys = "<leader>d", desc = "+Debug" },
 				{ mode = "n", keys = "<leader>t", desc = "+Terminal" },
+				{ mode = "n", keys = "<leader>o", desc = "+Options" },
 				{ mode = "n", keys = "<leader>lg", desc = "+Go to" },
 				{ mode = "n", keys = "<leader>bm", desc = "+Move" },
 				{ mode = "n", keys = "<leader>w<", postkeys = "<leader>w" }, -- for hydra like submodes
