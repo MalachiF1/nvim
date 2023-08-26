@@ -10,19 +10,19 @@ return {
 		vim.keymap.set(
 			"n",
 			"<leader>th",
-			":ToggleTerm size=15 direction=horizontal<CR>",
+			":ToggleTerm direction=horizontal<CR>",
 			{ desc = "horizontal", noremap = true, silent = true }
 		)
 		vim.keymap.set(
 			"n",
 			"<leader>tf",
-			":ToggleTerm size=15 direction=float<CR>",
+			":ToggleTerm direction=float<CR>",
 			{ desc = "float", noremap = true, silent = true }
 		)
 		vim.keymap.set(
 			"n",
 			"<leader>tv",
-			":ToggleTerm size=50 direction=vertical<CR>",
+			":ToggleTerm direction=vertical<CR>",
 			{ desc = "vertical", noremap = true, silent = true }
 		)
 	end,
@@ -30,28 +30,35 @@ return {
 	config = function()
 		local toggleterm = require("toggleterm")
 		toggleterm.setup({
+			size = function(term)
+				if term.direction == "horizontal" then
+					local hight = math.ceil(vim.o.lines * 0.4)
+					if hight >= 20 then
+						return 20
+					else
+						return hight
+					end
+
+					return
+				elseif term.direction == "vertical" then
+					return math.ceil(vim.o.columns * 0.33)
+				end
+			end,
+			persist_size = false,
 			float_opts = {
 				-- The border key is *almost* the same as 'nvim_open_win'
 				-- see :h nvim_open_win for details on borders however
 				-- the 'curved' border is a custom border type
 				-- not natively supported but implemented in this plugin.
-				border = "curved",
+				border = "single",
 				-- like `size`, width and height can be a number or function which is passed the current terminal
+				width = function()
+					return math.ceil(vim.o.columns * 0.7)
+				end,
+				height = function()
+					return math.ceil(vim.o.lines * 0.7)
+				end,
 				winblend = 3,
-			},
-			highlights = {
-				-- highlights which map to a highlight group name and a table of it's values
-				-- NOTE: this is only a subset of values, any group placed here will be set for the terminal window split
-				-- Normal = {
-				--     guibg = "<VALUE-HERE>",
-				-- },
-				-- NormalFloat = {
-				--     link = 'Normal'
-				-- },
-				FloatBorder = {
-					guifg = "#ffb454",
-					-- guibg = "<VALUE-HERE>",
-				},
 			},
 		})
 
