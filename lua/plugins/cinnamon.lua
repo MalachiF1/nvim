@@ -1,7 +1,7 @@
 return {
 	"declancm/cinnamon.nvim",
 
-	event = "BufRead",
+	event = "BufReadPost",
 
 	config = function()
 		require("cinnamon").setup({
