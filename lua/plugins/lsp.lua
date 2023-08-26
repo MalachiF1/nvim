@@ -152,8 +152,7 @@ return {
 			-- automatically install dap addapters with mason
 			require("mason-nvim-dap").setup({
 				ensure_installed = { "python" },
-				automatic_installation = true,
-				handlers = {}, -- sets up dap in the predefined manner
+				automatic_installation = false,
 			})
 
 			local lsp_capablities = require("cmp_nvim_lsp").default_capabilities()
