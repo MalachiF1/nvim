@@ -32,7 +32,7 @@ return {
 		keymap(
 			"n",
 			"<space>pb",
-			":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+			":Telescope file_browser path=%:p:h select_buffer=true <CR>",
 			{ desc = "browser", noremap = true, silent = true }
 		)
 		keymap("n", "<space>c", ":Telescope colorscheme<CR>", { desc = "colorscheme", noremap = true, silent = true })
@@ -97,6 +97,15 @@ return {
 					theme = "ivy",
 					-- disables netrw and use telescope-file-browser in its place
 					hijack_netrw = true,
+					hidden = {
+						file_browser = true,
+						folder_browser = true,
+					},
+					display_stat = {
+						date = true,
+						size = true,
+						mode = false,
+					},
 					mappings = {
 						["i"] = {
 							-- your custom insert mode mappings
