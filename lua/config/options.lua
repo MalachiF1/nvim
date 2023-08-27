@@ -24,6 +24,7 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.background = 'dark'
 opt.signcolumn = 'yes'
+opt.pumblend = 8 -- semi-transparency in popup windows like cmp l
 
 -- show whitespace
 opt.encoding = 'utf-8'
