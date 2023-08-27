@@ -53,7 +53,7 @@ return {
 						key = "g",
 						-- keymap = "g",
 						key_hl = "Number",
-						action = "Telescope grep_string",
+						action = "lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })",
 					},
 					{
 						icon = "   ",
