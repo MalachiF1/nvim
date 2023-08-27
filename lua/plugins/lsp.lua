@@ -181,7 +181,9 @@ return {
                 keymap('n', '<leader>lr', function() telescope.lsp_references() end, opts('references'))
                 keymap('n', '<leader>ln', function() vim.lsp.buf.rename() end, opts('rename'))
                 keymap('n', '<leader>ls', function() vim.lsp.buf.signature_help() end, opts('signature help'))
-                keymap('n', '<leader>lf', function() vim.lsp.buf.format() end, opts('format'))
+                keymap('n', '<leader>lf', function()
+                    vim.lsp.buf.format({ filter = function(client) return client.name ~= 'lau_ls' end })
+                end, opts('format'))
                 keymap(
                     'n',
                     '<leader>lv',
