@@ -4,7 +4,7 @@ return {
 
 	version = "*",
 
-	cmd = "ToggleTerm",
+	cmd = { "ToggleTerm", "TermExec" },
 
 	init = function()
 		vim.keymap.set(
