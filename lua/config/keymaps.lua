@@ -36,8 +36,8 @@ keymap("n", "G", "G$", opts)
 keymap("v", "G", "G$", opts)
 
 --search and replace
--- keymap("n", "S", ":%s//g<left><left>", opts)
-keymap("n", "S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
+keymap("n", "<C-s>", ":%s/<C-r><C-w>//gI<Left><Left><Left>", opts) -- cword
+keymap("v", "<C-s>", 'y:%s/<C-R>"//gI<Left><Left><Left>', opts) -- selection
 
 -- window management
 keymap("n", "<leader>wv", ":vsplit<CR>", { desc = "vertically split", noremap = true, silent = true })
