@@ -22,6 +22,7 @@ return {
 				show_title = true,
 				show_scroll_bar = false,
 				win_height = 15,
+				win_vheight = 15,
 				winblend = 10,
 				wrap = false,
 			},
