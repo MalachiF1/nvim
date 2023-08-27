@@ -71,6 +71,7 @@ return {
 				"toggleterm",
 				"lazy",
 				"nvim-dap-ui",
+				"quickfix",
 			},
 		})
 	end,

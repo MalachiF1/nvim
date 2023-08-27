@@ -36,7 +36,8 @@ keymap("n", "G", "G$", opts)
 keymap("v", "G", "G$", opts)
 
 --search and replace
-keymap("n", "S", ":%s//g<left><left>", opts)
+-- keymap("n", "S", ":%s//g<left><left>", opts)
+keymap("n", "S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
 
 -- window management
 keymap("n", "<leader>wv", ":vsplit<CR>", { desc = "vertically split", noremap = true, silent = true })
@@ -56,7 +57,7 @@ keymap(
 	"n",
 	"<leader>w_",
 	":set ead=ver ea noea<CR>",
-	{ desc = "equalize windows hight", noremap = true, silent = true }
+	{ desc = "equalize windows height", noremap = true, silent = true }
 )
 keymap("n", "<leader>wJ", "<C-w>J", { desc = "move down", noremap = true, silent = true })
 keymap("n", "<leader>wK", "<C-w>K", { desc = "move up", noremap = true, silent = true })

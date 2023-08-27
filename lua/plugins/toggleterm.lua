@@ -32,11 +32,11 @@ return {
 		toggleterm.setup({
 			size = function(term)
 				if term.direction == "horizontal" then
-					local hight = math.ceil(vim.o.lines * 0.4)
-					if hight >= 20 then
+					local height = math.ceil(vim.o.lines * 0.4)
+					if height >= 20 then
 						return 20
 					else
-						return hight
+						return height
 					end
 
 					return

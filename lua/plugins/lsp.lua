@@ -145,6 +145,7 @@ return {
 					"isort",
 					"black",
 					"stylua",
+					"prettier",
 				},
 				automatic_installation = true,
 				handlers = {},
@@ -156,7 +157,7 @@ return {
 			})
 
 			local lsp_capablities = require("cmp_nvim_lsp").default_capabilities()
-            -- enable folding for nvim-ufo
+			-- enable folding for nvim-ufo
 			lsp_capablities.textDocument.foldingRange = {
 				dynamicRegistration = false,
 				lineFoldingOnly = true,
