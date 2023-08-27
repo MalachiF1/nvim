@@ -35,7 +35,7 @@ return {
 			":Telescope file_browser path=%:p:h select_buffer=true <CR>",
 			{ desc = "browser", noremap = true, silent = true }
 		)
-		keymap("n", "<space>c", ":Telescope colorscheme<CR>", { desc = "colorscheme", noremap = true, silent = true })
+		keymap("n", "<leader>oc", ":Telescope colorscheme<CR>", { desc = "colorscheme", noremap = true, silent = true })
 		keymap(
 			"n",
 			"<leader>r",
