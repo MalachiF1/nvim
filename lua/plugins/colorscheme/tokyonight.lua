@@ -72,5 +72,11 @@ require("tokyonight").setup({
 		hl.DashboardHeader = {
 			fg = c.magenta,
 		}
+		hl.FlashLabel = {
+			fg = c.magenta2,
+		}
+		hl.FlashMatch = {
+			fg = c.blue6,
+		}
 	end,
 })
