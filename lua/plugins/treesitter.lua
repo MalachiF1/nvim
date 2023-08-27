@@ -56,15 +56,15 @@ return {
 		-- fix some highlighting issues
 
 		-- cpp
-		vim.api.nvim_set_hl(0, "@type.qualifier.cpp", { link = "Keyword" })
-		vim.api.nvim_set_hl(0, "@function.builtin.cpp", { link = "Function" })
-		vim.api.nvim_set_hl(0, "@type.builtin.cpp", { link = "Type" })
-		vim.api.nvim_set_hl(0, "@lsp.typemod.class.constructorOrDestructor.cpp", { link = "Function" })
-		vim.api.nvim_set_hl(0, "@lsp.typemod.variable.defaultLibrary.cpp", { link = "Variable" })
-		vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary.cpp", { link = "Variable" })
+		-- vim.api.nvim_set_hl(0, "@type.qualifier.cpp", { link = "Keyword" })
+		-- vim.api.nvim_set_hl(0, "@function.builtin.cpp", { link = "Function" })
+		-- vim.api.nvim_set_hl(0, "@type.builtin.cpp", { link = "Type" })
+		-- vim.api.nvim_set_hl(0, "@lsp.typemod.class.constructorOrDestructor.cpp", { link = "Function" })
+		-- vim.api.nvim_set_hl(0, "@lsp.typemod.variable.defaultLibrary.cpp", { link = "Variable" })
+		-- vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary.cpp", { link = "Variable" })
 
 		-- lua
-		vim.api.nvim_set_hl(0, "@function.builtin.lua", { link = "Function" })
-		vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary.lua", { link = "Function" })
+		-- vim.api.nvim_set_hl(0, "@function.builtin.lua", { link = "Function" })
+		-- vim.api.nvim_set_hl(0, "@lsp.typemod.function.defaultLibrary.lua", { link = "Function" })
 	end,
 }
