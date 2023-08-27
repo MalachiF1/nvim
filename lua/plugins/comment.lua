@@ -1,9 +1,7 @@
 return {
-    "numToStr/Comment.nvim",
+    'numToStr/Comment.nvim',
 
-    event = "BufReadPost",
+    event = 'BufReadPost',
 
-    config = function()
-        require("Comment").setup()
-    end,
+    config = function() require('Comment').setup() end,
 }

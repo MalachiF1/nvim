@@ -22,73 +22,71 @@ opt.cursorline = true
 
 -- appearance
 opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes"
+opt.background = 'dark'
+opt.signcolumn = 'yes'
 
 -- show whitespace
-opt.encoding = "utf-8"
+opt.encoding = 'utf-8'
 opt.list = true
 opt.listchars = {
-	tab = "│·", -- ——
-	space = "·",
-	trail = "·",
-	extends = "❯", -- »
-	precedes = "❮", -- «
+    tab = '│·', -- ——
+    space = '·',
+    trail = '·',
+    extends = '❯', -- »
+    precedes = '❮', -- «
 }
 
 -- get rid of `~` character on blank buffers
-opt.fillchars = { eob = " " }
+opt.fillchars = { eob = ' ' }
 
 -- search highlighting
 -- opt.hlsearch = false
 opt.incsearch = true
 
 -- backspace
-opt.backspace = "indent,eol,start"
+opt.backspace = 'indent,eol,start'
 
 -- clipboard
-vim.api.nvim_set_option("clipboard", "unnamed")
+vim.api.nvim_set_option('clipboard', 'unnamed')
 
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
 
 -- `-` counts as part of word
-opt.iskeyword:append("-")
+opt.iskeyword:append('-')
 
 -- don't insert current comment leader automatically
-opt.formatoptions:remove({ "c", "r", "o" })
+opt.formatoptions:remove({ 'c', 'r', 'o' })
 
 -- alow mouse to be used in neovim
-opt.mouse = "a"
+opt.mouse = 'a'
 
 -- always keep 8 lines off edges unless at end or beggining of file
 opt.scrolloff = 8
-opt.signcolumn = "yes"
-opt.isfname:append("@-@")
+opt.signcolumn = 'yes'
+opt.isfname:append('@-@')
 
 -- highlight text when yanking
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("highlight_yank", {}),
-	desc = "Highlight selection on yank",
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
-	end,
+vim.api.nvim_create_autocmd('TextYankPost', {
+    group = vim.api.nvim_create_augroup('highlight_yank', {}),
+    desc = 'Highlight selection on yank',
+    pattern = '*',
+    callback = function() vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 500 }) end,
 })
 
 --don't show the mode (lualine will still show it)
 opt.showmode = false
 
 -- make vim commands work when in hebrew
-opt.keymap = "hebrew"
+opt.keymap = 'hebrew'
 opt.iminsert = 0
 opt.imsearch = -1
 
 -- disable backups, but let undotree remember lots of changes in a backup file
 opt.swapfile = false
 opt.backup = false
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 opt.undofile = true
 
 -- shorter starup times

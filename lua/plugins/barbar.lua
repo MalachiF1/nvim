@@ -1,20 +1,16 @@
 return {
-    "romgrk/barbar.nvim",
+    'romgrk/barbar.nvim',
     dependencies = {
         -- "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
-        "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+        'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
 
-    event = "BufEnter",
+    event = 'BufEnter',
 
-    init = function()
-        vim.g.barbar_auto_setup = false
-    end,
-
-    -- event = "BufEnter",
+    init = function() vim.g.barbar_auto_setup = false end,
 
     config = function()
-        require("barbar").setup({
+        require('barbar').setup({
             -- Enable/disable animations
             animation = true,
 
@@ -38,18 +34,18 @@ return {
                 -- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
                 buffer_index = false,
                 buffer_number = false,
-                button = "×",
+                button = '×',
                 -- Enables / disables diagnostic symbols
                 diagnostics = {
-                    [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
-                    [vim.diagnostic.severity.WARN] = { enabled = false, icon = " " },
-                    [vim.diagnostic.severity.INFO] = { enabled = false, icon = " " },
-                    [vim.diagnostic.severity.HINT] = { enabled = false, icon = " " },
+                    [vim.diagnostic.severity.ERROR] = { enabled = true, icon = ' ' },
+                    [vim.diagnostic.severity.WARN] = { enabled = false, icon = ' ' },
+                    [vim.diagnostic.severity.INFO] = { enabled = false, icon = ' ' },
+                    [vim.diagnostic.severity.HINT] = { enabled = false, icon = ' ' },
                 },
                 gitsigns = {
-                    added = { enabled = false, icon = "+" },
-                    changed = { enabled = false, icon = "~" },
-                    deleted = { enabled = false, icon = "-" },
+                    added = { enabled = false, icon = '+' },
+                    changed = { enabled = false, icon = '~' },
+                    deleted = { enabled = false, icon = '-' },
                 },
                 filetype = {
                     -- Sets the icon's highlight group.
@@ -58,18 +54,18 @@ return {
 
                     enabled = true,
                 },
-                separator = { left = "│", right = "" },
+                separator = { left = '│', right = '' },
 
                 -- If true, add an additional separator at the end of the buffer list
                 separator_at_end = false,
 
                 -- Configure the icons on the bufferline when modified or pinned.
                 -- Supports all the base icon options.
-                modified = { button = "●" },
-                pinned = { button = "", filename = true },
+                modified = { button = '●' },
+                pinned = { button = '', filename = true },
 
                 -- Use a preconfigured buffer appearance— can be 'default', 'powerline', or 'slanted'
-                preset = "default",
+                preset = 'default',
             },
             --
             -- If true, new buffers will be inserted at the start/end of the list.
@@ -108,18 +104,18 @@ return {
             -- New buffer letters are assigned in this order. This order is
             -- optimal for the qwerty keyboard layout but might need adjustment
             -- for other layouts.
-            letters = "asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP",
+            letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
         })
 
         local keymap = vim.keymap.set
 
         -- Move to previous/next
         -- Pin/unpin buffer
-        keymap("n", "<leader>bp", "<Cmd>BufferPin<CR>", { desc = "pin", noremap = true, silent = true })
+        keymap('n', '<leader>bp', '<Cmd>BufferPin<CR>', { desc = 'pin', noremap = true, silent = true })
         -- Magic buffer-picking mode
-        keymap("n", "<leader>bs", "<Cmd>BufferPick<CR>", { desc = "select", noremap = true, silent = true })
+        keymap('n', '<leader>bs', '<Cmd>BufferPick<CR>', { desc = 'select', noremap = true, silent = true })
         -- Re-order to previous/next
-        keymap("n", "<leader>bmh", "<Cmd>BufferMovePrevious<CR>", { desc = "right", noremap = true, silent = true })
-        keymap("n", "<leader>bml", "<Cmd>BufferMoveNext<CR>", { desc = "left", noremap = true, silent = true })
+        keymap('n', '<leader>bmh', '<Cmd>BufferMovePrevious<CR>', { desc = 'right', noremap = true, silent = true })
+        keymap('n', '<leader>bml', '<Cmd>BufferMoveNext<CR>', { desc = 'left', noremap = true, silent = true })
     end,
 }
