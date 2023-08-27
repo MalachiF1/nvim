@@ -24,6 +24,9 @@ return {
     config = function()
         require('noice').setup({
             lsp = {
+                progress = {
+                    enabled = true,
+                },
                 -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                 override = {
                     ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
@@ -37,6 +40,36 @@ return {
                     -- view = "popup", -- when nil, use defaults from documentation
                     view = 'hover',
                 },
+                signature = {
+                    enabled = true,
+                    auto_open = {
+                        enabled = false,
+                        trigger = true,
+                        luasnip = true,
+                        throttle = 50,
+                    },
+                },
+                message = {
+                    enabled = true,
+                    view = 'notify',
+                },
+                -- defaults for hover and signature help
+                documentation = {
+                    view = 'hover',
+                    ---@type NoiceViewOptions
+                    opts = {
+                        lang = 'markdown',
+                        replace = true,
+                        render = 'plain',
+                        format = { '{message}' },
+                        win_options = { concealcursor = 'n', conceallevel = 3 },
+                    },
+                },
+            },
+            smart_move = {
+                -- noice tries to move out of the way of existing floating windows.
+                -- enabled = true,
+                excluded_filetypes = { 'cmp_menu', 'cmp_docs', 'notify' },
             },
             -- you can enable a preset for easier configuration
             presets = {
