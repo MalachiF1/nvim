@@ -72,6 +72,7 @@ return {
                 'lazy',
                 'nvim-dap-ui',
                 'quickfix',
+                'trouble',
             },
         })
     end,
