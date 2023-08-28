@@ -68,14 +68,6 @@ opt.scrolloff = 8
 opt.signcolumn = 'yes'
 opt.isfname:append('@-@')
 
--- highlight text when yanking
-vim.api.nvim_create_autocmd('TextYankPost', {
-    group = vim.api.nvim_create_augroup('highlight_yank', {}),
-    desc = 'Highlight selection on yank',
-    pattern = '*',
-    callback = function() vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 500 }) end,
-})
-
 --don't show the mode (lualine will still show it)
 opt.showmode = false
 
@@ -95,15 +87,3 @@ vim.loader.enable()
 
 -- when running macros and regexes on a large file, lazy redraw tells neovim/vim not to draw the screen, which greatly speeds it up
 -- opt.lazyredraw = true
-
--- enable cursorline only on focused window
-vim.cmd([[
-    augroup CursorLine
-        au!
-        au VimEnter * setlocal cursorline
-        au WinEnter * setlocal cursorline
-        au BufWinEnter * setlocal cursorline
-        au WinLeave * setlocal nocursorline
-        au FileType TelescopePrompt* setlocal nocursorline " disable cursorline in Telescope Prompt
-    augroup END
-]])
