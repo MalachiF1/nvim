@@ -24,7 +24,7 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.background = 'dark'
 opt.signcolumn = 'yes'
-opt.pumblend = 8 -- semi-transparency in popup windows like cmp l
+opt.pumblend = 10 -- semi-transparency in popup windows like cmp l
 
 -- show whitespace
 opt.encoding = 'utf-8'
@@ -48,7 +48,7 @@ opt.incsearch = true
 opt.backspace = 'indent,eol,start'
 
 -- clipboard
-vim.api.nvim_set_option('clipboard', 'unnamed')
+opt.clipboard = 'unnamedplus'
 
 -- split windows
 opt.splitright = true

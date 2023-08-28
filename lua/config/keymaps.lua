@@ -15,7 +15,10 @@ keymap('i', '<C-[>', '<C-[>:set iminsert=0<CR>', opts)
 keymap('n', '<C-n>', ':nohl<CR>', opts)
 
 -- toggle whitespace indicators
-keymap('n', '<leader>ow', ':set list!<CR>', { desc = 'toggle whitespace', noremap = true, silent = true })
+keymap('n', '<leader>ow', ':set list!<CR>', { desc = 'whitespace', noremap = true, silent = true })
+
+-- toggle line numbers
+keymap('n', '<leader>on', ':set number! |  set relativenumber!<CR>', { desc = 'line nubmers', noremap = true, silent = true })
 
 -- don't copy into register when deleting single character
 keymap('n', 'x', '"_x', opts)
@@ -34,6 +37,10 @@ keymap('n', 'gg', 'gg0', opts)
 keymap('v', 'gg', 'gg0', opts)
 keymap('n', 'G', 'G$', opts)
 keymap('v', 'G', 'G$', opts)
+
+-- better indenting
+keymap('v', '<', '<gv')
+keymap('v', '>', '>gv')
 
 --search and replace
 keymap('n', '<C-s>', ':%s/<C-r><C-w>//gI<Left><Left><Left>', opts) -- cword

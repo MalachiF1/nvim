@@ -3,6 +3,8 @@ return {
 
     event = 'BufReadPre',
 
+    version = false,
+
     dependencies = {
         'nvim-treesitter/playground',
     },
