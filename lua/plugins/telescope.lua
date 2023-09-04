@@ -25,7 +25,8 @@ return {
         keymap(
             'n',
             '<leader>ps',
-            ":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })<CR>",
+            -- ":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })<CR>",
+            ":lua require('telescope.builtin').live_grep()<CR>",
             { desc = 'grep string', noremap = true, silent = true }
         )
         keymap('n', '<leader>u', '<cmd>Telescope undo<cr>', { desc = 'undo', noremap = true, silent = true })

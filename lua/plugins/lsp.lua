@@ -84,6 +84,26 @@ return {
                     }),
                 },
             })
+            -- automatically add `(` after selecting a function or method
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            local handlers = require('nvim-autopairs.completion.handlers')
+            cmp.event:on(
+                'confirm_done',
+                cmp_autopairs.on_confirm_done({
+                    filetypes = {
+                        -- "*" is a alias to all filetypes
+                        ['*'] = {
+                            ['('] = {
+                                kind = {
+                                    cmp.lsp.CompletionItemKind.Function,
+                                    cmp.lsp.CompletionItemKind.Method,
+                                },
+                                handler = handlers['*'],
+                            },
+                        },
+                    },
+                })
+            )
 
             -- `/` cmdline setup.
             cmp.setup.cmdline('/', {
@@ -158,9 +178,9 @@ return {
                 automatic_installation = false,
             })
 
-            local lsp_capablities = require('cmp_nvim_lsp').default_capabilities()
+            local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
             -- enable folding for nvim-ufo
-            lsp_capablities.textDocument.foldingRange = {
+            lsp_capabilities.textDocument.foldingRange = {
                 dynamicRegistration = false,
                 lineFoldingOnly = true,
             }
@@ -204,7 +224,7 @@ return {
                 function(server_name)
                     lspconfig[server_name].setup({
                         on_attach = lsp_attach,
-                        capablities = lsp_capablities,
+                        capablities = lsp_capabilities,
                     })
                 end,
             })

@@ -5,6 +5,9 @@ local keymap = vim.keymap.set
 -- config.keymaps is loaded before config.lazy in init.lua, so this is ok
 vim.g.mapleader = ' '
 
+-- enter command mode with `;`
+keymap('n', ';', ':', opts)
+
 -- use jk to exit insert mode (and hebrew equevalent)
 keymap('i', 'jk', '<ESC>:set iminsert=0<CR>', opts)
 keymap('i', 'חל', '<ESC>:set iminsert=0<CR>', opts)
