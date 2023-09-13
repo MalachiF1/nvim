@@ -2,7 +2,7 @@ return {
     {
         -- Autocompletion
         'hrsh7th/nvim-cmp',
-        event = 'InsertEnter',
+        event = { 'InsertEnter', 'CmdlineEnter' },
         dependencies = {
             'onsails/lspkind.nvim',
             'hrsh7th/cmp-buffer',

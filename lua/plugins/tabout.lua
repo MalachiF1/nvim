@@ -1,7 +1,7 @@
 return {
     'abecodes/tabout.nvim',
 
-    event = 'InsertEnter',
+    event = { 'InsertEnter', 'CmdlineEnter' },
 
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
