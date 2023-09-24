@@ -75,14 +75,14 @@ return {
             },
         })
 
-        local keymap = vim.keymap.set
-        keymap('n', '<leader>fo', 'zo', { desc = 'open', noremap = true, silent = true })
-        keymap('n', '<leader>fc', 'zc', { desc = 'close', noremap = true, silent = true })
-        keymap('n', '<leader>fO', ufo.openAllFolds, { desc = 'open all', noremap = true, silent = true })
-        keymap('n', '<leader>fC', ufo.closeAllFolds, { desc = 'close all', noremap = true, silent = true })
-        -- keymap("n", "zr", ufo.openFoldsExceptKinds)
-        -- keymap("n", "zm", ufo.closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
-        keymap('n', '<leader>fp', function()
+        local map = vim.keymap.set
+        map('n', '<leader>fo', 'zo', { desc = 'open', noremap = true, silent = true })
+        map('n', '<leader>fc', 'zc', { desc = 'close', noremap = true, silent = true })
+        map('n', '<leader>fO', ufo.openAllFolds, { desc = 'open all', noremap = true, silent = true })
+        map('n', '<leader>fC', ufo.closeAllFolds, { desc = 'close all', noremap = true, silent = true })
+        -- map("n", "zr", ufo.openFoldsExceptKinds)
+        -- map("n", "zm", ufo.closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+        map('n', '<leader>fp', function()
             local winid = ufo.peekFoldedLinesUnderCursor()
             if not winid then vim.lsp.buf.hover() end
         end, { desc = 'peek', noremap = true, silent = true })

@@ -19,28 +19,28 @@ return {
 
     init = function()
         -- keymaps --
-        local keymap = vim.keymap.set
+        local map = vim.keymap.set
 
-        keymap('n', '<leader>ds', function()
+        map('n', '<leader>ds', function()
             require('dapui').toggle({})
             require('dap').continue()
             vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>=', false, true, true), 'n', false) -- Spaces buffers evenly
         end, { desc = 'start', noremap = true, silent = true })
 
-        keymap('n', '<leader>de', function()
+        map('n', '<leader>de', function()
             require('dapui').toggle({})
             require('dap').terminate()
             vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>=', false, true, true), 'n', false)
         end, { desc = 'close', noremap = true, silent = true })
 
-        keymap('n', '<leader>db', ':PBToggleBreakpoint<CR>', { desc = 'toggle breakpoint', noremap = true, silent = true })
-        keymap('n', '<leader>dt', ':PBSetConditionalBreakpoint<CR>', { desc = 'conditional breakpoint', noremap = true, silent = true })
-        keymap('n', '<leader>dl', ":lua require('dap.ui.widgets').hover<CR>", { desc = 'get values', noremap = true, silent = true })
-        keymap('n', '<leader>dc', ':DapContinue<CR>', { desc = 'continue', noremap = true, silent = true })
-        keymap('n', '<leader>dn', ':DapStepOver<CR>', { desc = 'step over', noremap = true, silent = true })
-        keymap('n', '<leader>di', ':DapStepInto<CR>', { desc = 'step into', noremap = true, silent = true })
-        keymap('n', '<leader>do', ':DapStepOut<CR>', { desc = 'step out', noremap = true, silent = true })
-        keymap('n', '<leader>dC', ':PBClearAllBreakpoints<CR>', { desc = 'clear breakpoints' })
+        map('n', '<leader>db', ':PBToggleBreakpoint<CR>', { desc = 'toggle breakpoint', noremap = true, silent = true })
+        map('n', '<leader>dt', ':PBSetConditionalBreakpoint<CR>', { desc = 'conditional breakpoint', noremap = true, silent = true })
+        map('n', '<leader>dl', ":lua require('dap.ui.widgets').hover<CR>", { desc = 'get values', noremap = true, silent = true })
+        map('n', '<leader>dc', ':DapContinue<CR>', { desc = 'continue', noremap = true, silent = true })
+        map('n', '<leader>dn', ':DapStepOver<CR>', { desc = 'step over', noremap = true, silent = true })
+        map('n', '<leader>di', ':DapStepInto<CR>', { desc = 'step into', noremap = true, silent = true })
+        map('n', '<leader>do', ':DapStepOut<CR>', { desc = 'step out', noremap = true, silent = true })
+        map('n', '<leader>dC', ':PBClearAllBreakpoints<CR>', { desc = 'clear breakpoints' })
     end,
 
     config = function()

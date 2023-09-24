@@ -107,15 +107,15 @@ return {
             letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
         })
 
-        local keymap = vim.keymap.set
+        local map = vim.keymap.set
 
         -- Move to previous/next
         -- Pin/unpin buffer
-        keymap('n', '<leader>bp', '<Cmd>BufferPin<CR>', { desc = 'pin', noremap = true, silent = true })
+        map('n', '<leader>bp', '<Cmd>BufferPin<CR>', { desc = 'pin', noremap = true, silent = true })
         -- Magic buffer-picking mode
-        keymap('n', '<leader>bs', '<Cmd>BufferPick<CR>', { desc = 'select', noremap = true, silent = true })
+        map('n', '<leader>bs', '<Cmd>BufferPick<CR>', { desc = 'select', noremap = true, silent = true })
         -- Re-order to previous/next
-        keymap('n', '<leader>bmh', '<Cmd>BufferMovePrevious<CR>', { desc = 'right', noremap = true, silent = true })
-        keymap('n', '<leader>bml', '<Cmd>BufferMoveNext<CR>', { desc = 'left', noremap = true, silent = true })
+        map('n', '<leader>bmh', '<Cmd>BufferMovePrevious<CR>', { desc = 'right', noremap = true, silent = true })
+        map('n', '<leader>bml', '<Cmd>BufferMoveNext<CR>', { desc = 'left', noremap = true, silent = true })
     end,
 }

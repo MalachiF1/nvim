@@ -18,26 +18,26 @@ return {
     },
 
     init = function()
-        local keymap = vim.keymap.set
-        keymap('n', '<leader>pf', ':Telescope find_files<CR>', { desc = 'files', noremap = true, silent = true })
-        keymap('n', '<leader>pg', ':Telescope git_files<CR', { desc = 'git files', noremap = true, silent = true })
-        keymap('n', '<leader>pr', ':Telescope oldfiles<CR>', { desc = 'recent files', noremap = true, silent = true })
-        keymap(
+        local map = vim.keymap.set
+        map('n', '<leader>pf', ':Telescope find_files<CR>', { desc = 'files', noremap = true, silent = true })
+        map('n', '<leader>pg', ':Telescope git_files<CR', { desc = 'git files', noremap = true, silent = true })
+        map('n', '<leader>pr', ':Telescope oldfiles<CR>', { desc = 'recent files', noremap = true, silent = true })
+        map(
             'n',
             '<leader>ps',
             -- ":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })<CR>",
             ":lua require('telescope.builtin').live_grep()<CR>",
             { desc = 'grep string', noremap = true, silent = true }
         )
-        keymap('n', '<leader>u', '<cmd>Telescope undo<cr>', { desc = 'undo', noremap = true, silent = true })
-        keymap(
+        map('n', '<leader>u', '<cmd>Telescope undo<cr>', { desc = 'undo', noremap = true, silent = true })
+        map(
             'n',
             '<space>pb',
             ':Telescope file_browser path=%:p:h select_buffer=true <CR>',
             { desc = 'browser', noremap = true, silent = true }
         )
-        keymap('n', '<leader>oc', ':Telescope colorscheme<CR>', { desc = 'colorscheme', noremap = true, silent = true })
-        keymap(
+        map('n', '<leader>oc', ':Telescope colorscheme<CR>', { desc = 'colorscheme', noremap = true, silent = true })
+        map(
             'n',
             '<leader>r',
             ":lua require('auto-session').setup_session_lens(); vim.cmd[[Telescope session-lens]]<CR>",

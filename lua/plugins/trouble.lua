@@ -6,23 +6,23 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
 
     init = function()
-        local keymap = vim.keymap.set
-        keymap('n', '<leader>lto', function() require('trouble').open() end, { desc = 'open', noremap = true, silent = true })
-        keymap(
+        local map = vim.keymap.set
+        map('n', '<leader>lto', function() require('trouble').open() end, { desc = 'open', noremap = true, silent = true })
+        map(
             'n',
             '<leader>ltw',
             function() require('trouble').open('workspace_diagnostics') end,
             { desc = 'workspace diagnostics', noremap = true, silent = true }
         )
-        keymap(
+        map(
             'n',
             '<leader>ltd',
             function() require('trouble').open('document_diagnostics') end,
             { desc = 'document diagnostics', noremap = true, silent = true }
         )
-        keymap('n', '<leader>ltq', function() require('trouble').open('quickfix') end, { desc = 'quikfix', noremap = true, silent = true })
-        keymap('n', '<leader>ltl', function() require('trouble').open('loclist') end, { desc = 'loclist', noremap = true, silent = true })
-        keymap(
+        map('n', '<leader>ltq', function() require('trouble').open('quickfix') end, { desc = 'quikfix', noremap = true, silent = true })
+        map('n', '<leader>ltl', function() require('trouble').open('loclist') end, { desc = 'loclist', noremap = true, silent = true })
+        map(
             'n',
             '<leader>ltr',
             function() require('trouble').open('lsp_references') end,
