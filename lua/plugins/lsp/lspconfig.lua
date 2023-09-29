@@ -13,6 +13,7 @@ return {
         'jay-babu/mason-nvim-dap.nvim',
         'jay-babu/mason-null-ls.nvim',
         'folke/neodev.nvim', -- for lua debugging, need to be loaded before lspconfig
+        'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     },
 
     config = function()
@@ -104,6 +105,19 @@ return {
                     capablities = lsp_capabilities,
                 })
             end,
+        })
+
+        require('lsp_lines').setup()
+        vim.diagnostic.config({
+            virtual_text = false,
+            virtual_lines = {
+                only_current_line = true,
+                highlight_whole_line = false,
+            },
+            signs = true,
+            underline = true,
+            update_in_insert = false,
+            severity_sort = true,
         })
 
         -- gutter signs for diagnostics
