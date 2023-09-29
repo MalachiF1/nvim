@@ -11,12 +11,12 @@ return {
             'rcarriga/nvim-notify',
             opts = {
                 fps = 30,
-                render = 'compact', -- default, compact, minimal, simple
+                render = 'wrapped-compact', -- default, compact, minimal, simple
                 stages = 'fade', -- fade, fade_in_slide_out, slide, static
                 timeout = 2000,
                 top_down = true,
                 level = 2,
-                background_color = '#000000',
+                background_color = 'Pmenu',
             },
         },
     },
@@ -98,6 +98,39 @@ return {
             notify = {
                 enabled = true,
                 view = 'notify',
+                merge = true,
+                replace = true,
+            },
+            views = {
+                notify = {
+                    win_options = {
+                        winblend = 20,
+                    },
+                },
+                hover = {
+                    border = {
+                        style = {
+                            top_left = '╭',
+                            top = '─',
+                            top_right = '╮',
+                            left = '│',
+                            right = '│',
+                            bottom_left = '╰',
+                            bottom = '─',
+                            bottom_right = '╯',
+                        },
+                    },
+                    win_options = {
+                        winblend = 8,
+                        winhighlight = 'Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None',
+                    },
+                },
+                mini = {
+                    win_options = {
+                        winblend = 20,
+                        -- winhighlight = 'Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None',
+                    },
+                },
             },
         })
 

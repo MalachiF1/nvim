@@ -68,8 +68,9 @@ return {
                         mirror = true,
                     },
                 },
-                borderchars = { '─', '│', '─', '│', '┌', '┐', '┙', '┕' },
-                -- ┚ ┕
+                -- borderchars = { '─', '│', '─', '│', '┌', '┐', '┙', '┕' },
+                borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                winblend = 5,
             },
             pickers = {
                 colorscheme = {
@@ -123,5 +124,6 @@ return {
         telescope.load_extension('undo')
         telescope.load_extension('file_browser')
         telescope.load_extension('session-lens')
+        telescope.load_extension('noice')
     end,
 }
