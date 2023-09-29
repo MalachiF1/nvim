@@ -1,22 +1,42 @@
 return {
     'lukas-reineke/indent-blankline.nvim',
 
+    main = 'ibl',
+
     event = 'BufReadPre',
 
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+    },
+
     config = function()
-        require('indent_blankline').setup({
-            -- for example, context is off by default, use this to turn it on
-            show_current_context = true,
-            show_current_context_start = true,
-            filetype_exclude = {
-                'lspinfo',
-                'lazy',
-                'chechhealth',
-                'help',
-                'man',
-                '',
-                'dashboard',
-                'alpha',
+        require('ibl').setup({
+            scope = {
+                enabled = true,
+                show_start = true,
+                show_end = true,
+                injected_languages = true,
+                highlight = { 'Function', 'Label' },
+            },
+            exclude = {
+                filetypes = {
+                    'lspinfo',
+                    'packer',
+                    'checkhealth',
+                    'help',
+                    'man',
+                    'gitcommit',
+                    'TelescopePrompt',
+                    'TelescopeResults',
+                    'qf',
+                    'trouble',
+                },
+                buftypes = {
+                    'terminal',
+                    'nofile',
+                    'quickfix',
+                    'Prompt',
+                },
             },
         })
     end,
