@@ -82,6 +82,9 @@ opt.backup = false
 opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 opt.undofile = true
 
+-- updatetime affects stuff like cursorhold and some plugins
+vim.opt.updatetime = 400
+
 -- shorter starup times
 vim.loader.enable()
 
