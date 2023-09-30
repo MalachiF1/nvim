@@ -76,7 +76,7 @@ return {
             map('n', '<leader>lw', function() telescope.lsp_workspace_symbols({ bufnr = 0 }) end, opts('workspace symbols'))
             map('n', '<leader>lgn', function() vim.diagnostic.goto_next() end, opts('next diagnostic'))
             map('n', '<leader>lgp', function() vim.diagnostic.goto_prev() end, opts('previous diagnostic'))
-            map('n', '<leader>lc', function() vim.lsp.buf.code_action() end, opts('code actions'))
+            map('n', '<leader>lc', function() require('actions-preview').code_actions() end, opts('code actions'))
             map('n', '<leader>lr', function() telescope.lsp_references() end, opts('references'))
             map('n', '<leader>ln', function() vim.lsp.buf.rename() end, opts('rename'))
             map('n', '<leader>ls', function() vim.lsp.buf.signature_help() end, opts('signature help'))
