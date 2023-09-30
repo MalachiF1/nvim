@@ -9,45 +9,41 @@ return {
 
     event = 'BufReadPre',
 
-    config = function()
-        local highlights = {
-            'RainbowDelimiterRed',
-            'RainbowDelimiterYellow',
-            'RainbowDelimiterBlue',
-            'RainbowDelimiterOrange',
-            'RainbowDelimiterGreen',
-            'RainbowDelimiterViolet',
-            'RainbowDelimiterCyan',
-        }
-
-        require('ibl').setup({
-            scope = {
-                enabled = true,
-                show_start = true,
-                show_end = true,
-                injected_languages = true,
-                highlight = highlights,
+    opts = {
+        scope = {
+            enabled = true,
+            show_start = true,
+            show_end = true,
+            injected_languages = true,
+            highlight = {
+                'RainbowDelimiterRed',
+                'RainbowDelimiterYellow',
+                'RainbowDelimiterBlue',
+                'RainbowDelimiterOrange',
+                'RainbowDelimiterGreen',
+                'RainbowDelimiterViolet',
+                'RainbowDelimiterCyan',
             },
-            exclude = {
-                filetypes = {
-                    'lspinfo',
-                    'packer',
-                    'checkhealth',
-                    'help',
-                    'man',
-                    'gitcommit',
-                    'TelescopePrompt',
-                    'TelescopeResults',
-                    'qf',
-                    'trouble',
-                },
-                buftypes = {
-                    'terminal',
-                    'nofile',
-                    'quickfix',
-                    'Prompt',
-                },
+        },
+        exclude = {
+            filetypes = {
+                'lspinfo',
+                'packer',
+                'checkhealth',
+                'help',
+                'man',
+                'gitcommit',
+                'TelescopePrompt',
+                'TelescopeResults',
+                'qf',
+                'trouble',
             },
-        })
-    end,
+            buftypes = {
+                'terminal',
+                'nofile',
+                'quickfix',
+                'Prompt',
+            },
+        },
+    },
 }
