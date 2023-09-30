@@ -1,15 +1,15 @@
 return {
     'nvim-treesitter/nvim-treesitter',
 
-    event = 'BufReadPre',
-
-    version = false,
-
     dependencies = {
         'nvim-treesitter/playground',
     },
 
+    version = false,
+
     build = ':TSUpdate',
+
+    event = 'BufReadPre',
 
     config = function()
         require('nvim-treesitter.configs').setup({

@@ -1,13 +1,13 @@
 return {
     'lukas-reineke/indent-blankline.nvim',
 
-    main = 'ibl',
-
-    event = 'BufReadPre',
-
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
     },
+
+    main = 'ibl',
+
+    event = 'BufReadPre',
 
     config = function()
         local highlights = {

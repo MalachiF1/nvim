@@ -87,6 +87,3 @@ vim.opt.updatetime = 400
 
 -- shorter starup times
 vim.loader.enable()
-
--- when running macros and regexes on a large file, lazy redraw tells neovim/vim not to draw the screen, which greatly speeds it up
--- opt.lazyredraw = true

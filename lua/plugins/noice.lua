@@ -1,6 +1,6 @@
 return {
     'folke/noice.nvim',
-    event = 'VeryLazy',
+
     dependencies = {
         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
         'MunifTanjim/nui.nvim',
@@ -20,6 +20,8 @@ return {
             },
         },
     },
+
+    event = 'VeryLazy',
 
     config = function()
         require('noice').setup({
@@ -133,13 +135,5 @@ return {
                 },
             },
         })
-
-        vim.keymap.set({ 'n', 'i', 's' }, '<C-f>', function()
-            if not require('noice.lsp').scroll(4) then return '<C-f>' end
-        end, { silent = true, expr = true })
-
-        vim.keymap.set({ 'n', 'i', 's' }, '<C-b>', function()
-            if not require('noice.lsp').scroll(-4) then return '<C-b>' end
-        end, { silent = true, expr = true })
     end,
 }

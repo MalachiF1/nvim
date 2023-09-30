@@ -1,11 +1,11 @@
 return {
     'kevinhwang91/nvim-bqf',
 
-    ft = 'qf',
-
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
     },
+
+    ft = 'qf',
 
     config = function()
         require('bqf').setup({

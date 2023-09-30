@@ -1,9 +1,9 @@
 return {
     'nvim-lualine/lualine.nvim',
 
-    event = 'VeryLazy',
-
     dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
+
+    event = 'VeryLazy',
 
     config = function()
         -- get the colorscheme

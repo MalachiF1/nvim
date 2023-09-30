@@ -1,12 +1,12 @@
 return {
     'kevinhwang91/nvim-ufo',
 
-    event = 'BufReadPost', -- later will not save folds
-
     dependencies = {
         'kevinhwang91/promise-async',
         'nvim-treesitter/nvim-treesitter',
     },
+
+    event = 'BufReadPost', -- later will not save folds
 
     init = function()
         -- INFO fold commands usually change the foldlevel, which fixes folds, e.g.

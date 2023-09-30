@@ -1,10 +1,6 @@
 return {
     'neovim/nvim-lspconfig',
 
-    cmd = 'LspInfo',
-
-    event = { 'BufRead', 'BufNewFile' },
-
     dependencies = {
         'jose-elias-alvarez/null-ls.nvim',
         'hrsh7th/cmp-nvim-lsp',
@@ -15,6 +11,10 @@ return {
         'folke/neodev.nvim', -- for lua debugging, need to be loaded before lspconfig
         'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     },
+
+    cmd = 'LspInfo',
+
+    event = { 'BufRead', 'BufNewFile' },
 
     config = function()
         -- for debugging neovim configuration

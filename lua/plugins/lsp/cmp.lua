@@ -1,8 +1,6 @@
 return {
     'hrsh7th/nvim-cmp',
 
-    event = { 'InsertEnter', 'CmdlineEnter' },
-
     dependencies = {
         'onsails/lspkind.nvim',
         'hrsh7th/cmp-buffer',
@@ -12,6 +10,8 @@ return {
         'saadparwaiz1/cmp_luasnip',
         'rafamadriz/friendly-snippets',
     },
+
+    event = { 'InsertEnter', 'CmdlineEnter' },
 
     config = function()
         -- cmp

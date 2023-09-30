@@ -1,11 +1,11 @@
 return {
     'abecodes/tabout.nvim',
 
-    event = { 'InsertEnter', 'CmdlineEnter' },
-
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
     },
+
+    event = { 'InsertEnter', 'CmdlineEnter' },
 
     config = function()
         return require('tabout').setup({
