@@ -1,34 +1,60 @@
 return {
     'folke/trouble.nvim',
 
-    cmd = { 'Trouble', 'TroubleClose', 'TroubleToggle', 'TroubleRefresh' },
-
     dependencies = { 'nvim-tree/nvim-web-devicons' },
 
-    init = function()
-        local map = vim.keymap.set
-        map('n', '<leader>lto', function() require('trouble').open() end, { desc = 'open', noremap = true, silent = true })
-        map(
-            'n',
+    cmd = { 'Trouble', 'TroubleClose', 'TroubleToggle', 'TroubleRefresh' },
+
+    keys = {
+        {
+            '<leader>lto',
+            ':lua require("trouble").open()<CR>',
+            mode = 'n',
+            desc = 'open',
+            noremap = true,
+            silent = true,
+        },
+        {
             '<leader>ltw',
-            function() require('trouble').open('workspace_diagnostics') end,
-            { desc = 'workspace diagnostics', noremap = true, silent = true }
-        )
-        map(
-            'n',
+            ':lua require("trouble").open("workspace_diagnostics")<CR>',
+            mode = 'n',
+            desc = 'workspace diagnostics',
+            noremap = true,
+            silent = true,
+        },
+        {
             '<leader>ltd',
-            function() require('trouble').open('document_diagnostics') end,
-            { desc = 'document diagnostics', noremap = true, silent = true }
-        )
-        map('n', '<leader>ltq', function() require('trouble').open('quickfix') end, { desc = 'quikfix', noremap = true, silent = true })
-        map('n', '<leader>ltl', function() require('trouble').open('loclist') end, { desc = 'loclist', noremap = true, silent = true })
-        map(
-            'n',
+            ':lua require("trouble").open("document_diagnostics")<CR>',
+            mode = 'n',
+            desc = 'document diagnostics',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>ltq',
+            ':lua require("trouble").open("quickfix")<CR>',
+            mode = 'n',
+            desc = 'quickfix',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>ltl',
+            ':lua require("trouble").open("loclist")<CR>',
+            mode = 'n',
+            desc = 'loclist',
+            noremap = true,
+            silent = true,
+        },
+        {
             '<leader>ltr',
-            function() require('trouble').open('lsp_references') end,
-            { desc = 'references', noremap = true, silent = true }
-        )
-    end,
+            ':lua require("trouble").open("lsp_references")<CR>',
+            mode = 'n',
+            desc = 'references',
+            noremap = true,
+            silent = true,
+        },
+    },
 
     opts = {
         position = 'bottom', -- position of the list can be: bottom, top, left, right

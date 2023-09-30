@@ -1,7 +1,18 @@
 return {
     'f-person/git-blame.nvim',
+
     cmd = 'GitBlameToggle',
-    init = function() vim.keymap.set('n', '<leader>gb', ':GitBlameToggle<CR>', { desc = 'blame', noremap = true, silent = true }) end,
+
+    keys = {
+        {
+            '<leader>gb',
+            ':GitBlameToggle<CR>',
+            mode = 'n',
+            desc = 'blame',
+            noremap = true,
+            silent = true,
+        },
+    },
 
     config = function()
         require('gitblame').setup({

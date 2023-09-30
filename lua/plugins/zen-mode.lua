@@ -3,7 +3,9 @@ return {
 
     cmd = 'ZenMode',
 
-    init = function() vim.keymap.set('n', '<leader>z', ':ZenMode<CR>', { desc = 'zen mode', noremap = true, silent = true }) end,
+    keys = {
+        { '<leader>z', ':ZenMode<CR>', mode = 'n', desc = 'zen mode', noremap = true, silent = true },
+    },
 
     opts = {
         window = {

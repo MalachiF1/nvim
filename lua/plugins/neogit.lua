@@ -1,14 +1,16 @@
 return {
     'NeogitOrg/neogit',
 
-    init = function() vim.keymap.set('n', '<leader>gs', ':Neogit<CR>', { desc = 'status', noremap = true, silent = true }) end,
-
-    cmd = 'Neogit',
-
     dependencies = {
         'nvim-lua/plenary.nvim', -- required
         'nvim-telescope/telescope.nvim', -- optional
         'sindrets/diffview.nvim', -- optional
+    },
+
+    cmd = 'Neogit',
+
+    keys = {
+        { '<leader>gs', ':Neogit<CR>', mode = 'n', desc = 'status', noremap = true, silent = true },
     },
 
     config = function()

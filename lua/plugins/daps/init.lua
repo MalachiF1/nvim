@@ -1,14 +1,6 @@
 return {
     'rcarriga/nvim-dap-ui',
 
-    cmd = {
-        'DapToggleBreakpoint',
-        'DapContinue',
-        'PBToggleBreakpoint',
-        'PBSetConditionalBreakpoint',
-        'PBClearAllBreakpoints',
-    },
-
     dependencies = {
         'mfussenegger/nvim-dap',
         'theHamsta/nvim-dap-virtual-text',
@@ -17,31 +9,104 @@ return {
         'Weissle/persistent-breakpoints.nvim',
     },
 
-    init = function()
-        -- keymaps --
-        local map = vim.keymap.set
+    cmd = {
+        'DapToggleBreakpoint',
+        'DapContinue',
+        'PBToggleBreakpoint',
+        'PBSetConditionalBreakpoint',
+        'PBClearAllBreakpoints',
+    },
 
-        map('n', '<leader>ds', function()
-            require('dapui').toggle({})
-            require('dap').continue()
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>=', false, true, true), 'n', false) -- Spaces buffers evenly
-        end, { desc = 'start', noremap = true, silent = true })
-
-        map('n', '<leader>de', function()
-            require('dapui').toggle({})
-            require('dap').terminate()
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>=', false, true, true), 'n', false)
-        end, { desc = 'close', noremap = true, silent = true })
-
-        map('n', '<leader>db', ':PBToggleBreakpoint<CR>', { desc = 'toggle breakpoint', noremap = true, silent = true })
-        map('n', '<leader>dt', ':PBSetConditionalBreakpoint<CR>', { desc = 'conditional breakpoint', noremap = true, silent = true })
-        map('n', '<leader>dl', ":lua require('dap.ui.widgets').hover<CR>", { desc = 'get values', noremap = true, silent = true })
-        map('n', '<leader>dc', ':DapContinue<CR>', { desc = 'continue', noremap = true, silent = true })
-        map('n', '<leader>dn', ':DapStepOver<CR>', { desc = 'step over', noremap = true, silent = true })
-        map('n', '<leader>di', ':DapStepInto<CR>', { desc = 'step into', noremap = true, silent = true })
-        map('n', '<leader>do', ':DapStepOut<CR>', { desc = 'step out', noremap = true, silent = true })
-        map('n', '<leader>dC', ':PBClearAllBreakpoints<CR>', { desc = 'clear breakpoints' })
-    end,
+    keys = {
+        {
+            '<leader>ds',
+            function()
+                require('dapui').toggle({})
+                require('dap').continue()
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>=', false, true, true), 'n', false) -- Spaces buffers evenly
+            end,
+            mode = 'n',
+            desc = 'start',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>de',
+            function()
+                require('dapui').toggle({})
+                require('dap').terminate()
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>=', false, true, true), 'n', false)
+            end,
+            mode = 'n',
+            desc = 'close',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>db',
+            ':PBToggleBreakpoint<CR>',
+            mode = 'n',
+            desc = 'toggle breakpoint',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>dt',
+            ':PBSetConditionalBreakpoint<CR>',
+            mode = 'n',
+            desc = 'conditional breakpoint',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>dC',
+            ':PBClearAllBreakpoints<CR>',
+            mode = 'n',
+            desc = 'clear breakpoints',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>dl',
+            ':lua require("dap.ui.widgets").hover<CR>',
+            mode = 'n',
+            desc = 'get values',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>dc',
+            ':DapContinue<CR>',
+            mode = 'n',
+            desc = 'continue',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>dn',
+            ':DapStepOver<CR>',
+            mode = 'n',
+            desc = 'step over',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>di',
+            ':DapStepInto<CR>',
+            mode = 'n',
+            desc = 'step into',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>do',
+            ':DapStepOut<CR>',
+            mode = 'n',
+            desc = 'step out',
+            noremap = true,
+            silent = true,
+        },
+    },
 
     config = function()
         local dap = require('dap')

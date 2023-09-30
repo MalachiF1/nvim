@@ -6,11 +6,32 @@ return {
 
     cmd = { 'ToggleTerm', 'TermExec' },
 
-    init = function()
-        vim.keymap.set('n', '<leader>th', ':ToggleTerm direction=horizontal<CR>', { desc = 'horizontal', noremap = true, silent = true })
-        vim.keymap.set('n', '<leader>tf', ':ToggleTerm direction=float<CR>', { desc = 'float', noremap = true, silent = true })
-        vim.keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical<CR>', { desc = 'vertical', noremap = true, silent = true })
-    end,
+    keys = {
+        {
+            '<leader>th',
+            ':ToggleTerm direction=horizontal<CR>',
+            mode = 'n',
+            desc = 'horizontal',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>tf',
+            ':ToggleTerm direction=float<CR>',
+            mode = 'n',
+            desc = 'float',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>tv',
+            ':ToggleTerm direction=vertical<CR>',
+            mode = 'n',
+            desc = 'vertical',
+            noremap = true,
+            silent = true,
+        },
+    },
 
     config = function()
         local toggleterm = require('toggleterm')

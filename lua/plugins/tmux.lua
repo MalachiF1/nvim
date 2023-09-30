@@ -3,17 +3,16 @@ return {
 
     lazy = 'WinEnter',
 
-    init = function()
-        local map = vim.keymap.set
-        map('n', '<M-h>', '<cmd>lua require("tmux").resize_left()<cr>', { noremap = true, silent = true })
-        map('n', '<M-j>', '<cmd>lua require("tmux").resize_bottom()<cr>', { noremap = true, silent = true })
-        map('n', '<M-k>', '<cmd>lua require("tmux").resize_top()<cr>', { noremap = true, silent = true })
-        map('n', '<M-l>', '<cmd>lua require("tmux").resize_right()<cr>', { noremap = true, silent = true })
-        map('n', '<C-h>', '<cmd>lua require("tmux").move_left()<cr>', { noremap = true, silent = true })
-        map('n', '<C-j>', '<cmd>lua require("tmux").move_bottom()<cr>', { noremap = true, silent = true })
-        map('n', '<C-k>', '<cmd>lua require("tmux").move_top()<cr>', { noremap = true, silent = true })
-        map('n', '<C-l>', '<cmd>lua require("tmux").move_right()<cr>', { noremap = true, silent = true })
-    end,
+    keys = {
+        { '<M-h>', ':lua require("tmux").resize_left()<CR>', mode = 'n', noremap = true, silent = true },
+        { '<M-j>', ':lua require("tmux").resize_bottom()<CR>', mode = 'n', noremap = true, silent = true },
+        { '<M-k>', ':lua require("tmux").resize_top()<CR>', mode = 'n', noremap = true, silent = true },
+        { '<M-l>', ':lua require("tmux").resize_right()<CR>', mode = 'n', noremap = true, silent = true },
+        { '<C-h>', ':lua require("tmux").move_left()<CR>', mode = 'n', noremap = true, silent = true },
+        { '<C-j>', ':lua require("tmux").move_bottom()<CR>', mode = 'n', noremap = true, silent = true },
+        { '<C-k>', ':lua require("tmux").move_top()<CR>', mode = 'n', noremap = true, silent = true },
+        { '<C-l>', ':lua require("tmux").move_right()<CR>', mode = 'n', noremap = true, silent = true },
+    },
 
     config = function()
         require('tmux').setup({

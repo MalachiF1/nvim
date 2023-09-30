@@ -1,11 +1,6 @@
 return {
     'nvim-telescope/telescope.nvim',
 
-    branch = '0.1.x',
-
-    -- event = "VimEnter",
-    cmd = 'Telescope',
-
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-ui-select.nvim',
@@ -17,33 +12,76 @@ return {
         'nvim-telescope/telescope-file-browser.nvim',
     },
 
-    init = function()
-        local map = vim.keymap.set
-        map('n', '<leader>pf', ':Telescope find_files<CR>', { desc = 'files', noremap = true, silent = true })
-        map('n', '<leader>pg', ':Telescope git_files<CR', { desc = 'git files', noremap = true, silent = true })
-        map('n', '<leader>pr', ':Telescope oldfiles<CR>', { desc = 'recent files', noremap = true, silent = true })
-        map(
-            'n',
+    branch = '0.1.x',
+
+    cmd = 'Telescope',
+
+    keys = {
+        {
+            '<leader>pf',
+            ':Telescope find_files<CR>',
+            mode = 'n',
+            desc = 'files',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>pg',
+            ':Telescope git_files<CR>',
+            mode = 'n',
+            desc = 'git files',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>pr',
+            ':Telescope oldfiles<CR>',
+            mode = 'n',
+            desc = 'recent files',
+            noremap = true,
+            silent = true,
+        },
+        {
             '<leader>ps',
-            -- ":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })<CR>",
-            ":lua require('telescope.builtin').live_grep()<CR>",
-            { desc = 'grep string', noremap = true, silent = true }
-        )
-        map('n', '<leader>u', '<cmd>Telescope undo<cr>', { desc = 'undo', noremap = true, silent = true })
-        map(
-            'n',
-            '<space>pb',
-            ':Telescope file_browser path=%:p:h select_buffer=true <CR>',
-            { desc = 'browser', noremap = true, silent = true }
-        )
-        map('n', '<leader>oc', ':Telescope colorscheme<CR>', { desc = 'colorscheme', noremap = true, silent = true })
-        map(
-            'n',
+            ':lua require("telescope.builtin").live_grep()<CR>',
+            mode = 'n',
+            desc = 'grep string',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>u',
+            ':Telescope undo<CR>',
+            mode = 'n',
+            desc = 'undo',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>pb',
+            ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
+            mode = 'n',
+            desc = 'file browser',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>oc',
+            ':Telescope colorscheme<CR>',
+            mode = 'n',
+            desc = 'colorscheme',
+            noremap = true,
+            silent = true,
+        },
+        {
             '<leader>r',
-            ":lua require('auto-session').setup_session_lens(); vim.cmd[[Telescope session-lens]]<CR>",
-            { desc = 'restore session', noremap = true, silent = true }
-        )
-    end,
+            ':lua require("auto-session").setup_session_lens(); vim.cmd[[Telescope session-lens]]<CR>',
+            mode = 'n',
+            desc = 'restore session',
+            noremap = true,
+            silent = true,
+        },
+    },
 
     config = function()
         local builtin = require('telescope.builtin')
@@ -71,6 +109,7 @@ return {
                 -- borderchars = { '─', '│', '─', '│', '┌', '┐', '┙', '┕' },
                 borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                 winblend = 5,
+                dynamic_preveiew_title = true,
             },
             pickers = {
                 colorscheme = {
