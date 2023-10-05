@@ -49,6 +49,8 @@ return {
                 'regex',
                 'comment',
                 'vimdoc',
+                'jsonc',
+                'dockerfile',
             },
 
             sync_install = false,
