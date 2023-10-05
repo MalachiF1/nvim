@@ -5,7 +5,7 @@ return {
 
     event = 'VeryLazy',
 
-    config = function()
+    opts = function()
         -- get the colorscheme
         local colorscheme
         if vim.g.colors_name == 'tokyonight' then
@@ -16,7 +16,7 @@ return {
             colorscheme = 'auto'
         end
 
-        require('lualine').setup({
+        return {
             options = {
                 icons_enabled = true,
                 theme = colorscheme,
@@ -74,6 +74,6 @@ return {
                 'quickfix',
                 'trouble',
             },
-        })
+        }
     end,
 }

@@ -6,7 +6,8 @@ return {
         'nvim-telescope/telescope-ui-select.nvim',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+            build =
+            'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
         },
         'debugloop/telescope-undo.nvim',
         'nvim-telescope/telescope-file-browser.nvim',
@@ -83,13 +84,11 @@ return {
         },
     },
 
-    config = function()
-        local builtin = require('telescope.builtin')
+    opts = function()
         local actions = require('telescope.actions')
         local themes = require('telescope.themes')
-        local telescope = require('telescope')
 
-        telescope.setup({
+        return {
             defaults = {
                 mappings = {
                     i = {
@@ -118,10 +117,10 @@ return {
             },
             extensions = {
                 fzf = {
-                    fuzzy = true, -- false will only do exact matching
+                    fuzzy = true,                   -- false will only do exact matching
                     override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true, -- override the file sorter
-                    case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+                    override_file_sorter = true,    -- override the file sorter
+                    case_mode = 'smart_case',       -- or "ignore_case" or "respect_case"
                 },
                 ['ui-select'] = {
                     themes.get_dropdown(),
@@ -157,7 +156,13 @@ return {
                     },
                 },
             },
-        })
+        }
+    end,
+
+    config = function(_, opts)
+        local telescope = require('telescope')
+
+        telescope.setup(opts)
         telescope.load_extension('fzf')
         telescope.load_extension('ui-select')
         telescope.load_extension('undo')

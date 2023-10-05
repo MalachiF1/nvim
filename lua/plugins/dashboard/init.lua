@@ -1,18 +1,14 @@
 return {
     'glepnir/dashboard-nvim',
 
-    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
 
     event = 'VimEnter',
 
-    config = function()
-        local dashboard = require('dashboard')
+    opts = function()
         local ascii = require('plugins.dashboard.banner').random_ascii
-        local handle = io.popen('fortune')
-        local fortune = handle:read('*a')
-        handle:close()
 
-        dashboard.setup({
+        return {
             theme = 'doom',
             config = {
                 header = ascii,
@@ -23,7 +19,6 @@ return {
                         desc = 'New file',
                         desc_hl = 'String',
                         key = 'e',
-                        -- keymap = "e",
                         key_hl = 'Number',
                         action = 'ene | startinsert',
                     },
@@ -33,7 +28,6 @@ return {
                         desc = 'Find file',
                         desc_hl = 'String',
                         key = 'f',
-                        -- keymap = "",
                         key_hl = 'Number',
                         action = 'Telescope find_files',
                     },
@@ -42,7 +36,6 @@ return {
                         icon_hl = 'Title',
                         desc = 'Recent files',
                         desc_hl = 'String',
-                        -- keymap = "r",
                         key = 'r',
                         key_hl = 'Number',
                         action = 'Telescope oldfiles',
@@ -53,7 +46,6 @@ return {
                         desc = 'Grep string',
                         desc_hl = 'String',
                         key = 'g',
-                        -- keymap = "g",
                         key_hl = 'Number',
                         -- action = "lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })",
                         action = "lua require('telescope.builtin').live_grep()",
@@ -64,7 +56,6 @@ return {
                         desc = 'Last session',
                         desc_hl = 'String',
                         key = 's',
-                        -- keymap = "s",
                         key_hl = 'Number',
                         action = 'SessionRestore',
                     },
@@ -74,7 +65,6 @@ return {
                         desc = 'NVIM configuration',
                         desc_hl = 'String',
                         key = 'c',
-                        -- keymap = "c",
                         key_hl = 'Number',
                         action = 'edit ~/.config/nvim/init.lua',
                     },
@@ -84,7 +74,6 @@ return {
                         desc = 'Update plugins',
                         desc_hl = 'String',
                         key = 'u',
-                        -- keymap = "u",
                         key_hl = 'Number',
                         action = 'Lazy update',
                     },
@@ -94,13 +83,11 @@ return {
                         desc = 'Quit NVIM',
                         desc_hl = 'String',
                         key = 'q',
-                        -- keymap = "q",
                         key_hl = 'Number',
                         action = 'qa',
                     },
                 },
-                footer = fortune,
             },
-        })
+        }
     end,
 }
