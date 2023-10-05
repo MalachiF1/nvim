@@ -5,7 +5,6 @@ return {
         'hrsh7th/cmp-nvim-lsp',
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
-        'jay-babu/mason-nvim-dap.nvim',
         'folke/neodev.nvim', -- for lua debugging, need to be loaded before lspconfig
         'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     },
@@ -35,11 +34,6 @@ return {
                 'sqlls',
                 'taplo',
             },
-        })
-        -- automatically install dap addapters with mason
-        require('mason-nvim-dap').setup({
-            ensure_installed = { 'python' },
-            automatic_installation = false,
         })
 
         local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()

@@ -5,6 +5,8 @@ return {
         'mfussenegger/nvim-dap',
         'theHamsta/nvim-dap-virtual-text',
         'mfussenegger/nvim-dap-python',
+        'williamboman/mason.nvim',
+        'jay-babu/mason-nvim-dap.nvim',
         'nvim-telescope/telescope-dap.nvim',
         'Weissle/persistent-breakpoints.nvim',
     },
@@ -110,6 +112,13 @@ return {
 
     config = function()
         local dap = require('dap')
+
+        -- automatically install dap addapters with mason
+        require('mason').setup()
+        require('mason-nvim-dap').setup({
+            ensure_installed = { 'python' },
+            automatic_installation = false,
+        })
 
         require('plugins.daps.adapters.debugpy')
         require('plugins.daps.adapters.lldb')
