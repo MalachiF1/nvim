@@ -2,12 +2,10 @@ return {
     'neovim/nvim-lspconfig',
 
     dependencies = {
-        'jose-elias-alvarez/null-ls.nvim',
         'hrsh7th/cmp-nvim-lsp',
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
         'jay-babu/mason-nvim-dap.nvim',
-        'jay-babu/mason-null-ls.nvim',
         'folke/neodev.nvim', -- for lua debugging, need to be loaded before lspconfig
         'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     },
@@ -38,18 +36,6 @@ return {
                 'taplo',
             },
         })
-        -- automatically install formatters with mason
-        require('mason-null-ls').setup({
-            ensure_installed = {
-                'clang-format',
-                'isort',
-                'black',
-                'stylua',
-                'prettier',
-            },
-            automatic_installation = true,
-            handlers = {},
-        })
         -- automatically install dap addapters with mason
         require('mason-nvim-dap').setup({
             ensure_installed = { 'python' },
@@ -70,10 +56,12 @@ return {
             map('n', '<leader>lgd', function()
                 telescope.lsp_definitions() -- <C-o> to return
             end, opts('definition'))
-            map('n', '<leader>ld', function() telescope.lsp_definitions({ jump_type = 'never' }) end, opts('view definition'))
+            map('n', '<leader>ld', function() telescope.lsp_definitions({ jump_type = 'never' }) end,
+                opts('view definition'))
             map('n', '<leader>li', function() telescope.lsp_implementations() end, opts('implementations'))
             map('n', '<leader>lh', function() vim.lsp.buf.hover() end, opts('show documentation'))
-            map('n', '<leader>lw', function() telescope.lsp_workspace_symbols({ bufnr = 0 }) end, opts('workspace symbols'))
+            map('n', '<leader>lw', function() telescope.lsp_workspace_symbols({ bufnr = 0 }) end,
+                opts('workspace symbols'))
             map('n', '<leader>lgn', function() vim.diagnostic.goto_next() end, opts('next diagnostic'))
             map('n', '<leader>lgp', function() vim.diagnostic.goto_prev() end, opts('previous diagnostic'))
             map('n', '<leader>lc', function() require('actions-preview').code_actions() end, opts('code actions'))
@@ -126,7 +114,5 @@ return {
         sign('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn', numhl = '' })
         sign('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint', numhl = '' })
         sign('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo', numhl = '' })
-
-        require('null-ls').setup()
     end,
 }
