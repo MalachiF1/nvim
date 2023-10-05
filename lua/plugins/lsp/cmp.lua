@@ -6,6 +6,7 @@ return {
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-cmdline',
+        'hrsh7th/cmp-nvim-lsp',
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip',
         'rafamadriz/friendly-snippets',
@@ -72,8 +73,8 @@ return {
             }),
             formatting = {
                 format = lspkind.cmp_format({
-                    mode = 'symbol_text', -- symbol/text/symbol_text
-                    maxwidth = 30, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                    mode = 'symbol_text',  -- symbol/text/symbol_text
+                    maxwidth = 30,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                     ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
                     -- The function below will be called before any actual modifications from lspkind

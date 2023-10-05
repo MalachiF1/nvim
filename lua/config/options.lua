@@ -68,6 +68,10 @@ opt.scrolloff = 8
 opt.signcolumn = 'yes'
 opt.isfname:append('@-@')
 
+-- go to previous/next line with h,l,left arrow and right arrow
+-- when cursor reaches end/beginning of line
+-- opt.whichwrap:append('<>[]hl')
+
 --don't show the mode (lualine will still show it)
 opt.showmode = false
 

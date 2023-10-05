@@ -109,6 +109,10 @@ return {
                 borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                 winblend = 5,
                 dynamic_preveiew_title = true,
+                file_sorter = require('telescope.sorters').get_fuzzy_file,
+                generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
+                path_display = { 'truncate' },
+                set_env = { ['COLORTERM'] = 'truecolor' },
             },
             pickers = {
                 colorscheme = {
