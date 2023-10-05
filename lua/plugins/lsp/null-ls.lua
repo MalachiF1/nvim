@@ -3,7 +3,7 @@ return {
     'jay-babu/mason-null-ls.nvim',
 
     dependencies = {
-        'jose-elias-alvarez/null-ls.nvim',
+        'nvimtools/none-ls.nvim', -- maintained fork of null-ls - just need to change the name here
         'williamboman/mason.nvim',
     },
 
