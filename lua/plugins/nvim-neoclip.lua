@@ -16,7 +16,7 @@ return {
             ':lua require("telescope").extensions.neoclip.default()<CR>',
             mode = 'n',
             desc = 'neoclip',
-            noremap = 'true',
+            noremap = true,
             silent = true,
         },
     },

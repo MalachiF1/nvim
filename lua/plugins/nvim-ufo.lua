@@ -8,6 +8,54 @@ return {
 
     event = 'BufReadPost', -- later will not save folds
 
+    keys = {
+        {
+            '<leader>fo',
+            'zo',
+            mode = 'n',
+            desc = 'open',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>fc',
+            'zc',
+            mode = 'n',
+            desc = 'close',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>fO',
+            ':lua require("ufo").openAllFolds()<CR>',
+            mode = 'n',
+            desc = 'open all',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>fC',
+            ':lua require("ufo").closeAllFolds()<CR>',
+            mode = 'n',
+            desc = 'close all',
+            noremap = true,
+            silent = true,
+        },
+        {
+            '<leader>fp',
+            function()
+                local winid = require('ufo').peekFoldedLinesUnderCursor()
+                if not winid then vim.lsp.buf.hover() end
+            end,
+            mode = 'n',
+            desc = 'peek',
+            noremap = true,
+            silent = true,
+        },
+        -- map("n", "zr", ufo.openFoldsExceptKinds)
+        -- map("n", "zm", ufo.closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+    },
+
     init = function()
         -- INFO fold commands usually change the foldlevel, which fixes folds, e.g.
         -- auto-closing them after leaving insert mode, however ufo does not seem to
@@ -37,7 +85,8 @@ return {
                     table.insert(newVirtText, { chunkText, hlGroup })
                     chunkWidth = vim.fn.strdisplaywidth(chunkText)
                     -- str width returned from truncate() may less than 2nd argument, need padding
-                    if curWidth + chunkWidth < targetWidth then suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth) end
+                    if curWidth + chunkWidth < targetWidth then suffix = suffix ..
+                        (' '):rep(targetWidth - curWidth - chunkWidth) end
                     break
                 end
                 curWidth = curWidth + chunkWidth
@@ -46,8 +95,7 @@ return {
             return newVirtText
         end
 
-        local ufo = require('ufo')
-        ufo.setup({
+        require('ufo').setup({
             provider_selector = function(_, ft, _)
                 local lsp_without_folding = { 'markdown', 'bash', 'sh', 'bash', 'zsh', 'css' }
                 if vim.tbl_contains(lsp_without_folding, ft) then
@@ -74,17 +122,5 @@ return {
                 },
             },
         })
-
-        local map = vim.keymap.set
-        map('n', '<leader>fo', 'zo', { desc = 'open', noremap = true, silent = true })
-        map('n', '<leader>fc', 'zc', { desc = 'close', noremap = true, silent = true })
-        map('n', '<leader>fO', ufo.openAllFolds, { desc = 'open all', noremap = true, silent = true })
-        map('n', '<leader>fC', ufo.closeAllFolds, { desc = 'close all', noremap = true, silent = true })
-        -- map("n", "zr", ufo.openFoldsExceptKinds)
-        -- map("n", "zm", ufo.closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
-        map('n', '<leader>fp', function()
-            local winid = ufo.peekFoldedLinesUnderCursor()
-            if not winid then vim.lsp.buf.hover() end
-        end, { desc = 'peek', noremap = true, silent = true })
     end,
 }
