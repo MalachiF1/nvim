@@ -6,8 +6,7 @@ return {
         'nvim-telescope/telescope-ui-select.nvim',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
-            build =
-            'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
         },
         'debugloop/telescope-undo.nvim',
         'nvim-telescope/telescope-file-browser.nvim',
@@ -20,7 +19,7 @@ return {
     keys = {
         {
             '<leader>pf',
-            ':Telescope find_files<CR>',
+            ':Telescope find_files hidden=true<CR>',
             mode = 'n',
             desc = 'files',
             noremap = true,
@@ -113,6 +112,17 @@ return {
                 generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
                 path_display = { 'truncate' },
                 set_env = { ['COLORTERM'] = 'truecolor' },
+                vimgrep_arguments = {
+                    'rg',
+                    '--color=never',
+                    '--no-heading',
+                    '--with-filename',
+                    '--line-number',
+                    '--column',
+                    '--smart-case',
+                    '--no-ignore-vcs',
+                    '--hidden',
+                },
             },
             pickers = {
                 colorscheme = {
@@ -121,10 +131,10 @@ return {
             },
             extensions = {
                 fzf = {
-                    fuzzy = true,                   -- false will only do exact matching
+                    fuzzy = true, -- false will only do exact matching
                     override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true,    -- override the file sorter
-                    case_mode = 'smart_case',       -- or "ignore_case" or "respect_case"
+                    override_file_sorter = true, -- override the file sorter
+                    case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
                 },
                 ['ui-select'] = {
                     themes.get_dropdown(),

@@ -18,25 +18,25 @@ return {
                 miniclue.gen_clues.windows(),
                 miniclue.gen_clues.z(),
 
-                { mode = 'n', keys = '<leader>w',   desc = '+Window' },
-                { mode = 'n', keys = '<leader>b',   desc = '+Buffer' },
-                { mode = 'n', keys = '<leader>s',   desc = '+Save' },
-                { mode = 'n', keys = '<leader>q',   desc = '+Quit' },
-                { mode = 'n', keys = '<leader>p',   desc = '+Project' },
-                { mode = 'n', keys = '<leader>g',   desc = '+Git' },
-                { mode = 'n', keys = '<leader>l',   desc = '+Lsp' },
-                { mode = 'n', keys = '<leader>d',   desc = '+Debug' },
-                { mode = 'n', keys = '<leader>t',   desc = '+Terminal' },
-                { mode = 'n', keys = '<leader>f',   desc = '+Fold' },
-                { mode = 'n', keys = '<leader>o',   desc = '+Options' },
-                { mode = 'n', keys = '<leader>lg',  desc = '+Go to' },
-                { mode = 'n', keys = '<leader>lt',  desc = '+Trouble' },
-                { mode = 'n', keys = '<leader>bm',  desc = '+Move' },
-                { mode = 'n', keys = '<leader>dl',  desc = '+List' },
-                { mode = 'n', keys = '<leader>w<',  postkeys = '<leader>w' },  -- for hydra like submodes
-                { mode = 'n', keys = '<leader>w>',  postkeys = '<leader>w' },  -- for hydra like submodes
-                { mode = 'n', keys = '<leader>w-',  postkeys = '<leader>w' },  -- for hydra like submodes
-                { mode = 'n', keys = '<leader>w+',  postkeys = '<leader>w' },  -- for hydra like submodes
+                { mode = 'n', keys = '<leader>w', desc = ' Window' },
+                { mode = 'n', keys = '<leader>b', desc = '󰖲 Buffer' },
+                { mode = 'n', keys = '<leader>s', desc = ' Save' },
+                { mode = 'n', keys = '<leader>q', desc = '󰗼 Quit' },
+                { mode = 'n', keys = '<leader>p', desc = ' Project' },
+                { mode = 'n', keys = '<leader>g', desc = ' Git' },
+                { mode = 'n', keys = '<leader>l', desc = ' Lsp' },
+                { mode = 'n', keys = '<leader>d', desc = ' Debug' },
+                { mode = 'n', keys = '<leader>t', desc = ' Terminal' },
+                { mode = 'n', keys = '<leader>f', desc = ' Fold' },
+                { mode = 'n', keys = '<leader>o', desc = ' Options' },
+                { mode = 'n', keys = '<leader>lg', desc = '󰌷 Go to' },
+                { mode = 'n', keys = '<leader>lt', desc = '󰒡 Trouble' },
+                { mode = 'n', keys = '<leader>bm', desc = '󰆾 Move' },
+                { mode = 'n', keys = '<leader>dl', desc = ' List' },
+                { mode = 'n', keys = '<leader>w<', postkeys = '<leader>w' }, -- for hydra like submodes
+                { mode = 'n', keys = '<leader>w>', postkeys = '<leader>w' }, -- for hydra like submodes
+                { mode = 'n', keys = '<leader>w-', postkeys = '<leader>w' }, -- for hydra like submodes
+                { mode = 'n', keys = '<leader>w+', postkeys = '<leader>w' }, -- for hydra like submodes
                 { mode = 'n', keys = '<leader>lgn', postkeys = '<leader>lg' }, -- for hydra like submodes
                 { mode = 'n', keys = '<leader>lgp', postkeys = '<leader>lg' }, -- for hydra like submodes
                 { mode = 'n', keys = '<leader>bmh', postkeys = '<leader>bm' }, -- for hydra like submodes
