@@ -33,21 +33,19 @@ return {
             map('n', '<leader>lgd', function()
                 telescope.lsp_definitions() -- <C-o> to return
             end, opts('definition'))
-            map('n', '<leader>ld', function() telescope.lsp_definitions({ jump_type = 'never' }) end,
-                opts('view definition'))
+            map('n', '<leader>ld', function() telescope.lsp_definitions({ jump_type = 'never' }) end, opts('view definition'))
             map('n', '<leader>li', function() telescope.lsp_implementations() end, opts('implementations'))
             map('n', '<leader>lh', function() vim.lsp.buf.hover() end, opts('show documentation'))
-            map('n', '<leader>lw', function() telescope.lsp_workspace_symbols({ bufnr = 0 }) end,
-                opts('workspace symbols'))
+            map('n', '<leader>lw', function() telescope.lsp_workspace_symbols({ bufnr = 0 }) end, opts('workspace symbols'))
             map('n', '<leader>lgn', function() vim.diagnostic.goto_next() end, opts('next diagnostic'))
             map('n', '<leader>lgp', function() vim.diagnostic.goto_prev() end, opts('previous diagnostic'))
             map('n', '<leader>lc', function() require('actions-preview').code_actions() end, opts('code actions'))
             map('n', '<leader>lr', function() telescope.lsp_references() end, opts('references'))
             map('n', '<leader>ln', function() vim.lsp.buf.rename() end, opts('rename'))
             map('n', '<leader>ls', function() vim.lsp.buf.signature_help() end, opts('signature help'))
-            map('n', '<leader>lf', function()
-                vim.lsp.buf.format({ filter = function(client) return client.name ~= 'lau_ls' end })
-            end, opts('format'))
+            -- map('n', '<leader>lf', function()
+            --     vim.lsp.buf.format({ filter = function(client) return client.name ~= 'lau_ls' end })
+            -- end, opts('format'))
             map(
                 'n',
                 '<leader>lv',
@@ -67,7 +65,7 @@ return {
             function(server_name)
                 lspconfig[server_name].setup({
                     on_attach = lsp_attach,
-                    capablities = lsp_capabilities,
+                    capabilities = lsp_capabilities,
                 })
             end,
         })
