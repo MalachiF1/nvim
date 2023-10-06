@@ -26,11 +26,14 @@ return {
         formatters_by_ft = {
             lua = { 'stylua' },
             cpp = { 'clang-format' },
+            cmake = { 'cmake_format' },
             bash = { 'beautysh' },
             zsh = { 'beautysh' },
+            toml = { 'taplo' },
             javascript = { 'prettierd', 'eslint_d' },
             typescript = { 'prettierd', 'eslint_d' },
             python = { 'isort', 'black' },
+            rust = { 'rustfmt' },
             -- Use the "*" filetype to run formatters on all filetypes.
             ['*'] = { 'codespell' },
             -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
