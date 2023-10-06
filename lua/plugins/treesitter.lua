@@ -3,6 +3,7 @@ return {
 
     dependencies = {
         'nvim-treesitter/playground',
+        'JoosepAlviste/nvim-ts-context-commentstring',
     },
 
     version = false,
@@ -24,6 +25,11 @@ return {
 
             indent = {
                 enable = true,
+            },
+
+            context_commentstring = {
+                enable = true,
+                enable_autocmd = false,
             },
 
             ensure_installed = {
