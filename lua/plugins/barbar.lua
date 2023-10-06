@@ -44,15 +44,15 @@ return {
             button = '×',
             -- Enables / disables diagnostic symbols
             diagnostics = {
-                [vim.diagnostic.severity.ERROR] = { enabled = true, icon = ' ' },
-                [vim.diagnostic.severity.WARN] = { enabled = false, icon = ' ' },
-                [vim.diagnostic.severity.INFO] = { enabled = false, icon = ' ' },
-                [vim.diagnostic.severity.HINT] = { enabled = false, icon = ' ' },
+                [vim.diagnostic.severity.ERROR] = { enabled = true, icon = ' ' },
+                [vim.diagnostic.severity.WARN] = { enabled = false, icon = ' ' },
+                [vim.diagnostic.severity.INFO] = { enabled = false, icon = '󰋼 ' },
+                [vim.diagnostic.severity.HINT] = { enabled = false, icon = '󰌵 ' },
             },
             gitsigns = {
-                added = { enabled = false, icon = '+' },
-                changed = { enabled = false, icon = '~' },
-                deleted = { enabled = false, icon = '-' },
+                added = { enabled = false, icon = '' },
+                changed = { enabled = false, icon = '' },
+                deleted = { enabled = false, icon = '' },
             },
             filetype = {
                 -- Sets the icon's highlight group.

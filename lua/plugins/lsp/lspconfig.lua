@@ -85,9 +85,9 @@ return {
 
         -- gutter signs for diagnostics
         local sign = vim.fn.sign_define
-        sign('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError', numhl = '' })
-        sign('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn', numhl = '' })
-        sign('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint', numhl = '' })
-        sign('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo', numhl = '' })
+        sign('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError', numhl = '' })
+        sign('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn', numhl = '' })
+        sign('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint', numhl = '' })
+        sign('DiagnosticSignInfo', { text = '󰋼', texthl = 'DiagnosticSignInfo', numhl = '' })
     end,
 }
