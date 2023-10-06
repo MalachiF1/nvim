@@ -1,10 +1,6 @@
 return {
     'stevearc/conform.nvim',
 
-    dependencies = {
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
-    },
-
     cmd = { 'ConformInfo' },
 
     -- event = { 'BufWritePre' }, -- if formatting on save
@@ -14,7 +10,7 @@ return {
             -- Customize or remove this keymap to your liking
             '<leader>lf',
             function() require('conform').format({ async = true, lsp_fallback = true }) end,
-            mode = 'n',
+            mode = { 'n', 'v' },
             desc = 'format',
             noremap = true,
             silent = true,
@@ -30,8 +26,18 @@ return {
             bash = { 'beautysh' },
             zsh = { 'beautysh' },
             toml = { 'taplo' },
-            javascript = { 'prettierd', 'eslint_d' },
-            typescript = { 'prettierd', 'eslint_d' },
+            javascript = { 'prettier' },
+            typescript = { 'prettier' },
+            javascriptreact = { 'prettier' },
+            typescriptreact = { 'prettier' },
+            svelte = { 'prettier' },
+            html = { 'prettier' },
+            css = { 'prettier' },
+            scss = { 'prettier' },
+            sass = { 'prettier' },
+            json = { 'prettier' },
+            yaml = { 'prettier' },
+            graphql = { 'prettier' },
             python = { 'isort', 'black' },
             rust = { 'rustfmt' },
             -- Use the "*" filetype to run formatters on all filetypes.

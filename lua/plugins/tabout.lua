@@ -5,7 +5,7 @@ return {
         'nvim-treesitter/nvim-treesitter',
     },
 
-    event = { 'InsertEnter', 'CmdlineEnter' },
+    event = { 'InsertEnter' },
 
     opts = {
         tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable

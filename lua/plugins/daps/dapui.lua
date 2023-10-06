@@ -171,7 +171,6 @@ return {
         })
 
         -- fix highlights for DapUi float menus
-        vim.api.nvim_set_hl(0, 'DapUIFloatNormal', { link = 'Pmenu' })
-        vim.api.nvim_set_hl(0, 'DapUIFloatBorder', { link = 'FloatBorder' })
+        -- vim.cmd([[autocmd FileType dapui_hover setlocal winblend=10]])
     end,
 }

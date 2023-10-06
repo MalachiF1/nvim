@@ -1,48 +1,64 @@
 return {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'williamboman/mason.nvim',
 
     dependencies = {
-        'williamboman/mason.nvim',
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
 
     opts = {
-        -- a list of all tools you want to ensure are installed upon
-        -- start; they should be the names Mason uses for each tool
-        ensure_installed = {
-            'lua-language-server',
-            'stylua',
-            'clangd',
-            'clang-format',
-            'cmakelang',
-            'pyright',
-            'debugpy',
-            'isort',
-            'black',
-            'typescript-language-server',
-            'eslint_d',
-            'prettierd',
-            'html-lsp',
-            'css-lsp',
-            'sqlls',
-            'rust_analyzer',
-            'rustfmt',
-            'vim-language-server',
-            'vint',
-            'shellcheck',
-            'beautysh',
-            'editorconfig-checker',
-            'codespell',
-            'taplo',
-            'texlab',
+        ui = {
+            icons = {
+                package_installed = '✓',
+                package_pending = '➜',
+                package_uninstalled = '✗',
+            },
+            border = 'single',
+            check_outdated_packages_on_open = true,
         },
-
-        auto_update = true,
-        run_on_start = true,
-        start_delay = 0,
+        max_concurrent_installers = 10,
     },
 
     config = function(_, opts)
-        require('mason').setup()
-        require('mason-tool-installer').setup(opts)
+        require('mason').setup(opts)
+
+        -- make mason window semi-tranparent
+        vim.cmd([[autocmd FileType mason setlocal winblend=8]])
+
+        require('mason-tool-installer').setup({
+            ensure_installed = {
+                'lua-language-server',
+                'luacheck',
+                'stylua',
+                'clangd',
+                'clang-format',
+                'cmake-language-server',
+                'cmakelint',
+                'pyright',
+                'debugpy',
+                'pylint',
+                'isort',
+                'black',
+                'typescript-language-server',
+                'eslint_d',
+                'prettier',
+                'html-lsp',
+                'css-lsp',
+                'stylelint',
+                'sqlls',
+                'rust_analyzer',
+                'rustfmt',
+                'vim-language-server',
+                'vint',
+                'shellcheck',
+                'beautysh',
+                'editorconfig-checker',
+                'codespell',
+                'taplo',
+                'texlab',
+            },
+            auto_update = true,
+            run_on_start = true,
+            start_delay = 0,
+        })
     end,
 }

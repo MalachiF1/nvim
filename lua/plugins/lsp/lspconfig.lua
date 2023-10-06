@@ -4,7 +4,6 @@ return {
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
         'williamboman/mason.nvim',
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
         'williamboman/mason-lspconfig.nvim',
         'folke/neodev.nvim', -- for lua debugging, need to be loaded before lspconfig
         'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
