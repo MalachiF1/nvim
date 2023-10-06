@@ -3,8 +3,6 @@ return {
 
     dependencies = {
         'mfussenegger/nvim-dap-python',
-        'williamboman/mason.nvim',
-        'jay-babu/mason-nvim-dap.nvim',
         'Weissle/persistent-breakpoints.nvim',
         'nvim-telescope/telescope.nvim',
         'nvim-telescope/telescope-dap.nvim',
@@ -86,13 +84,6 @@ return {
     },
 
     config = function()
-        -- automatically install dap adapters with mason
-        require('mason').setup()
-        require('mason-nvim-dap').setup({
-            ensure_installed = { 'python' },
-            automatic_installation = false,
-        })
-
         require('plugins.daps.adapters.debugpy')
         require('plugins.daps.adapters.lldb')
 
@@ -103,7 +94,7 @@ return {
         local persistent_breakpoints = require('persistent-breakpoints')
         persistent_breakpoints.setup({
             save_dir = vim.fn.stdpath('data') .. '/nvim_checkpoints',
-            -- when to load the breakpoints? "BufReadPost" is recommanded.
+            -- when to load the breakpoints? "BufReadPost" is recommended.
             load_breakpoints_event = 'BufReadPost',
             on_load_breakpoint = nil,
         })

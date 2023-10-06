@@ -4,6 +4,7 @@ return {
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
         'williamboman/mason.nvim',
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
         'williamboman/mason-lspconfig.nvim',
         'folke/neodev.nvim', -- for lua debugging, need to be loaded before lspconfig
         'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
@@ -17,24 +18,6 @@ return {
         -- for debugging neovim configuration
         local neodev = require('neodev')
         neodev.setup({})
-
-        require('mason').setup()
-        require('mason-lspconfig').setup({
-            ensure_installed = {
-                'tsserver',
-                'eslint',
-                'lua_ls',
-                'rust_analyzer',
-                'clangd',
-                'cmake',
-                'html',
-                'cssls',
-                'texlab',
-                'pyright',
-                'sqlls',
-                'taplo',
-            },
-        })
 
         local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
         -- enable folding for nvim-ufo
