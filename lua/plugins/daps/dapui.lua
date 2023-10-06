@@ -4,6 +4,8 @@ return {
     dependencies = {
         'mfussenegger/nvim-dap',
         'theHamsta/nvim-dap-virtual-text',
+        'LiadOz/nvim-dap-repl-highlights',
+        'rcarriga/cmp-dap',
     },
 
     cmd = {
@@ -158,8 +160,15 @@ return {
     },
 
     config = function(_, opts)
+        require('nvim-dap-repl-highlights').setup()
         require('nvim-dap-virtual-text').setup({})
         require('dapui').setup(opts)
+
+        require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
+            sources = {
+                { name = 'dap' },
+            },
+        })
 
         -- fix highlights for DapUi float menus
         vim.api.nvim_set_hl(0, 'DapUIFloatNormal', { link = 'Pmenu' })
