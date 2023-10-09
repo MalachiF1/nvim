@@ -53,7 +53,7 @@ return {
             before = true, ---@type boolean|number[]
             -- position of the label extmark
             style = 'overlay', ---@type "eol" | "overlay" | "right_align" | "inline"
-            -- flash tries to re-use labels that were already assigned to a position,
+            -- flash tries to reuse labels that were already assigned to a position,
             -- when typing more characters. By default only lower-case labels are re-used.
             reuse = 'all', ---@type "lowercase" | "all" | "none"
             -- for the current window, label targets closer to the cursor first
@@ -204,22 +204,18 @@ return {
             function() require('flash').treesitter() end,
             desc = 'Flash Treesitter',
         },
-        -- {
-        -- 	"r",
-        -- 	mode = "o",
-        -- 	function()
-        -- 		require("flash").remote()
-        -- 	end,
-        -- 	desc = "Remote Flash",
-        -- },
-        -- {
-        -- 	"R",
-        -- 	mode = { "o", "x" },
-        -- 	function()
-        -- 		require("flash").treesitter_search()
-        -- 	end,
-        -- 	desc = "Treesitter Search",
-        -- },
+        {
+            'r',
+            mode = 'o',
+            function() require('flash').remote() end,
+            desc = 'Remote Flash',
+        },
+        {
+            '<C-s>',
+            mode = { 'n', 'o', 'x' },
+            function() require('flash').treesitter_search() end,
+            desc = 'Treesitter Search',
+        },
         -- {
         -- 	"<c-s>",
         -- 	mode = { "c" },
