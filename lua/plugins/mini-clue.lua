@@ -29,10 +29,12 @@ return {
                 { mode = 'n', keys = '<leader>t', desc = ' Terminal' },
                 { mode = 'n', keys = '<leader>f', desc = ' Fold' },
                 { mode = 'n', keys = '<leader>o', desc = ' Options' },
+                { mode = 'n', keys = '<leader>n', desc = ' Notes' },
                 { mode = 'n', keys = '<leader>lg', desc = '󰌷 Go to' },
                 { mode = 'n', keys = '<leader>lt', desc = '󰒡 Trouble' },
                 { mode = 'n', keys = '<leader>bm', desc = '󰆾 Move' },
                 { mode = 'n', keys = '<leader>dl', desc = ' List' },
+
                 { mode = 'n', keys = '<leader>w<', postkeys = '<leader>w' }, -- for hydra like submodes
                 { mode = 'n', keys = '<leader>w>', postkeys = '<leader>w' }, -- for hydra like submodes
                 { mode = 'n', keys = '<leader>w-', postkeys = '<leader>w' }, -- for hydra like submodes

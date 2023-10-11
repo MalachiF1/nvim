@@ -12,7 +12,7 @@ return {
 
     keys = {
         {
-            '<leader>n',
+            '<leader>c',
             ':lua require("telescope").extensions.neoclip.default()<CR>',
             mode = 'n',
             desc = 'neoclip',
@@ -40,7 +40,7 @@ return {
                     paste = '<M-p>',
                     paste_behind = '<M-k>',
                     delete = '<M-d>', -- delete an entry
-                    edit = '<M-e>',   -- edit an entry
+                    edit = '<M-e>', -- edit an entry
                     custom = {},
                 },
                 n = {
