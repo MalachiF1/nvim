@@ -21,7 +21,7 @@ map('n', '<C-n>', ':nohl<CR>', opts)
 map('n', '<leader>ow', ':set list!<CR>', { desc = 'whitespace', noremap = true, silent = true })
 
 -- toggle line numbers
-map('n', '<leader>on', ':set number! |  set relativenumber!<CR>', { desc = 'line nubmers', noremap = true, silent = true })
+map('n', '<leader>on', ':set number! |  set relativenumber!<CR>', { desc = 'line numbers', noremap = true, silent = true })
 
 -- don't copy into register when deleting single character
 map('n', 'x', '"_x', opts)
