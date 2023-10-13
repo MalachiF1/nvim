@@ -33,7 +33,7 @@ return {
         { '<leader>nt', ':ObsidianTemplate<CR>', mode = 'n', desc = 'insert template', noremap = true, silent = true },
         { '<leader>ns', ':ObsidianSearch<CR>', mode = 'n', desc = 'search', noremap = true, silent = true },
         { '<leader>nl', ':ObsidianLink<CR>', mode = 'v', desc = 'link a note', noremap = true, silent = true },
-        { '<leader>nl', ':ObsidianLinkNew<CR>', mode = 'v', desc = 'link a new note', noremap = true, silent = true },
+        { '<leader>nw', ':ObsidianLinkNew<CR>', mode = 'v', desc = 'link a new note', noremap = true, silent = true },
     },
 
     opts = {

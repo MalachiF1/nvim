@@ -1,7 +1,7 @@
 return {
     'mfussenegger/nvim-lint',
 
-    event = { 'BufRead', 'BufNewFile' },
+    -- event = { 'BufRead', 'BufNewFile' },
 
     keys = {
         {
