@@ -26,7 +26,7 @@ return {
             silent = true,
         },
         {
-            '<leader>pg',
+            '<leader>gf',
             ':Telescope git_files<CR>',
             mode = 'n',
             desc = 'git files',

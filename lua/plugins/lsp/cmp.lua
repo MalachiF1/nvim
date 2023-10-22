@@ -14,7 +14,7 @@ return {
         'rafamadriz/friendly-snippets',
     },
 
-    event = { 'InsertEnter', 'CmdlineEnter' },
+    event = { 'InsertEnter', 'LspAttach' },
 
     config = function()
         -- cmp

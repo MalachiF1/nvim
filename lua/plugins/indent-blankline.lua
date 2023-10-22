@@ -15,6 +15,7 @@ return {
             show_start = true,
             show_end = true,
             injected_languages = true,
+            show_exact_scope = true,
             highlight = {
                 'RainbowDelimiterRed',
                 'RainbowDelimiterYellow',
