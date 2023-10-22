@@ -20,6 +20,7 @@ return {
 
                 { mode = 'n', keys = '<leader>w', desc = ' Window' },
                 { mode = 'n', keys = '<leader>b', desc = '󰖲 Buffer' },
+                { mode = 'n', keys = '<leader>c', desc = ' Copilot' },
                 { mode = 'n', keys = '<leader>s', desc = ' Save' },
                 { mode = 'n', keys = '<leader>q', desc = '󰗼 Quit' },
                 { mode = 'n', keys = '<leader>p', desc = ' Project' },

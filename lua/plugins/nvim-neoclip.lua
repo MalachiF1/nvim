@@ -12,7 +12,7 @@ return {
 
     keys = {
         {
-            '<leader>c',
+            '<leader>i',
             ':lua require("telescope").extensions.neoclip.default()<CR>',
             mode = 'n',
             desc = 'neoclip',
