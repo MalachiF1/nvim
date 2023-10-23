@@ -60,10 +60,10 @@ opt.iskeyword:append('-')
 -- don't insert current comment leader automatically
 opt.formatoptions:remove({ 'c', 'r', 'o' })
 
--- alow mouse to be used in neovim
+-- allow mouse to be used in neovim
 opt.mouse = 'a'
 
--- always keep 8 lines off edges unless at end or beggining of file
+-- always keep 8 lines off edges unless at end or beginning of file
 opt.scrolloff = 8
 opt.signcolumn = 'yes'
 opt.isfname:append('@-@')
@@ -89,5 +89,37 @@ opt.undofile = true
 -- updatetime affects stuff like cursorhold and some plugins
 vim.opt.updatetime = 400
 
--- shorter starup times
+-- shorter startup times
 vim.loader.enable()
+
+-- Neovide
+if vim.g.neovide then
+    -- Put anything you want to happen only in Neovide here
+    vim.o.guifont = 'FiraCode Nerd Font:h12, JetBrainsMono Nerd Font:h12, Hack Nerd Font:h12'
+    vim.opt.linespace = 0.0
+    vim.g.neovide_scale_factor = 1.0
+    vim.g.neovide_underline_automatic_scaling = true
+
+    vim.g.neovide_theme = 'auto'
+    vim.g.neovide_fullscreen = true
+    vim.g.neovide_remember_window_size = true
+    vim.g.neovide_padding_top = 0
+    vim.g.neovide_padding_bottom = 0
+    vim.g.neovide_padding_right = 0
+    vim.g.neovide_padding_left = 0
+    vim.g.neovide_refresh_rate = 60
+    vim.g.neovide_refresh_rate = 60
+    vim.g.neovide_cursor_antialiasing = true
+
+    vim.g.neovide_hide_mouse_when_typing = false
+    vim.g.neovide_touch_deadzone = 6.0
+    vim.g.neovide_touch_drag_timeout = 0.17
+    vim.g.neovide_confirm_quit = true
+
+    vim.g.neovide_scroll_animation_length = 0.15
+    vim.g.neovide_cursor_animation_length = 0.15
+    vim.g.neovide_cursor_trail_size = 0.01
+    vim.g.neovide_cursor_unfocused_outline_width = 0.1
+    vim.g.neovide_cursor_animate_in_insert_mode = true
+    vim.g.neovide_cursor_animate_command_line = true
+end
