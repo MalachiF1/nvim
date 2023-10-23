@@ -42,8 +42,14 @@ return {
             tmux = { enabled = false }, -- disables the tmux statusline
         },
         -- callback where you can add custom code when the Zen window opens
-        on_open = function() vim.cmd([[IBLDisable]]) end,
+        on_open = function()
+            vim.cmd([[IBLDisable]])
+            vim.cmd([[Gitsigns toggle_signs]])
+        end,
         -- callback where you can add custom code when the Zen window closes
-        on_close = function() vim.cmd([[IBLEnable]]) end,
+        on_close = function()
+            vim.cmd([[IBLEnable]])
+            vim.cmd([[Gitsigns toggle_signs]])
+        end,
     },
 }
