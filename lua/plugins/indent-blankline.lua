@@ -10,6 +10,9 @@ return {
     event = 'BufReadPre',
 
     opts = {
+        indent = {
+            char = '│',
+        },
         scope = {
             enabled = true,
             show_start = true,
@@ -47,4 +50,9 @@ return {
             },
         },
     },
+
+    config = function(_, opts)
+        require('ibl').setup(opts)
+        vim.keymap.set('n', '<leader>oi', '<cmd>IBLToggle<cr>', { desc = 'indent lines', noremap = true, silent = true })
+    end,
 }

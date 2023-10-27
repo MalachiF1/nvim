@@ -1,8 +1,6 @@
 return {
     'kosayoda/nvim-lightbulb',
 
-    cmd = 'Telescope neoclip',
-
     event = { 'BufRead', 'BufNewFile' },
 
     opts = {
