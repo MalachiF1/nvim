@@ -29,11 +29,6 @@ return {
                 enable = true,
             },
 
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
-            },
-
             autotag = {
                 enable = true,
             },
@@ -86,6 +81,10 @@ return {
             separator = nil,
             zindex = 20, -- The Z-index of the context window
             on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+        })
+
+        require('ts_context_commentstring').setup({
+            enable_autocmd = false,
         })
 
         -- jump to context (upwards)
