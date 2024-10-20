@@ -49,6 +49,7 @@ return {
                 'markdown_inline',
                 'bash',
                 'vim',
+                'vimdoc',
                 'gitignore',
                 -- 'latex',
                 'scss',
