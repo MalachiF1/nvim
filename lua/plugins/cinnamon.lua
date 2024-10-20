@@ -3,24 +3,43 @@ return {
 
     event = 'BufReadPost',
 
-    opts = {
-        -- KEYMAPS:
-        default_keymaps = true, -- Create default keymaps.
-        extra_keymaps = true, -- Create extra keymaps.
-        extended_keymaps = true, -- Create extended keymaps.
-        override_keymaps = true, -- The plugin keymaps will override any existing keymaps.
+    keymaps = {
+        -- Enable the provided 'basic' keymaps
+        basic = true,
+        -- Enable the provided 'extra' keymaps
+        extra = true,
+    },
 
-        -- OPTIONS:
-        always_scroll = false, -- Scroll the cursor even when the window hasn't scrolled.
-        centered = true, -- Keep cursor centered in window when using window scrolling.
-        disabled = false, -- Disables the plugin.
-        default_delay = 5, -- The default delay (in ms) between each line when scrolling.
-        hide_cursor = false, -- Hide the cursor while scrolling. Requires enabling termguicolors!
-        horizontal_scroll = false, -- Enable smooth horizontal scrolling when view shifts left or right.
-        max_length = 250, -- Maximum length (in ms) of a command. The line delay will be
-        -- re-calculated. Setting to -1 will disable this option.
-        scroll_limit = -1, -- Max number of lines moved before scrolling is skipped. Setting
-        -- to -1 will disable this option.
+    opts = {
+        -- The scrolling mode
+        -- `cursor`: animate cursor and window scrolling for any movement
+        -- `window`: animate window scrolling ONLY when the cursor moves out of view
+        mode = 'cursor',
+
+        -- Only animate scrolling if a count is provided
+        count_only = false,
+
+        -- Delay between each movement step (in ms)
+        delay = 3,
+
+        max_delta = {
+            -- Maximum distance for line movements before scroll
+            -- animation is skipped. Set to `false` to disable
+            line = false,
+            -- Maximum distance for column movements before scroll
+            -- animation is skipped. Set to `false` to disable
+            column = false,
+            -- Maximum duration for a movement (in ms). Automatically scales the
+            -- delay and step size
+            time = 200,
+        },
+
+        step_size = {
+            -- Number of cursor/window lines moved per step
+            vertical = 1,
+            -- Number of cursor/window columns moved per step
+            horizontal = 2,
+        },
     },
 
     config = function(_, opts)
@@ -28,8 +47,10 @@ return {
 
         require('cinnamon').setup(opts)
 
-        -- go to start/end of line when using gg/G
-        vim.keymap.set({ 'n', 'x' }, 'gg', "<Cmd>lua Scroll('gg')<CR>0")
-        vim.keymap.set({ 'n', 'x' }, 'G', "<Cmd>lua Scroll('G', 0, 1)<CR>$")
+        vim.keymap.set({ 'n', 'x' }, 'gg', function() require('cinnamon').scroll('ggzz0') end)
+        vim.keymap.set({ 'n', 'x' }, 'G', function() require('cinnamon').scroll('Gzz$') end)
+        vim.keymap.set({ 'n', 'x' }, '<C-U>', function() require('cinnamon').scroll('<C-U>zz') end)
+        vim.keymap.set({ 'n', 'x' }, '<C-D>', function() require('cinnamon').scroll('<C-D>zz') end)
+        vim.keymap.set({ 'n', 'x' }, 'zz', function() require('cinnamon').scroll('zz') end)
     end,
 }

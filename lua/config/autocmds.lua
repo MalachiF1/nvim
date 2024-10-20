@@ -89,3 +89,16 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'WinEnter', 'BufWinEnter', 'WinLeave',
         end
     end,
 })
+
+-- write server address to a temperorary file for neovim-remote commands
+vim.cmd([[
+function! s:write_server_name() abort
+  let nvim_server_file = (has('win32') ? $TEMP : '/tmp') . '/vimtexserver.txt'
+  call writefile([v:servername], nvim_server_file)
+endfunction
+
+augroup vimtex_common
+  autocmd!
+  autocmd FileType tex call s:write_server_name()
+augroup END
+]])

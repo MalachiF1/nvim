@@ -9,9 +9,13 @@ return {
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lsp-signature-help',
         'hrsh7th/cmp-nvim-lua',
-        'L3MON4D3/LuaSnip',
+        {
+            'L3MON4D3/LuaSnip',
+            build = 'make install_jsregexp',
+        },
         'saadparwaiz1/cmp_luasnip',
         'rafamadriz/friendly-snippets',
+        'evesdropper/luasnip-latex-snippets.nvim',
     },
 
     event = { 'InsertEnter', 'LspAttach' },
@@ -88,6 +92,7 @@ return {
                     --     return vim_item
                     -- end
                 }),
+                expandable_indicator = '>',
             },
         })
         -- automatically add `(` after selecting a function or method
@@ -125,6 +130,21 @@ return {
             }, {
                 { name = 'cmdline' },
             }),
+        })
+
+        cmp.setup.filetype('tex', {
+            sources = {
+                { name = 'vimtex' },
+                -- other sources
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
+                { name = 'nvim_lsp_signature_help' },
+                { name = 'nvim_lua' },
+            },
+            {
+                { name = 'path' },
+                { name = 'buffer' },
+            },
         })
     end,
 }

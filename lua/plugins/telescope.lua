@@ -1,6 +1,8 @@
 return {
     'nvim-telescope/telescope.nvim',
 
+    lazy = false,
+
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-ui-select.nvim',
@@ -75,7 +77,8 @@ return {
         },
         {
             '<leader>r',
-            ':lua require("auto-session").setup_session_lens(); vim.cmd[[Telescope session-lens]]<CR>',
+            -- ':lua require("auto-session").setup_session_lens(); vim.cmd[[Telescope session-lens]]<CR>',
+            ':Telescope session-lens<CR>',
             mode = 'n',
             desc = 'restore session',
             noremap = true,
@@ -181,7 +184,7 @@ return {
         telescope.load_extension('ui-select')
         telescope.load_extension('undo')
         telescope.load_extension('file_browser')
-        telescope.load_extension('session-lens')
+        -- telescope.load_extension('session-lens')
         telescope.load_extension('noice')
     end,
 }

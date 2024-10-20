@@ -12,6 +12,15 @@ return {
     opts = {
         indent = {
             char = '│',
+            highlight = {
+                'RainbowDelimiterRed',
+                'RainbowDelimiterYellow',
+                'RainbowDelimiterBlue',
+                'RainbowDelimiterOrange',
+                'RainbowDelimiterGreen',
+                'RainbowDelimiterViolet',
+                'RainbowDelimiterCyan',
+            },
         },
         scope = {
             enabled = true,
@@ -19,6 +28,7 @@ return {
             show_end = true,
             injected_languages = true,
             show_exact_scope = true,
+            char = '│',
             highlight = {
                 'RainbowDelimiterRed',
                 'RainbowDelimiterYellow',

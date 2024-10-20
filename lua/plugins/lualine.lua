@@ -46,7 +46,7 @@ return {
                     { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } },
                     { 'diagnostics', symbols = { error = ' ', warn = ' ', info = '󰋼 ', hint = '󰌵 ' } },
                 },
-                lualine_c = { 'filename' },
+                lualine_c = { { 'filename', path = 1 } },
                 lualine_x = {
                     { 'filetype' },
                     {

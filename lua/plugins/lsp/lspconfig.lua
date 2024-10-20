@@ -36,8 +36,8 @@ return {
             map('n', '<leader>li', function() telescope.lsp_implementations() end, opts('implementations'))
             map('n', '<leader>lh', function() vim.lsp.buf.hover() end, opts('show documentation'))
             map('n', '<leader>lw', function() telescope.lsp_workspace_symbols({ bufnr = 0 }) end, opts('workspace symbols'))
-            map('n', '<leader>lgn', function() vim.diagnostic.goto_next() end, opts('next diagnostic'))
-            map('n', '<leader>lgp', function() vim.diagnostic.goto_prev() end, opts('previous diagnostic'))
+            map('n', '<leader>lgn', function() vim.diagnostic.jump({ count = 1, float = true }) end, opts('next diagnostic'))
+            map('n', '<leader>lgp', function() vim.diagnostic.jump({ count = -1, float = true }) end, opts('previous diagnostic'))
             map('n', '<leader>lc', function() require('actions-preview').code_actions() end, opts('code actions'))
             map('n', '<leader>lr', function() telescope.lsp_references() end, opts('references'))
             map('n', '<leader>ln', function() vim.lsp.buf.rename() end, opts('rename'))
@@ -76,17 +76,46 @@ return {
                 only_current_line = true,
                 highlight_whole_line = false,
             },
-            signs = true,
+            -- signs = true,
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = '',
+                    [vim.diagnostic.severity.WARN] = '',
+                    [vim.diagnostic.severity.HINT] = '󰌵',
+                    [vim.diagnostic.severity.INFO] = '󰋼',
+                    -- ['DapBreakpoint'] = '●',
+                    -- ['DapBreakpointCondition'] = '●',
+                    -- ['DapLogPoint'] = '◆',
+                },
+                line_hl = {
+                    [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+                    [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+                    [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+                    [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+                    -- ['DapBreakpoint'] = 'DapBreakpoint',
+                    -- ['DapBreakpointCondition'] = 'DapBreakpointCondition',
+                    -- ['DapLogPoint'] = 'DapLogPoint',
+                },
+                num_hl = {
+                    [vim.diagnostic.severity.ERROR] = '',
+                    [vim.diagnostic.severity.WARN] = '',
+                    [vim.diagnostic.severity.HINT] = '',
+                    [vim.diagnostic.severity.INFO] = '',
+                    -- ['DapBreakpoint'] = '',
+                    -- ['DapBreakpointCondition'] = '',
+                    -- ['DapLogPoint'] = '',
+                },
+            },
             underline = true,
             update_in_insert = false,
             severity_sort = true,
         })
 
         -- gutter signs for diagnostics
-        local sign = vim.fn.sign_define
-        sign('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError', numhl = '' })
-        sign('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn', numhl = '' })
-        sign('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint', numhl = '' })
-        sign('DiagnosticSignInfo', { text = '󰋼', texthl = 'DiagnosticSignInfo', numhl = '' })
+        -- local sign = vim.fn.sign_define
+        -- sign('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError', numhl = '' })
+        -- sign('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn', numhl = '' })
+        -- sign('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint', numhl = '' })
+        -- sign('DiagnosticSignInfo', { text = '󰋼', texthl = 'DiagnosticSignInfo', numhl = '' })
     end,
 }

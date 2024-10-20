@@ -38,6 +38,8 @@ return {
             pos = 'start', ---@type "start" | "end" | "range"
             -- automatically jump when there is only one match
             autojump = true,
+            -- clear highlight after jump
+            nohlsearch = true,
         },
         label = {
             -- allow uppercase labels
@@ -83,6 +85,16 @@ return {
                 label = 'FlashLabel',
             },
         },
+        -- action to perform when picking a label.
+        -- defaults to the jumping logic depending on the mode.
+        ---@type fun(match:Flash.Match, state:Flash.State)|nil
+        action = function(match, state)
+            require('cinnamon').scroll(function()
+                require('flash.jump').jump(match, state)
+                require('flash.jump').on_jump(state)
+            end)
+        end,
+
         modes = {
             -- options used when flash is activated through
             -- a regular search with `/` or `?`

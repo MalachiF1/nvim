@@ -22,7 +22,7 @@ return {
         animation = true,
 
         -- Enable/disable auto-hiding the tab bar when there is a single buffer
-        auto_hide = true,
+        auto_hide = 1,
 
         -- Enable/disable current/total tabpages indicator (top right corner)
         tabpages = true,
@@ -35,6 +35,8 @@ return {
         -- Excludes buffers from the tabline
         exclude_ft = {},
         exclude_name = {},
+
+        focus_on_close = 'left',
 
         icons = {
             -- Configure the base icons on the bufferline.

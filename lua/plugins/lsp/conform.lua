@@ -9,7 +9,7 @@ return {
         {
             -- Customize or remove this keymap to your liking
             '<leader>lf',
-            function() require('conform').format({ async = true, lsp_fallback = true }) end,
+            function() require('conform').format({ async = true, fallback = true }) end,
             mode = { 'n', 'v' },
             desc = 'format',
             noremap = true,
@@ -21,7 +21,7 @@ return {
         -- Map of filetype to formatters
         formatters_by_ft = {
             lua = { 'stylua' },
-            cpp = { 'clang_format' },
+            cpp = { 'clang-format' },
             cmake = { 'cmake_format' },
             bash = { 'beautysh' },
             zsh = { 'beautysh' },
@@ -40,6 +40,7 @@ return {
             graphql = { 'prettier' },
             python = { 'isort', 'black' },
             rust = { 'rustfmt' },
+            tex = { 'latexindent' },
             -- Use the "*" filetype to run formatters on all filetypes.
             ['*'] = { 'codespell' },
             -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.

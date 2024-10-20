@@ -3,7 +3,10 @@ return {
 
     dependencies = {
         'mfussenegger/nvim-dap-python',
-        'Weissle/persistent-breakpoints.nvim',
+        {
+            'Weissle/persistent-breakpoints.nvim',
+            event = 'BufReadPre',
+        },
         'nvim-telescope/telescope.nvim',
         'nvim-telescope/telescope-dap.nvim',
     },
@@ -11,6 +14,9 @@ return {
     cmd = {
         'DapToggleBreakpoint',
         'DapContinue',
+        'DapStepOut',
+        'DapStepInto',
+        'DapStepOver',
         'PBToggleBreakpoint',
         'PBSetConditionalBreakpoint',
         'PBClearAllBreakpoints',
@@ -19,7 +25,8 @@ return {
     keys = {
         {
             '<leader>db',
-            ':PBToggleBreakpoint<CR>',
+            -- ':PBToggleBreakpoint<CR>',
+            '<cmd>lua require("persistent-breakpoints.api").toggle_breakpoint()<CR>',
             mode = 'n',
             desc = 'toggle breakpoint',
             noremap = true,
@@ -27,7 +34,8 @@ return {
         },
         {
             '<leader>dt',
-            ':PBSetConditionalBreakpoint<CR>',
+            -- ':PBSetConditionalBreakpoint<CR>',
+            '<cmd>lua require("persistent-breakpoints.api").set_conditional_breakpoint()<CR>',
             mode = 'n',
             desc = 'conditional breakpoint',
             noremap = true,
@@ -35,7 +43,8 @@ return {
         },
         {
             '<leader>dC',
-            ':PBClearAllBreakpoints<CR>',
+            -- ':PBClearAllBreakpoints<CR>',
+            '<cmd>lua require("persistent-breakpoints.api").clear_all_breakpoints()<CR>',
             mode = 'n',
             desc = 'clear breakpoints',
             noremap = true,
@@ -93,9 +102,9 @@ return {
 
         local persistent_breakpoints = require('persistent-breakpoints')
         persistent_breakpoints.setup({
+            load_breakpoints_event = { 'BufReadPost' },
             save_dir = vim.fn.stdpath('data') .. '/nvim_checkpoints',
             -- when to load the breakpoints? "BufReadPost" is recommended.
-            load_breakpoints_event = 'BufReadPost',
             on_load_breakpoint = nil,
         })
 

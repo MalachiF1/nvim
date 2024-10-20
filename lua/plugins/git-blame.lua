@@ -23,6 +23,6 @@ return {
         highlight_group = 'Comment', -- Question
         display_virtual_text = 1,
         delay = 1000, -- 1 second
-        -- virtual_text_column = 60,
+        -- virtual_text_column = 80,
     },
 }

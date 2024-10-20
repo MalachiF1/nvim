@@ -38,14 +38,14 @@ return {
         -- to remove otherwise annoying messages.
         lessNotifications = false,
 
-        -- Performance optimzations for macros with high count. When `playMacro` is
+        -- Performance optimizations for macros with high count. When `playMacro` is
         -- triggered with a count higher than the threshold, nvim-recorder
         -- temporarily changes changes some settings for the duration of the macro.
         performanceOpts = {
             countThreshold = 100,
-            lazyredraw = true,        -- enable lazyredraw (see `:h lazyredraw`)
+            lazyredraw = true, -- enable lazyredraw (see `:h lazyredraw`)
             noSystemClipboard = true, -- remove `+`/`*` from clipboard option
-            autocmdEventsIgnore = {   -- temporarily ignore these autocmd events
+            autocmdEventsIgnore = { -- temporarily ignore these autocmd events
                 'TextChangedI',
                 'TextChanged',
                 'InsertLeave',

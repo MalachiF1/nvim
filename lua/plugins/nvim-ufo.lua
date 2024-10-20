@@ -62,8 +62,10 @@ return {
         -- have equivalents for zr and zm because there is no saved fold level.
         -- Consequently, the vim-internal fold levels need to be disabled by setting
         -- them to 99
+        vim.opt.foldcolumn = "0"
         vim.opt.foldlevel = 99
         vim.opt.foldlevelstart = 99
+        vim.opt.foldenable = true
     end,
 
     config = function()
@@ -85,8 +87,7 @@ return {
                     table.insert(newVirtText, { chunkText, hlGroup })
                     chunkWidth = vim.fn.strdisplaywidth(chunkText)
                     -- str width returned from truncate() may less than 2nd argument, need padding
-                    if curWidth + chunkWidth < targetWidth then suffix = suffix ..
-                        (' '):rep(targetWidth - curWidth - chunkWidth) end
+                    if curWidth + chunkWidth < targetWidth then suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth) end
                     break
                 end
                 curWidth = curWidth + chunkWidth
