@@ -49,6 +49,22 @@ opt.backspace = 'indent,eol,start'
 
 -- clipboard
 opt.clipboard = 'unnamedplus'
+if vim.fn.has('wsl') == 1 then
+    vim.g.clipboard = {
+        name = 'WslClipboard',
+        copy = {
+            ['+'] = 'clip.exe',
+            ['*'] = 'clip.exe',
+        },
+        -- paste = {
+        --     -- ['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        --     -- ['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        --     ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        --     ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        -- },
+        cache_enabled = 0,
+    }
+end
 
 -- split windows
 opt.splitright = true
@@ -91,6 +107,9 @@ vim.opt.updatetime = 400
 
 -- shorter startup times
 vim.loader.enable()
+
+-- blinking cursor
+opt.guicursor = 'n:block-blinkwait100-blinkoff75-blinkon75,i-c:ver25-Cursor/lCursor,r:hor25-Cursor/lCursor'
 
 -- Neovide
 if vim.g.neovide then

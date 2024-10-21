@@ -5,9 +5,19 @@ return {
         'nvim-telescope/telescope.nvim',
     },
 
-    event = 'VimEnter',
+    cmd = {
+        'SessionRestore',
+        'SessionSave',
+        'SessionDelete',
+        'SessionSearch',
+        'SessionToggleAutoSave',
+        'SessionPurgeOrphaned',
+        'Telescope session-lens',
+    },
 
-    lazy = false,
+    -- event = 'VimEnter',
+
+    -- lazy = false,
 
     init = function() vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions' end,
 

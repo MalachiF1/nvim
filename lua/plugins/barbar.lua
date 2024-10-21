@@ -63,7 +63,11 @@ return {
 
                 enabled = true,
             },
-            separator = { left = '│', right = '' },
+
+            separator = { left = '┃', right = '' }, -- │, ❙, ∣, ⎸, │, ┃
+            inactive = {
+                separator = { left = '│', right = '' },
+            },
 
             -- If true, add an additional separator at the end of the buffer list
             separator_at_end = false,
@@ -71,7 +75,7 @@ return {
             -- Configure the icons on the bufferline when modified or pinned.
             -- Supports all the base icon options.
             modified = { button = '●' },
-            pinned = { button = '', filename = true },
+            pinned = { button = ' ', filename = true },
 
             -- Use a preconfigured buffer appearance— can be 'default', 'powerline', or 'slanted'
             preset = 'default',

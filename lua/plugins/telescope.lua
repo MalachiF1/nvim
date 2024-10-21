@@ -1,8 +1,6 @@
 return {
     'nvim-telescope/telescope.nvim',
 
-    event = 'BufReadPost',
-
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-ui-select.nvim',
@@ -16,6 +14,9 @@ return {
 
     branch = '0.1.x',
 
+    -- event = 'BufReadPost',
+
+    lazy = true,
     cmd = 'Telescope',
 
     keys = {

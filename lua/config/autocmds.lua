@@ -90,6 +90,20 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'WinEnter', 'BufWinEnter', 'WinLeave',
     end,
 })
 
+-- set filetypes by extensions for unrecognized filetypes
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+    pattern = '*.in',
+    command = 'set filetype=in',
+})
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+    pattern = '*.out',
+    command = 'set filetype=out',
+})
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+    pattern = '*.nw',
+    command = 'set filetype=nw',
+})
+
 -- write server address to a temperorary file for neovim-remote commands
 vim.cmd([[
 function! s:write_server_name() abort

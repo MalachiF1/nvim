@@ -12,10 +12,12 @@ return {
         {
             'L3MON4D3/LuaSnip',
             build = 'make install_jsregexp',
+            dependencies = {
+                'rafamadriz/friendly-snippets',
+                'evesdropper/luasnip-latex-snippets.nvim',
+            },
         },
         'saadparwaiz1/cmp_luasnip',
-        'rafamadriz/friendly-snippets',
-        'evesdropper/luasnip-latex-snippets.nvim',
     },
 
     event = { 'InsertEnter', 'LspAttach' },
@@ -29,6 +31,7 @@ return {
 
         -- load snippets
         require('luasnip.loaders.from_vscode').lazy_load()
+        require('luasnip.loaders.from_lua').lazy_load({ paths = { vim.fn.stdpath('config') .. '/lua/snippets' } })
 
         cmp.setup({
             mapping = {

@@ -19,11 +19,11 @@ return {
         vim.g.vimtex_view_reverse_search_edit_cmd = 'edit'
 
         -- Focus the terminal after inverse search
-        vim.api.nvim_create_autocmd('User', {
-            pattern = 'VimtexEventViewReverse',
-            group = au_group,
-            command = 'call b:vimtex.viewer.xdo_focus_vim()',
-        })
+        -- vim.api.nvim_create_autocmd('User', {
+        --     pattern = 'VimtexEventViewReverse',
+        --     group = au_group,
+        --     command = 'call b:vimtex.viewer.xdo_focus_vim()',
+        -- })
 
         -- Place the following setting in sumatraPDF's advanced settings for inverse search to work:
         -- InverseSearchCmdLine = cmd /q /c start /min "" powershell -WindowStyle Hidden -Command "& {$file = (('%f' -replace '\\','/') -replace '//wsl.localhost.Ubuntu-20.04',''); wsl --exec nvim --server /tmp/nvim.pipe --remote-send """":e $file | %l<CR>""""} %*"

@@ -1,7 +1,7 @@
 return {
     'folke/tokyonight.nvim',
 
-    lazy = false,
+    lazy = true, -- set to false if this is the main theme
 
     priority = 1000,
 
