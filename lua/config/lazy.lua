@@ -14,10 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 
 return require('lazy').setup('plugins', {
     defaults = {
-        -- lazy = true,
+        lazy = true,
     },
     install = {
-        colorscheme = { 'tokyonight' },
+        install = true,
+        -- colorscheme = { 'tokyonight' },
+        colorscheme = { 'catppuccin' },
     },
     change_detection = {
         notify = false,
@@ -53,6 +55,20 @@ return require('lazy').setup('plugins', {
                 'spellfile_plugin',
                 'matchit',
             },
+        },
+        readme = {
+            enabled = true,
+            root = vim.fn.stdpath('state') .. '/lazy/readme',
+            files = { 'README.md', 'lua/**/README.md' },
+            -- only generate markdown helptags for plugins that dont have docs
+            skip_if_doc_exists = true,
+        },
+        profiling = {
+            -- Enables extra stats on the debug tab related to the loader cache.
+            -- Additionally gathers stats about all package.loaders
+            loader = false,
+            -- Track each new require in the Lazy profiling tab
+            require = false,
         },
     },
 })

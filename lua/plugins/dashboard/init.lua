@@ -66,7 +66,7 @@ return {
                         desc_hl = 'String',
                         key = 'c',
                         key_hl = 'Number',
-                        action = 'edit ~/.config/nvim/init.lua',
+                        action = 'cd ~/.config/nvim | edit ~/.config/nvim/init.lua',
                     },
                     {
                         icon = '   ',

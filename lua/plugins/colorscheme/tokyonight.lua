@@ -2,8 +2,9 @@ return {
     'folke/tokyonight.nvim',
 
     lazy = true, -- set to false if this is the main theme
-
-    priority = 1000,
+    -- priority = 1000,
+    
+    event = 'VeryLazy',
 
     opts = {
         -- your configuration comes here

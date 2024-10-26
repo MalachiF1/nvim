@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
     group = augroup('highlight_yank'),
-    callback = function() vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 200 }) end,
+    callback = function() vim.hl.on_yank({ higroup = 'IncSearch', timeout = 200 }) end,
 })
 
 -- resize splits if window got resized

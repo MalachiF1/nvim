@@ -9,6 +9,7 @@ return {
         --   If not available, we use `mini` as the fallback
         {
             'rcarriga/nvim-notify',
+            event = 'VeryLazy',
             opts = {
                 fps = 30,
                 render = 'wrapped-compact', -- default, compact, minimal, simple

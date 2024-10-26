@@ -1,8 +1,12 @@
 return {
     'williamboman/mason.nvim',
 
+    lazy = false,
+
     dependencies = {
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        {
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+        },
     },
 
     opts = {
@@ -52,14 +56,15 @@ return {
                 'shellcheck',
                 'beautysh',
                 'editorconfig-checker',
-                'codespell',
+                -- 'codespell',
                 'taplo',
                 'texlab',
                 'latexindent',
+                -- 'ltex-ls',
             },
             auto_update = true,
             run_on_start = true,
-            start_delay = 0,
+            start_delay = 1,
         })
     end,
 }

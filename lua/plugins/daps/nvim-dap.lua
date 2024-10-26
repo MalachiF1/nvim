@@ -2,7 +2,10 @@ return {
     'mfussenegger/nvim-dap',
 
     dependencies = {
-        'mfussenegger/nvim-dap-python',
+        {
+            'mfussenegger/nvim-dap-python',
+            ft = 'python',
+        },
         {
             'Weissle/persistent-breakpoints.nvim',
             event = 'BufReadPre',

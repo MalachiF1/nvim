@@ -1,9 +1,9 @@
 return {
     'rmagatti/auto-session',
 
-    dependencies = {
-        'nvim-telescope/telescope.nvim',
-    },
+    -- dependencies = {
+    -- 'nvim-telescope/telescope.nvim',
+    -- },
 
     cmd = {
         'SessionRestore',
@@ -15,7 +15,7 @@ return {
         'Telescope session-lens',
     },
 
-    -- event = 'VimEnter',
+    event = 'BufReadPost',
 
     -- lazy = false,
 

@@ -41,13 +41,20 @@ map('v', 'gg', 'gg0', opts)
 map('n', 'G', 'G$', opts)
 map('v', 'G', 'G$', opts)
 
+-- navigate visual lines when wrapping is enabled
+map('n', 'j', 'gj', opts)
+map('v', 'j', 'gj', opts)
+
+map('n', 'k', 'gk', opts)
+map('v', 'k', 'gk', opts)
+
 -- better indenting
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
 --search and replace
-map('n', '<C-s>', ':%s/<C-r><C-w>//gI<Left><Left><Left>', opts) -- cword
-map('v', '<C-s>', 'y:%s/<C-R>"//gI<Left><Left><Left>', opts) -- selection
+map('n', '<M-r>', ':%s/<C-r><C-w>//gI<Left><Left><Left>', opts) -- cword
+map('v', '<M-r>', 'y:%s/<C-R>"//gI<Left><Left><Left>', opts) -- selection
 
 -- window management
 map('n', '<leader>wv', ':vsplit<CR>', { desc = 'vertically split', noremap = true, silent = true })
