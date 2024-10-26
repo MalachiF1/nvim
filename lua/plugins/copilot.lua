@@ -80,7 +80,9 @@ return {
             },
             filetypes = {
                 yaml = false,
-                markdown = false,
+                -- markdown = false,
+                markdown = true,
+                quarto = true,
                 help = false,
                 gitcommit = false,
                 gitrebase = false,

@@ -62,7 +62,7 @@ return {
         -- have equivalents for zr and zm because there is no saved fold level.
         -- Consequently, the vim-internal fold levels need to be disabled by setting
         -- them to 99
-        vim.opt.foldcolumn = "0"
+        vim.opt.foldcolumn = '0'
         vim.opt.foldlevel = 99
         vim.opt.foldlevelstart = 99
         vim.opt.foldenable = true
@@ -98,7 +98,7 @@ return {
 
         require('ufo').setup({
             provider_selector = function(_, ft, _)
-                local lsp_without_folding = { 'markdown', 'bash', 'sh', 'bash', 'zsh', 'css' }
+                local lsp_without_folding = { 'markdown', 'quarto', 'bash', 'sh', 'bash', 'zsh', 'css' }
                 if vim.tbl_contains(lsp_without_folding, ft) then
                     return { 'treesitter', 'indent' }
                 elseif ft == 'html' then

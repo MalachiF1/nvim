@@ -41,8 +41,12 @@ return {
             python = { 'isort', 'black' },
             rust = { 'rustfmt' },
             tex = { 'latexindent' },
+            markdown = { 'prettier', --[[ 'injected' ]] },
+            -- quarto = { 'injected' },
             -- Use the "*" filetype to run formatters on all filetypes.
-            ['*'] = { 'codespell' },
+            -- ['*'] = function(bufnr)
+            --     if vim.bo[bufnr].filetype ~= 'markdown' and vim.bo[bufnr].filetype ~= 'tex' then return { 'codespell' } end
+            -- end,
             -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
             ['_'] = { 'trim_whitespace' },
         },

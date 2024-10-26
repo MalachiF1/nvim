@@ -54,17 +54,19 @@ vim.api.nvim_create_autocmd('FileType', {
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd('FileType', {
     group = augroup('wrap_spell'),
-    pattern = { 'gitcommit', 'markdown' },
+    pattern = { 'gitcommit', 'markdown', 'quarto' },
     callback = function()
         vim.opt_local.wrap = true
-        vim.opt_local.spell = true
+        vim.opt_local.linebreak = true
+        -- vim.opt_local.breakindent = true
+        -- vim.opt_local.spell = true
     end,
 })
 
 -- disable whitespace characters on some file types
 vim.api.nvim_create_autocmd('FileType', {
     group = augroup('no_list'),
-    pattern = { 'help', 'qf', 'gitcommit', 'markdown', 'text' },
+    pattern = { 'help', 'qf', 'gitcommit', 'markdown', 'quarto', 'text' },
     callback = function() vim.opt_local.list = false end,
 })
 
@@ -116,3 +118,19 @@ augroup vimtex_common
   autocmd FileType tex call s:write_server_name()
 augroup END
 ]])
+
+-- auto continue lists in markdown
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'markdown', 'quarto' },
+    callback = function()
+        vim.opt_local.formatoptions:append('r') -- `<CR>` in insert mode
+        vim.opt_local.formatoptions:append('o') -- `o` in normal mode
+        vim.opt_local.comments = {
+            'b:- [ ]', -- tasks
+            'b:- [x]',
+            'b:*', -- unordered list
+            'b:-',
+            'b:+',
+        }
+    end,
+})

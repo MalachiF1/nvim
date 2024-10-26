@@ -174,6 +174,10 @@ return {
                     DashboardHeader = { fg = colors.teal },
 
                     FlashLabel = { fg = colors.rosewater },
+
+                    Conceal = { fg = colors.text },
+
+                    ['@markup.italic.markdown_inline'] = { fg = colors.text },
                 }
             end,
             integrations = {

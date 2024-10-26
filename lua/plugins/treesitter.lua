@@ -52,7 +52,7 @@ return {
                 'vim',
                 'vimdoc',
                 'gitignore',
-                -- 'latex',
+                'latex',
                 'scss',
                 'regex',
                 'sql',
