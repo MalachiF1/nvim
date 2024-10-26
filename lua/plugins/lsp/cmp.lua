@@ -9,14 +9,7 @@ return {
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lsp-signature-help',
         'hrsh7th/cmp-nvim-lua',
-        {
-            'L3MON4D3/LuaSnip',
-            build = 'make install_jsregexp',
-            dependencies = {
-                'rafamadriz/friendly-snippets',
-                'evesdropper/luasnip-latex-snippets.nvim',
-            },
-        },
+        'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip',
     },
 
@@ -28,10 +21,6 @@ return {
         local luasnip = require('luasnip')
         local lspkind = require('lspkind') -- vscode like icons for cmp
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
-        -- load snippets
-        require('luasnip.loaders.from_vscode').lazy_load()
-        require('luasnip.loaders.from_lua').lazy_load({ paths = { vim.fn.stdpath('config') .. '/lua/snippets' } })
 
         cmp.setup({
             mapping = {

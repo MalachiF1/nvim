@@ -1,30 +1,29 @@
-local ls = require('luasnip')
-local s = ls.snippet
-local t = ls.text_node
-local i = ls.insert_node
-local r = require('luasnip.extras').rep
-local fmt = require('luasnip.extras.fmt').fmt
+local in_mathzone = function()
+    -- The `in_mathzone` function requires the VimTeX plugin
+    return vim.api.nvim_eval('vimtex#syntax#in_mathzone()') == 1
+end
 
-ls.add_snippets('tex', {
+-- Summary: When `LS_SELECT_RAW` is populated with a visual selection, the function
+-- returns an insert node whose initial text is set to the visual selection.
+-- When `LS_SELECT_RAW` is empty, the function simply returns an empty insert node.
+local get_visual = function(args, parent)
+    if #parent.snippet.env.LS_SELECT_RAW > 0 then
+        return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
+    else -- If LS_SELECT_RAW is empty, return a blank insert node
+        return sn(nil, i(1))
+    end
+end
+
+return {
     s(
         'eq',
-        fmt(
+        fmta(
             [[
-        \begin{{equation}}
-            \begin{{aligned}}
-               {} 
-            \end{{aligned}}
-        \end{{equation}}
-        ]],
-            { i(0) }
-        )
-    ),
-
-    s(
-        'em',
-        fmt(
-            [[
-            \emph{{ {} }}
+        \begin{equation}
+            \begin{aligned}
+                <>
+            \end{aligned}
+        \end{equation}
         ]],
             { i(0) }
         )
@@ -32,63 +31,312 @@ ls.add_snippets('tex', {
 
     s(
         'homework',
-        fmt(
+        fmta(
             [[
-        \documentclass[letterpaper, 12pt]{{article}}
-        \usepackage{{$HOME/latex/stylesheets/homework}}
+        \documentclass[letterpaper, 12pt]{article}
+        \usepackage{$HOME/latex/stylesheets/homework}
 
-        \author{{Malachi Fraenkel}}
-        \course{{{}}}
-        \hwtype{{{}}}
-        \hwnumber{{{}}}
+        \author{Malachi Fraenkel}
+        \course{<>}
+        \hwtype{<>}
+        \hwnumber{<>}
 
-        \begin{{document}}
+        \begin{document}
 
-        % \begin{{problem}}{{Title}}
-        % {{problem-label}}
+        % \begin{problem}{Title}
+        % {problem-label}
         % This is a problem statement
-        % \end{{problem}}
+        % \end{problem}
 
-        {}
+        <>
 
         \printbibliography
 
-        \end{{document}}
+        \end{document}
         ]],
             { i(1), i(2), i(3), i(0) }
         )
     ),
 
     s(
-        'lab',
-        fmt(
+        { trig = 'lab', name = 'Lab Report Format', desc = 'minimal boilerplate for latex lab report format' },
+        fmta(
             [[
-        \documentclass[letterpaper, 11pt]{{article}}
-        \usepackage{{$HOME/latex/stylesheets/lab}}
+        \documentclass[letterpaper, 11pt]{article}
+        \usepackage{$HOME/latex/stylesheets/lab}
 
-        \author{{Malachi Fraenkel}}
-        \title{{{}}}
-        \date{{\today}}
+        \author{Malachi Fraenkel}
+        \title{<>}
+        \date{\today}
 
-        \begin{{document}}
+        \begin{document}
 
         \maketitle
 
-        \begin{{abstract}}
-        \end{{abstract}}
+        \begin{abstract}
+        \end{abstract}
 
-        \begin{{multicols*}}{{2}}
+        \begin{multicols*}{2}
 
-            \section{{Introduction}}
-            {}
+            \section{Introduction}
+            <>
 
             \printbibliography
 
-        \end{{multicols*}}
+        \end{multicols*}
 
-        \end{{document}}
+        \end{document}
         ]],
             { i(1), i(0) }
         )
     ),
-})
+
+    s(
+        { trig = 'href', name = 'href', snippetType = 'autosnippet' },
+        fmta(
+            [[
+            \href{<>}{<>}<>
+        ]],
+            { i(1), i(2), i(0) }
+        )
+    ),
+
+    s(
+        { trig = 'tbf', dscr = 'place selected text in bold' },
+        fmta(
+            [[
+            \textbf{<>}<>
+        ]],
+            { d(1, get_visual), i(0) }
+        )
+    ),
+
+    s(
+        { trig = 'emph', dscr = 'place selected text in emph' },
+        fmta(
+            [[
+            \emph{<>}<>
+        ]],
+            { d(1, get_visual), i(0) }
+        )
+    ),
+
+    s(
+        { trig = '//', name = 'fraction', snippetType = 'autosnippet', priority = 10000000000 },
+        fmta(
+            [[
+            \f{<>}{<>}<>
+        ]],
+            { i(1), i(2), i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        {
+            -- Only triggers for parentheses (up to 3 levels deep)
+            trig = '(?:\\\\left)?\\(([^()]+[^\\\\right]|(?:[^()]*\\(?(?:[^()]*\\([^()]*\\)[^()]*)+\\)?[^()]*)+[^\\\\right])(?:\\\\right)?\\)\\/',
+            regTrig = true,
+            trigEngine = 'ecma',
+            name = 'fraction',
+            snippetType = 'autosnippet',
+            priority = 999999999999,
+        },
+        fmta(
+            [[
+            \f{<>}{<>}<>
+        ]],
+            {
+                f(function(_, snip) return snip.captures[1] end),
+                i(1),
+                i(0),
+            }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        {
+            -- lower priority than the previous one, for no parentheses (exclusion is by priority, not explicit).
+            trig = '([^\\s]+)\\/',
+            regTrig = true,
+            trigEngine = 'ecma',
+            name = 'fraction',
+            snippetType = 'autosnippet',
+            priority = 899999999999,
+        },
+        fmta(
+            [[
+            \f{<>}{<>}<>
+        ]],
+            {
+                f(function(_, snip) return snip.captures[1] end),
+                i(1),
+                i(0),
+            }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        {
+            trig = '()/',
+            name = 'fraction',
+            snippetType = 'autosnippet',
+            priority = 999999999999,
+        },
+        fmta(
+            [[
+            \f{<>}{<>}<>
+        ]],
+            {
+                i(1),
+                i(2),
+                i(0),
+            }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        {
+            trig = '\\left(\\right)/',
+            name = 'fraction',
+            snippetType = 'autosnippet',
+            priority = 999999999999,
+        },
+        fmta(
+            [[
+            \f{<>}{<>}<>
+        ]],
+            {
+                i(1),
+                i(2),
+                i(0),
+            }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    -- s(
+    --     { trig = '(^.*\\))/', regTrig = true, trigEngine = 'ecma', name = 'fraction', snippetType = 'autosnippet', priority = 10000000000 },
+    --     fmta(
+    --         [[
+    --         \f{<>}{<>}<>
+    --     ]],
+    --         { f(function(_, snip) return snip.captures[1] end), i(1), i(0) },
+    --     ),
+    --     { condition = in_mathzone }
+    -- ),
+
+    s(
+        { trig = '([%w%)%}%]])_(%w+) ', regTrig = true, name = 'subscript', snippetType = 'autosnippet' },
+        f(function(_, snip) return snip.captures[1] .. '_{' .. snip.captures[2] .. '} ' end, {}),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = '([%w%)%}%]])^(%w+) ', regTrig = true, name = 'subscript', snippetType = 'autosnippet' },
+        f(function(_, snip) return snip.captures[1] .. '^{' .. snip.captures[2] .. '} ' end, {}),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = 'pd', name = 'partial derivative', snippetType = 'autosnippet', priority = 10000000000 },
+        fmta(
+            [[
+            \pd{<>}{<>}<>
+        ]],
+            { i(1), i(2), i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = 'dr', name = 'partial derivative', snippetType = 'autosnippet', priority = 10000000000 },
+        fmta(
+            [[
+            \dr{<>}{<>}<>
+        ]],
+            { i(1), i(2), i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = 'vec', name = 'vector', snippetType = 'autosnippet' },
+        fmta(
+            [[
+            \nvec{<>}<>
+        ]],
+            { d(1, get_visual), i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = 'uvec', name = 'unit vector', snippetType = 'autosnippet' },
+        fmta(
+            [[
+            \uvec{<>}<>
+        ]],
+            { d(1, get_visual), i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = 'matr', name = 'matrix', priority = 10000 },
+        fmta(
+            [[
+            \matr{<>}<>
+        ]],
+            { i(1, 'a & b \\\\ c & d'), i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = 'detr', name = 'determinant' },
+        fmta(
+            [[
+            \detr{<>}<>
+        ]],
+            { i(1, 'a & b \\\\ c & d'), i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = '(', name = 'parentheses', snippetType = 'autosnippet' },
+        fmta(
+            [[
+            \left(<>\right)<>
+        ]],
+            { i(1), i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = 'lim', name = 'limit', snippetType = 'autosnippet', priority = 10000 },
+        fmta(
+            [[
+            \lim_{<> \to <>}<>
+        ]],
+            { i(1), i(2), i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        { trig = 'inf', name = 'infinity', snippetType = 'autosnippet', priority = 10000 },
+        fmta(
+            [[
+            \infty <>
+        ]],
+            { i(0) }
+        ),
+        { condition = in_mathzone }
+    ),
+}
