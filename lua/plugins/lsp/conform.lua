@@ -23,6 +23,7 @@ return {
             lua = { 'stylua' },
             cpp = { 'clang-format' },
             cmake = { 'cmake_format' },
+            sh = { 'beautysh' },
             bash = { 'beautysh' },
             zsh = { 'beautysh' },
             toml = { 'taplo' },
@@ -41,7 +42,9 @@ return {
             python = { 'isort', 'black' },
             rust = { 'rustfmt' },
             tex = { 'latexindent' },
-            markdown = { 'prettier', --[[ 'injected' ]] },
+            markdown = {
+                'prettier', --[[ 'injected' ]]
+            },
             -- quarto = { 'injected' },
             -- Use the "*" filetype to run formatters on all filetypes.
             -- ['*'] = function(bufnr)

@@ -218,6 +218,40 @@ return {
         { condition = in_mathzone }
     ),
 
+    s(
+        {
+            trig = 'and',
+            name = 'and symbol',
+            snippetType = 'autosnippet',
+        },
+        fmta(
+            [[
+            \,\wedge\, <>
+        ]],
+            {
+                i(0),
+            }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s(
+        {
+            trig = 'or',
+            name = 'or symbol',
+            snippetType = 'autosnippet',
+        },
+        fmta(
+            [[
+            \,\vee\, <>
+        ]],
+            {
+                i(0),
+            }
+        ),
+        { condition = in_mathzone }
+    ),
+
     -- s(
     --     { trig = '(^.*\\))/', regTrig = true, trigEngine = 'ecma', name = 'fraction', snippetType = 'autosnippet', priority = 10000000000 },
     --     fmta(
