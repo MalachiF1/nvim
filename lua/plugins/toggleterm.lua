@@ -4,7 +4,7 @@ return {
 
     version = '*',
 
-    cmd = { 'ToggleTerm', 'TermExec' },
+    cmd = { 'ToggleTerm', 'TermExec', 'ToggleTermSendCurrentLine', 'ToggleTermSendVisualLines' },
 
     keys = {
         {

@@ -45,7 +45,7 @@ return {
             snippetType = 'autosnippet',
             priority = 999999999999,
         },
-        fmtaa(
+        fmta(
             [[
             \f{<>}{<>}<>
         ]],
@@ -68,7 +68,7 @@ return {
             snippetType = 'autosnippet',
             priority = 899999999999,
         },
-        fmtaa(
+        fmta(
             [[
             \f{<>}{<>}<>
         ]],
@@ -88,7 +88,7 @@ return {
             snippetType = 'autosnippet',
             priority = 999999999999,
         },
-        fmtaa(
+        fmta(
             [[
             \f{<>}{<>}<>
         ]],
@@ -108,7 +108,7 @@ return {
             snippetType = 'autosnippet',
             priority = 999999999999,
         },
-        fmtaa(
+        fmta(
             [[
             \f{<>}{<>}<>
         ]],

@@ -2,7 +2,6 @@ return {
     'nvim-treesitter/nvim-treesitter',
 
     dependencies = {
-        'nvim-treesitter/playground',
         'JoosepAlviste/nvim-ts-context-commentstring',
         'windwp/nvim-ts-autotag',
         'nvim-treesitter/nvim-treesitter-context',
@@ -65,6 +64,7 @@ return {
                 'vimdoc',
                 'jsonc',
                 'dockerfile',
+                'matlab',
             },
 
             sync_install = false,

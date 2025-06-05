@@ -60,15 +60,17 @@ return {
             )
         end
 
-        local lspconfig = require('lspconfig')
-        require('mason-lspconfig').setup_handlers({
-            function(server_name)
-                lspconfig[server_name].setup({
-                    on_attach = lsp_attach,
-                    capabilities = lsp_capabilities,
-                })
-            end,
+        require('mason-lspconfig').setup({
+            automatic_enable = true,
         })
+
+        local lspconfig = require('lspconfig')
+        for _, server_name in ipairs(require('mason-lspconfig').get_installed_servers()) do
+            lspconfig[server_name].setup({
+                on_attach = lsp_attach,
+                capabilities = lsp_capabilities,
+            })
+        end
 
         require('lsp_lines').setup()
 

@@ -67,6 +67,11 @@ return {
             auto_update = true,
             run_on_start = true,
             start_delay = 1,
+            integrations = {
+                ['mason-lspconfig'] = true,
+                -- ['mason-null-ls'] = true,
+                -- ['mason-nvim-dap'] = true,
+            },
         })
     end,
 }

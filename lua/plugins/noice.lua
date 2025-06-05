@@ -22,7 +22,7 @@ return {
         },
     },
 
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
 
     opts = {
         lsp = {
