@@ -65,6 +65,7 @@ return {
                 'jsonc',
                 'dockerfile',
                 'matlab',
+                'gnuplot',
             },
 
             sync_install = false,

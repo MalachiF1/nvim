@@ -36,7 +36,7 @@ return {
     opts = {
         size = function(term)
             if term.direction == 'horizontal' then
-                local height = math.ceil(vim.o.lines * 0.4)
+                local height = math.ceil(vim.o.lines * 0.35)
                 if height >= 20 then
                     return 20
                 else

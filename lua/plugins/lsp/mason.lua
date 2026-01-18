@@ -63,6 +63,7 @@ return {
                 'latexindent',
                 -- 'ltex-ls',
                 'matlab-language-server',
+                'codelldb',
             },
             auto_update = true,
             run_on_start = true,

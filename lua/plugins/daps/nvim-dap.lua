@@ -97,7 +97,7 @@ return {
 
     config = function()
         require('plugins.daps.adapters.debugpy')
-        require('plugins.daps.adapters.lldb')
+        require('plugins.daps.adapters.codelldb')
 
         require('plugins.daps.settings.python')
         require('plugins.daps.settings.cpp')

@@ -28,6 +28,7 @@ opt.pumblend = 13 -- semi-transparency in popup windows like cmp l
 
 -- show whitespace
 opt.encoding = 'utf-8'
+opt.fileencoding = 'utf-8'
 opt.list = true
 opt.listchars = {
     tab = '│·', -- ——
