@@ -60,17 +60,18 @@ return {
             )
         end
 
-        require('mason-lspconfig').setup({
-            automatic_enable = true,
-        })
-
-        local lspconfig = require('lspconfig')
-        for _, server_name in ipairs(require('mason-lspconfig').get_installed_servers()) do
-            lspconfig[server_name].setup({
-                on_attach = lsp_attach,
-                capabilities = lsp_capabilities,
+        vim.schedule(function()
+            require('mason-lspconfig').setup({
+                automatic_enable = true,
             })
-        end
+
+            for _, server_name in ipairs(require('mason-lspconfig').get_installed_servers()) do
+                vim.lsp.config(server_name, {
+                    on_attach = lsp_attach,
+                    capabilities = lsp_capabilities,
+                })
+            end
+        end)
 
         require('lsp_lines').setup()
 

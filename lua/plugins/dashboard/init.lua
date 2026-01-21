@@ -57,7 +57,7 @@ return {
                         desc_hl = 'String',
                         key = 's',
                         key_hl = 'Number',
-                        action = 'SessionRestore',
+                        action = 'AutoSession restore',
                     },
                     {
                         icon = '   ',

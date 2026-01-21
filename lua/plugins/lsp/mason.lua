@@ -49,8 +49,6 @@ return {
                 'css-lsp',
                 'stylelint',
                 'sqlls',
-                'rust_analyzer',
-                'rustfmt',
                 'vim-language-server',
                 'vint',
                 'shellcheck',

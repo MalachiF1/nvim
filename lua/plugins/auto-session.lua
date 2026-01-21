@@ -6,6 +6,7 @@ return {
     -- },
 
     cmd = {
+        'AutoSession restore',
         'SessionRestore',
         'SessionSave',
         'SessionDelete',
@@ -17,7 +18,7 @@ return {
 
     event = 'BufReadPost',
 
-    -- lazy = false,
+    lazy = false,
 
     init = function() vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions' end,
 
@@ -35,11 +36,11 @@ return {
         log_level = 'error',
         root_dir = vim.fn.stdpath('data') .. '/sessions/',
         session_lens = {
-            load_on_setup = true,
-            previewer = false,
-            theme_conf = {
+            load_on_setup = false,
+            picker_opts = {
                 border = true,
             },
+            previewer = false,
         },
     },
 }

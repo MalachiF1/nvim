@@ -9,15 +9,17 @@ return {
 
     event = { 'BufRead', 'BufNewFile' },
 
-    opts = {
-        -- options for vim.diff(): https://neovim.io/doc/user/lua.html#vim.diff()
-        diff = {
-            ctxlen = 3,
-        },
-        -- priority list of preferred backend
-        backend = { 'telescope', 'nui' },
+    opts = function()
+        return {
+            -- options for vim.diff(): https://neovim.io/doc/user/lua.html#vim.diff()
+            diff = {
+                ctxlen = 3,
+            },
+            -- priority list of preferred backend
+            backend = { 'telescope', 'nui' },
 
-        -- options related to telescope.nvim
-        telescope = require('telescope.builtin'),
-    },
+            -- options related to telescope.nvim
+            telescope = require('telescope.builtin'),
+        }
+    end,
 }

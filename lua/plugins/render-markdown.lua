@@ -453,5 +453,8 @@ return {
         -- Mapping from treesitter language to user defined handlers
         -- See 'Custom Handlers' document for more info
         custom_handlers = {},
+        completions = {
+            lsp = {enabled = true  },
+        }
     },
 }
