@@ -36,7 +36,7 @@ return {
         exclude_ft = {},
         exclude_name = {},
 
-        focus_on_close = 'left',
+        focus_on_close = 'previous',
 
         icons = {
             -- Configure the base icons on the bufferline.

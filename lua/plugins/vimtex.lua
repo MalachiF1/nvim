@@ -7,12 +7,61 @@ return {
 
     init = function()
         -- VimTeX configuration goes here
-        vim.g.vimtex_view_general_viewer = 'SumatraPDF'
-        vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+
+        local function is_wsl()
+            local f = io.open('/proc/version', 'r')
+            if f then
+                local version = f:read('*a')
+                f:close()
+                return version:lower():find('wsl') ~= nil or version:lower():find('microsoft') ~= nil
+            end
+            return false
+        end
+
+        local viewer = 'general'
+        local general_options = '-reuse-instance -forward-search @tex @line @pdf'
+
+        if is_wsl() then
+            if vim.fn.executable('SumatraPDF.exe') == 1 then
+                viewer = 'SumatraPDF.exe'
+                --- IMPORTANT ---:
+                -- For inverse-search to work, place The following line in SumatraPDF settings
+                -- (Settings > Options > Set inverse search command line):
+                -- wsl.exe -d Ubuntu -e bash -c "~/.local/bin/for_wsl/wsl-inverse-search '%f' %l"
+            elseif vim.fn.executable('zathura') == 1 then
+                viewer = 'zathura'
+            else
+                viewer = 'wslview'
+                general_options = '@pdf'
+            end
+        else
+            if vim.fn.executable('zathura.exe') == 1 then
+                viewer = 'zathura'
+            elseif vim.fn.executable('SumatraPDF') == 1 then
+                viewer = 'SumatraPDF'
+            end
+        end
+
+        vim.g.vimtex_view_general_viewer = viewer
+        vim.g.vimtex_view_general_options = general_options
         vim.g.vimtex_syntax_enabled = 1
         vim.g.vimtex_quickfix_open_on_warning = 0
 
         vim.g.vimtex_syntax_conceal_disable = 1
+
+        -- When working in a multi-file project, initiating inverse search (see
+        -- |vimtex-synctex-inverse-search|) may require opening a file that is not
+        -- currently open in a window. This option controls the command that is used to
+        -- open files as a result of an inverse search.
+        vim.g.vimtex_view_reverse_search_edit_cmd = 'edit'
+
+        -- Focus the terminal after inverse search
+        local group = vim.api.nvim_create_augroup('vimtex', { clear = true })
+        vim.api.nvim_create_autocmd('User', {
+            pattern = 'VimtexEventViewReverse',
+            group = group,
+            command = 'call b:vimtex.viewer.xdo_focus_vim()',
+        })
 
         -- vim.g.vimtex_syntax_conceal = {
         --     accents = 1,
@@ -172,21 +221,5 @@ return {
         --         cchar_close = ')',
         --     },
         -- }
-
-        -- When working in a multi-file project, initiating inverse search (see
-        -- |vimtex-synctex-inverse-search|) may require opening a file that is not
-        -- currently open in a window. This option controls the command that is used to
-        -- open files as a result of an inverse search.
-        vim.g.vimtex_view_reverse_search_edit_cmd = 'edit'
-
-        -- Focus the terminal after inverse search
-        -- vim.api.nvim_create_autocmd('User', {
-        --     pattern = 'VimtexEventViewReverse',
-        --     group = au_group,
-        --     command = 'call b:vimtex.viewer.xdo_focus_vim()',
-        -- })
-
-        -- Place the following setting in sumatraPDF's advanced settings for inverse search to work:
-        -- InverseSearchCmdLine = cmd /q /c start /min "" powershell -WindowStyle Hidden -Command "& {$file = (('%f' -replace '\\','/') -replace '//wsl.localhost.Ubuntu-20.04',''); wsl --exec nvim --server /tmp/nvim.pipe --remote-send """":e $file | %l<CR>""""} %*"
     end,
 }

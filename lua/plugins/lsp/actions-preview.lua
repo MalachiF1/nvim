@@ -7,7 +7,7 @@ return {
 
     cmd = 'LspInfo',
 
-    event = { 'BufRead', 'BufNewFile' },
+    event = { 'LspAttach' },
 
     opts = function()
         return {

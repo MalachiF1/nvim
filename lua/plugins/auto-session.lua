@@ -1,10 +1,6 @@
 return {
     'rmagatti/auto-session',
 
-    -- dependencies = {
-    -- 'nvim-telescope/telescope.nvim',
-    -- },
-
     cmd = {
         'AutoSession restore',
         'SessionRestore',

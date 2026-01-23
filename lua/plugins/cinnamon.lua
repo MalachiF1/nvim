@@ -25,13 +25,13 @@ return {
         max_delta = {
             -- Maximum distance for line movements before scroll
             -- animation is skipped. Set to `false` to disable
-            line = 200,
+            line = 100,
             -- Maximum distance for column movements before scroll
             -- animation is skipped. Set to `false` to disable
-            column = 200,
+            column = 100,
             -- Maximum duration for a movement (in ms). Automatically scales the
             -- delay and step size
-            time = 200,
+            time = 150,
         },
 
         step_size = {

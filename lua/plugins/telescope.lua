@@ -18,8 +18,6 @@ return {
 
         cmd = 'Telescope',
 
-        -- event = 'BufReadPost',
-
         keys = {
             {
                 '<leader>pf',
@@ -82,8 +80,8 @@ return {
 
         opts = function()
             local actions = require('telescope.actions')
-            -- local bibtex_actions = require('telescope-bibtex.actions')
             local themes = require('telescope.themes')
+            -- local bibtex_actions = require('telescope-bibtex.actions')
 
             return {
                 defaults = {
