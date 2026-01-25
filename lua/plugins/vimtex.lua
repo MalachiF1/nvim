@@ -63,6 +63,30 @@ return {
             command = 'call b:vimtex.viewer.xdo_focus_vim()',
         })
 
+        local latex_symlink_group = vim.api.nvim_create_augroup('LatexSymlink', { clear = true })
+        vim.api.nvim_create_autocmd('BufNewFile', {
+            pattern = '*.tex',
+            group = latex_symlink_group,
+            callback = function()
+                -- Path to your template file
+                local template_path = vim.fn.expand('$HOME') .. '/dotfiles/latex/stylesheets/stylesheet.sty'
+                local bib_path = vim.fn.expand('$HOME') .. '/dotfiles/latex/bibliographies/global_bib.bib'
+                local working_dir = vim.fn.expand('%:p:h')
+                local template_target_file = working_dir .. '/stylesheet.sty'
+                local bib_target_file = working_dir .. '/global_bib.bib'
+
+                if vim.fn.filereadable(template_path) == 1 and vim.loop.fs_stat(template_target_file) == nil then
+                    vim.fn.system({ 'ln', '-sf', template_path, template_target_file })
+                    require('notify')('Created symlink to stylesheet.')
+                end
+
+                if vim.fn.filereadable(bib_path) == 1 and vim.loop.fs_stat(bib_target_file) == nil then
+                    vim.fn.system({ 'ln', '-sf', bib_path, bib_target_file })
+                    require('notify')('Created symlink to bibliography.')
+                end
+            end,
+        })
+
         -- vim.g.vimtex_syntax_conceal = {
         --     accents = 1,
         --     ligatures = 1,

@@ -174,7 +174,7 @@ return {
                         -- Try to match the filetype by default, or use 'plain'
                         format = '',
                         -- Path to global bibliographies (placed outside of the project)
-                        global_files = { '~/latex/bibliographies/bibliography.bib' },
+                        -- global_files = { '~/dotfiles/latex/bibliographies/global_bib.bib' },
                         -- Define the search keys to use in the picker
                         search_keys = { 'author', 'year', 'title' },
                         -- Template for the formatted citation
