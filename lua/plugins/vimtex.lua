@@ -46,6 +46,7 @@ return {
         vim.g.vimtex_view_general_options = general_options
         vim.g.vimtex_syntax_enabled = 1
         vim.g.vimtex_quickfix_open_on_warning = 0
+        vim.g.vimtex_matchparen_enabled = 1
 
         vim.g.vimtex_syntax_conceal_disable = 1
 
@@ -86,6 +87,36 @@ return {
                 end
             end,
         })
+
+        -- Asign highlight groups to user defined latex commands
+        vim.g.vimtex_syntax_custom_cmds = {
+            {
+                name = 'r_delim',
+                cmdre = '\\C<r>',
+                mathmode = 1,
+                opt = 0,
+                arg = 0,
+                hlgroup = 'texMathDelim',
+                nextgroup = 'texMathDelim',
+            },
+            {
+                name = 'l_delim',
+                cmdre = '\\C<l>',
+                mathmode = 1,
+                opt = 0,
+                arg = 0,
+                hlgroup = 'texMathDelim',
+                nextgroup = 'texMathDelim',
+            },
+            { name = 'N', mathmode = 1, opt = 0, arg = 0, arggreedy = 0, hlgroup = 'texMathStyleBold' },
+            { name = 'Z', mathmode = 1, opt = 0, arg = 0, arggreedy = 0, hlgroup = 'texMathStyleBold' },
+            { name = 'Q', mathmode = 1, opt = 0, arg = 0, arggreedy = 0, hlgroup = 'texMathStyleBold' },
+            { name = 'R', cmdre = '\\C<R>', mathmode = 1, opt = 0, arg = 0, arggreedy = 0, hlgroup = 'texMathStyleBold' },
+            { name = 'C', mathmode = 1, opt = 0, arg = 0, arggreedy = 0, hlgroup = 'texMathStyleBold' },
+            { name = 'F', mathmode = 1, opt = 0, arg = 0, arggreedy = 0, hlgroup = 'texMathStyleBold' },
+            { name = 'mathrm', mathmode = 1, arg = 1, hlgroup = 'texMathCmdText' },
+            { name = 'T', mathmode = 1, arg = 1, hlgroup = 'texMathCmdText' },
+        }
 
         -- vim.g.vimtex_syntax_conceal = {
         --     accents = 1,

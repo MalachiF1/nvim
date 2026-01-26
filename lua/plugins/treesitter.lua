@@ -29,7 +29,7 @@ return {
                 'vim',
                 'vimdoc',
                 'gitignore',
-                'latex',
+                -- 'latex',
                 'scss',
                 'regex',
                 'sql',
@@ -42,6 +42,10 @@ return {
                 'dockerfile',
                 'matlab',
                 'gnuplot',
+            },
+
+            disable = {
+                'tex',
             },
         },
 
@@ -71,6 +75,9 @@ return {
 
                     -- Skip if no filetype
                     if filetype == '' then return end
+
+                    -- Skip if in disable list
+                    if opts.disable and vim.tbl_contains(opts.disable, filetype) then return end
 
                     -- Check if this filetype is already handled by explicit opts.ensure_installed config
                     for _, filetypes in pairs(opts.ensure_installed) do

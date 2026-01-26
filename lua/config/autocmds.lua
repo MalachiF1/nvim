@@ -107,7 +107,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
 })
 
 -- write server address to a temperorary file for neovim-remote commands
-vim.cmd([[
+vim.cmd([[ 
 function! s:write_server_name() abort
   let nvim_server_file = (has('win32') ? $TEMP : '/tmp') . '/vimtexserver.txt'
   call writefile([v:servername], nvim_server_file)
@@ -123,8 +123,8 @@ augroup END
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'markdown', 'quarto' },
     callback = function()
-        vim.opt_local.formatoptions:append('r') -- `<CR>` in insert mode
-        vim.opt_local.formatoptions:append('o') -- `o` in normal mode
+        vim.opt_local.formatoptions:append('r') -- "<CR>" in insert mode
+        vim.opt_local.formatoptions:append('o') -- "o" in normal mode
         vim.opt_local.comments = {
             'b:- [ ]', -- tasks
             'b:- [x]',
