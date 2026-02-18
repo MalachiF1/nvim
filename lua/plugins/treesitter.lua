@@ -29,7 +29,7 @@ return {
                 'vim',
                 'vimdoc',
                 'gitignore',
-                -- 'latex',
+                'latex',
                 'scss',
                 'regex',
                 'sql',
@@ -76,8 +76,8 @@ return {
                     -- Skip if no filetype
                     if filetype == '' then return end
 
-                    -- Skip if in disable list
-                    if opts.disable and vim.tbl_contains(opts.disable, filetype) then return end
+                    -- -- Skip if in disable list
+                    -- if opts.disable and vim.tbl_contains(opts.disable, filetype) then return end
 
                     -- Check if this filetype is already handled by explicit opts.ensure_installed config
                     for _, filetypes in pairs(opts.ensure_installed) do
@@ -106,7 +106,7 @@ return {
                     -- let's check again
                     parser_installed = pcall(vim.treesitter.get_parser, bufnr, parser_name)
 
-                    if parser_installed then
+                    if parser_installed and not (opts.disable and vim.tbl_contains(opts.disable, filetype)) then
                         -- Start treesitter for this buffer
                         vim.treesitter.start(bufnr, parser_name)
                     end

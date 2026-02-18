@@ -189,7 +189,6 @@ return {
                     texCmdPart = { fg = colors.yellow, style = { 'bold' } },
                     texPartArgTitle = { fg = colors.blue },
                     texMathEnvArgname = { fg = colors.sapphire },
-                    texDelim = { fg = colors.red },
                     texFileArg = { fg = colors.green },
                     texFileOpt = { fg = colors.text },
                     texCmdRef = { fg = colors.pink },
@@ -199,8 +198,6 @@ return {
                     texMathSymbol = { fg = colors.blue },
                     texMathCmdText = { fg = colors.mauve },
                     texMathZoneTI = { fg = colors.blue },
-                    texMathDelimMod = { fg = colors.overlay2 },
-                    texMathDelim = { fg = colors.overlay2 },
                     texMathZoneEnv = { fg = colors.blue },
                     texMathArg = { fg = colors.blue },
                     texMathGroup = { fg = colors.blue },
@@ -219,6 +216,9 @@ return {
                     texLength = { fg = colors.flamingo },
                     texMathCMathrmArg = { fg = colors.text },
                     texMathCTArg = { fg = colors.text },
+                    -- texDelim = { fg = colors.red },
+                    -- texMathDelimMod = { fg = colors.overlay2 },
+                    -- texMathDelim = { fg = colors.overlay2 },
                 }
             end,
             integrations = {

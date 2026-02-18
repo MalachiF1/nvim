@@ -30,40 +30,11 @@ return {
     ),
 
     s(
-        'homework',
-        fmta(
-            [[
-        \documentclass[letterpaper, 12pt]{article}
-        \usepackage{$HOME/latex/stylesheets/homework}
-
-        \author{Malachi Fraenkel}
-        \course{<>}
-        \hwtype{<>}
-        \hwnumber{<>}
-
-        \begin{document}
-
-        % \begin{problem}{Title}
-        % {problem-label}
-        % This is a problem statement
-        % \end{problem}
-
-        <>
-
-        \printbibliography
-
-        \end{document}
-        ]],
-            { i(1), i(2), i(3), i(0) }
-        )
-    ),
-
-    s(
         { trig = 'lab', name = 'Lab Report Format', desc = 'minimal boilerplate for latex lab report format' },
         fmta(
             [[
         \documentclass[letterpaper, 11pt]{article}
-        \usepackage{$HOME/latex/stylesheets/lab}
+        \usepackage[chemistry, globalbib]{stylesheet}
 
         \author{Malachi Fraenkel}
         \title{<>}
@@ -135,7 +106,7 @@ return {
     s(
         {
             -- Only triggers for parentheses (up to 3 levels deep)
-            trig = '(?:\\\\left)?\\(([^()]+[^\\\\right]|(?:[^()]*\\(?(?:[^()]*\\([^()]*\\)[^()]*)+\\)?[^()]*)+[^\\\\right])(?:\\\\right)?\\)\\/',
+            trig = '(?:\\\\l)?\\(([^()]+[^\\\\r]|(?:[^()]*\\(?(?:[^()]*\\([^()]*\\)[^()]*)+\\)?[^()]*)+[^\\\\r])(?:\\\\r)?\\)\\/',
             regTrig = true,
             trigEngine = 'ecma',
             name = 'fraction',
@@ -200,7 +171,7 @@ return {
 
     s(
         {
-            trig = '\\left(\\right)/',
+            trig = '\\l(\\r)/',
             name = 'fraction',
             snippetType = 'autosnippet',
             priority = 999999999999,
@@ -345,7 +316,7 @@ return {
         { trig = '(', name = 'parentheses', snippetType = 'autosnippet' },
         fmta(
             [[
-            \left(<>\right)<>
+            \l(<>\r)<>
         ]],
             { i(1), i(0) }
         ),
