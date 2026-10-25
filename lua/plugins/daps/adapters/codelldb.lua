@@ -1,5 +1,9 @@
+-- codelldb installed by mason (see plugins/lsp/mason.lua)
 require('dap').adapters.codelldb = {
-    type = 'executable',
-    command = '/usr/bin/lldb-vscode-14', -- adjust as needed
-    name = 'codelldb',
+    type = 'server',
+    port = '${port}',
+    executable = {
+        command = vim.fn.stdpath('data') .. '/mason/bin/codelldb',
+        args = { '--port', '${port}' },
+    },
 }

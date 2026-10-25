@@ -8,11 +8,10 @@ vim.g.mapleader = ' '
 -- enter command mode with `;`
 map('n', ';', ':', opts)
 
--- use jk to exit insert mode (and hebrew equevalent)
-map('i', 'jk', '<ESC>:set iminsert=0<CR>', opts)
-map('i', 'חל', '<ESC>:set iminsert=0<CR>', opts)
-map('i', '<ESC>', '<ESC>:set iminsert=0<CR>', opts)
-map('i', '<C-[>', '<C-[>:set iminsert=0<CR>', opts)
+-- exit insert mode and switch back to english (`jk` itself is handled by better-escape.nvim)
+-- <C-[> is the same key as <Esc> in a terminal, so it doesn't need its own mapping
+map('i', 'חל', '<Esc><Cmd>set iminsert=0<CR>', opts)
+map('i', '<Esc>', '<Esc><Cmd>set iminsert=0<CR>', opts)
 
 -- clear highlights
 map('n', '<C-n>', ':nohl<CR>', opts)
@@ -83,10 +82,11 @@ map('v', 'J', ":m '>+1<CR>gv=gv", opts)
 map('v', 'K', ":m '<-2<CR>gv=gv", opts)
 
 -- window navigation
-map('n', '<C-h>', '<C-w>h', opts)
-map('n', '<C-j>', '<C-w>j', opts)
-map('n', '<C-k>', '<C-w>k', opts)
-map('n', '<C-l>', '<C-w>l', opts)
+-- map('n', '<C-h>', '<C-w>h', opts)
+-- map('n', '<C-j>', '<C-w>j', opts)
+-- map('n', '<C-k>', '<C-w>k', opts)
+-- map('n', '<C-l>', '<C-w>l', opts)
+-- window navigation: <C-h/j/k/l> are mapped by tmux.nvim (lua/plugins/tmux.lua)
 
 -- save and quit
 map('n', '<leader>ss', ':w<CR>', { desc = 'save', noremap = true, silent = true })

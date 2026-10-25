@@ -1,5 +1,5 @@
 return {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
 
     lazy = false,
 
@@ -39,9 +39,7 @@ return {
                 'cmakelint',
                 'pyright',
                 'debugpy',
-                'pylint',
-                'isort',
-                'black',
+                'ruff',
                 'typescript-language-server',
                 'eslint_d',
                 'prettier',
@@ -66,7 +64,7 @@ return {
             },
             auto_update = true,
             run_on_start = true,
-            start_delay = 1,
+            start_delay = 3000, --ms
             integrations = {
                 ['mason-lspconfig'] = true,
                 -- ['mason-null-ls'] = true,

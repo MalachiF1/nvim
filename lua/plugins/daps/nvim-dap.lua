@@ -62,7 +62,7 @@ return {
             silent = true,
         },
         {
-            '<leader>dlf',
+            '<leader>dlF',
             ':Telescope dap configurations<CR>',
             mode = 'n',
             desc = 'configurations',

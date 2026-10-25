@@ -1,8 +1,6 @@
 return {
     'aserowy/tmux.nvim',
 
-    lazy = 'WinEnter',
-
     keys = {
         { '<M-h>', ':lua require("tmux").resize_left()<CR>', mode = 'n', noremap = true, silent = true },
         { '<M-j>', ':lua require("tmux").resize_bottom()<CR>', mode = 'n', noremap = true, silent = true },
@@ -18,7 +16,9 @@ return {
         copy_sync = {
             -- enables copy sync. by default, all registers are synchronized.
             -- to control which registers are synced, see the `sync_*` options.
-            enable = true,
+            -- disabled: it would replace vim.g.clipboard (win32yank, see config/options.lua)
+            -- the first time this plugin is lazy-loaded
+            enable = false,
 
             -- ignore specific tmux buffers e.g. buffer0 = true to ignore the
             -- first buffer or named_buffer_name = true to ignore a named tmux

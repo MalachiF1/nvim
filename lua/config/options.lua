@@ -27,8 +27,6 @@ opt.signcolumn = 'yes'
 opt.pumblend = 13 -- semi-transparency in popup windows like cmp l
 
 -- show whitespace
-opt.encoding = 'utf-8'
-opt.fileencoding = 'utf-8'
 opt.list = true
 opt.listchars = {
     tab = '│·', -- ——
@@ -74,15 +72,11 @@ opt.splitbelow = true
 -- `-` counts as part of word
 opt.iskeyword:append('-')
 
--- don't insert current comment leader automatically
-opt.formatoptions:remove({ 'c', 'r', 'o' })
-
 -- allow mouse to be used in neovim
 opt.mouse = 'a'
 
 -- always keep 8 lines off edges unless at end or beginning of file
 opt.scrolloff = 8
-opt.signcolumn = 'yes'
 opt.isfname:append('@-@')
 
 -- go to previous/next line with h,l,left arrow and right arrow
@@ -106,8 +100,8 @@ opt.undofile = true
 -- updatetime affects stuff like cursorhold and some plugins
 vim.opt.updatetime = 400
 
--- shorter startup times
-vim.loader.enable()
+-- python provider: conda's python3 comes first on PATH and doesn't have pynvim
+vim.g.python3_host_prog = '/usr/bin/python3'
 
 -- blinking cursor
 opt.guicursor = 'n:block-blinkwait100-blinkoff75-blinkon75,i-c:ver25-Cursor/lCursor,r:hor25-Cursor/lCursor'

@@ -3,10 +3,8 @@ return {
 
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'folke/neodev.nvim', -- for lua debugging, need to be loaded before lspconfig
-        'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+        'mason-org/mason.nvim',
+        'mason-org/mason-lspconfig.nvim',
     },
 
     cmd = 'LspInfo',
@@ -14,10 +12,6 @@ return {
     event = { 'BufRead', 'BufNewFile' },
 
     config = function()
-        -- for debugging neovim configuration
-        local neodev = require('neodev')
-        neodev.setup({})
-
         local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
         -- enable folding for nvim-ufo
         lsp_capabilities.textDocument.foldingRange = {
@@ -60,27 +54,20 @@ return {
             )
         end
 
-        vim.schedule(function()
-            require('mason-lspconfig').setup({
-                automatic_enable = true,
-            })
+        -- configure every server before mason-lspconfig enables them
+        vim.lsp.config('*', { capabilities = lsp_capabilities })
+        vim.api.nvim_create_autocmd('LspAttach', {
+            group = vim.api.nvim_create_augroup('malachi_lsp_attach', { clear = true }),
+            callback = function(event) lsp_attach(vim.lsp.get_client_by_id(event.data.client_id), event.buf) end,
+        })
 
-            for _, server_name in ipairs(require('mason-lspconfig').get_installed_servers()) do
-                vim.lsp.config(server_name, {
-                    on_attach = lsp_attach,
-                    capabilities = lsp_capabilities,
-                })
-            end
-        end)
-
-        require('lsp_lines').setup()
+        require('mason-lspconfig').setup({
+            automatic_enable = true,
+        })
 
         vim.diagnostic.config({
             virtual_text = false,
-            virtual_lines = {
-                only_current_line = true,
-                highlight_whole_line = false,
-            },
+            virtual_lines = { current_line = true },
             signs = {
                 text = {
                     [vim.diagnostic.severity.ERROR] = '',

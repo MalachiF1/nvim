@@ -33,11 +33,9 @@ return {
                 'scss',
                 'regex',
                 'sql',
-                'bash',
                 'toml',
                 'yaml',
                 'python',
-                'regex',
                 'comment',
                 'dockerfile',
                 'matlab',
@@ -50,8 +48,6 @@ return {
         },
 
         config = function(_, opts)
-            require('nvim-treesitter.install').prefer_git = true
-
             -- install parsers from custom opts.ensure_installed
             if opts.ensure_installed and #opts.ensure_installed > 0 then
                 require('nvim-treesitter').install(opts.ensure_installed)
@@ -127,7 +123,7 @@ return {
                 { desc = 'jump to context', noremap = true, silent = true }
             )
             -- toggle context
-            vim.keymap.set('n', '<leader>ox', ':TSContextToggle<CR>', { desc = 'show context', noremap = true, silent = true })
+            vim.keymap.set('n', '<leader>ox', ':TSContext toggle<CR>', { desc = 'show context', noremap = true, silent = true })
         end,
     },
 
@@ -137,6 +133,10 @@ return {
         dependencies = {
             'nvim-treesitter/nvim-treesitter',
         },
+
+        event = { 'BufRead', 'BufNewFile' },
+
+        opts = {},
     },
 
     {
@@ -145,6 +145,8 @@ return {
         dependencies = {
             'nvim-treesitter/nvim-treesitter',
         },
+
+        cmd = 'TSContext',
 
         opts = {
             enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)

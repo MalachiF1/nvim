@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     group = augroup('auto_create_dir'),
     callback = function(event)
         if event.match:match('^%w%w+://') then return end
-        local file = vim.loop.fs_realpath(event.match) or event.match
+        local file = vim.uv.fs_realpath(event.match) or event.match
         vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
     end,
 })
@@ -93,31 +93,26 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'WinEnter', 'BufWinEnter', 'WinLeave',
 })
 
 -- set filetypes by extensions for unrecognized filetypes
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
-    pattern = '*.in',
-    command = 'set filetype=in',
-})
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
-    pattern = '*.out',
-    command = 'set filetype=out',
-})
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
-    pattern = '*.nw',
-    command = 'set filetype=nw',
-})
+vim.filetype.add({
+    extension = {
+        ['in'] = 'in',
+        out = 'out',
+        nw = 'nw',
+    },
+ })
 
--- write server address to a temperorary file for neovim-remote commands
-vim.cmd([[ 
-function! s:write_server_name() abort
-  let nvim_server_file = (has('win32') ? $TEMP : '/tmp') . '/vimtexserver.txt'
-  call writefile([v:servername], nvim_server_file)
-endfunction
-
-augroup vimtex_common
-  autocmd!
-  autocmd FileType tex call s:write_server_name()
-augroup END
-]])
+-- don't insert current comment leader automatically
+-- ftplugins run after this autocmd and re-add c/r/o, so defer until they are done
+vim.api.nvim_create_autocmd('FileType', {
+    group = augroup('no_auto_comment'),
+    callback = function(event)
+        if vim.tbl_contains({ 'markdown', 'quarto' }, event.match) then return end -- they continue lists, see below
+        vim.schedule(function()
+            if not vim.api.nvim_buf_is_valid(event.buf) then return end
+            vim.bo[event.buf].formatoptions = vim.bo[event.buf].formatoptions:gsub('[cro]', '')
+        end)
+    end,
+})
 
 -- auto continue lists in markdown
 vim.api.nvim_create_autocmd('FileType', {

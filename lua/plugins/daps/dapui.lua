@@ -4,7 +4,6 @@ return {
     dependencies = {
         'mfussenegger/nvim-dap',
         'nvim-neotest/nvim-nio',
-        'folke/neodev.nvim',
         'theHamsta/nvim-dap-virtual-text',
         'LiadOz/nvim-dap-repl-highlights',
         'rcarriga/cmp-dap',

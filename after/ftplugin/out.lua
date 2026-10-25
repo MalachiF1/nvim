@@ -1,2 +1,2 @@
-vim.api.nvim_command('set commentstring=#%s')
-vim.api.nvim_command('setlocal nolist')
+vim.bo.commentstring = '#%s'
+vim.opt_local.list = false

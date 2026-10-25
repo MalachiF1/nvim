@@ -9,7 +9,7 @@ return {
         {
             -- Customize or remove this keymap to your liking
             '<leader>lf',
-            function() require('conform').format({ async = true, fallback = true }) end,
+            function() require('conform').format({ async = true, lsp_format = 'fallback' }) end,
             mode = { 'n', 'v' },
             desc = 'format',
             noremap = true,
@@ -39,7 +39,7 @@ return {
             json = { 'prettier' },
             yaml = { 'prettier' },
             graphql = { 'prettier' },
-            python = { 'isort', 'black' },
+            python = { 'ruff_organize_imports', 'ruff_format' },
             rust = { 'rustfmt' },
             tex = { 'latexindent' },
             markdown = {
@@ -52,6 +52,10 @@ return {
             -- end,
             -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
             ['_'] = { 'trim_whitespace' },
+        },
+        formatters = {
+            -- don't leave an indent.log in every directory
+            latexindent = { prepend_args = { '-g', '/dev/null' } },
         },
         format_on_save = function() return false end, -- disable formatting on save
         format_after_save = function() return false end,

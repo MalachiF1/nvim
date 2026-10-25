@@ -8,9 +8,9 @@ return {
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lsp-signature-help',
-        'hrsh7th/cmp-nvim-lua',
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip',
+        'micangl/cmp-vimtex',
     },
 
     event = { 'InsertEnter', 'LspAttach' },
@@ -63,10 +63,10 @@ return {
                 end,
             },
             sources = cmp.config.sources({
+                { name = 'lazydev', group_index = 0 }, -- only active in lua buffers
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
                 { name = 'nvim_lsp_signature_help' },
-                { name = 'nvim_lua' },
             }, {
                 { name = 'path' },
                 { name = 'buffer' },
@@ -125,18 +125,16 @@ return {
         })
 
         cmp.setup.filetype('tex', {
-            sources = {
+            sources = cmp.config.sources({
                 { name = 'vimtex' },
                 -- other sources
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
                 { name = 'nvim_lsp_signature_help' },
-                { name = 'nvim_lua' },
-            },
-            {
+            }, {
                 { name = 'path' },
                 { name = 'buffer' },
-            },
+            }),
         })
     end,
 }

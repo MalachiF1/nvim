@@ -121,7 +121,7 @@ return {
             enabled = true,
             -- See |updatetime|.
             -- Set to a negative value to avoid setting the updatetime.
-            updatetime = 100,
+            updatetime = -1, -- keep the global uptime from config/options.lua
             -- See |nvim_create_autocmd|.
             events = { 'CursorHold', 'CursorHoldI' },
             -- See |nvim_create_autocmd| and |autocmd-pattern|.

@@ -35,15 +35,22 @@ return {
                 general_options = '@pdf'
             end
         else
-            if vim.fn.executable('zathura.exe') == 1 then
+            if vim.fn.executable('zathura') == 1 then
                 viewer = 'zathura'
-            elseif vim.fn.executable('SumatraPDF') == 1 then
-                viewer = 'SumatraPDF'
+            else
+                viewer = 'xdg-open'
+                general_options = '@pdf'
             end
         end
 
-        vim.g.vimtex_view_general_viewer = viewer
-        vim.g.vimtex_view_general_options = general_options
+        if viewer == 'zathura' then
+            -- zathura has a dedicated vimtex viewer (with forward/inverse search)
+            vim.g.vimtex_view_method = 'zathura'
+        else
+            vim.g.vimtex_view_general_viewer = viewer
+            vim.g.vimtex_view_general_options = general_options
+        end
+
         vim.g.vimtex_syntax_enabled = 1
         vim.g.vimtex_quickfix_open_on_warning = 0
         vim.g.vimtex_matchparen_enabled = 1
@@ -62,30 +69,6 @@ return {
             pattern = 'VimtexEventViewReverse',
             group = group,
             command = 'call b:vimtex.viewer.xdo_focus_vim()',
-        })
-
-        local latex_symlink_group = vim.api.nvim_create_augroup('LatexSymlink', { clear = true })
-        vim.api.nvim_create_autocmd('BufNewFile', {
-            pattern = '*.tex',
-            group = latex_symlink_group,
-            callback = function()
-                -- Path to your template file
-                local template_path = vim.fn.expand('$HOME') .. '/dotfiles/latex/stylesheets/stylesheet.sty'
-                local bib_path = vim.fn.expand('$HOME') .. '/dotfiles/latex/bibliographies/global_bib.bib'
-                local working_dir = vim.fn.expand('%:p:h')
-                local template_target_file = working_dir .. '/stylesheet.sty'
-                local bib_target_file = working_dir .. '/global_bib.bib'
-
-                if vim.fn.filereadable(template_path) == 1 and vim.loop.fs_stat(template_target_file) == nil then
-                    vim.fn.system({ 'ln', '-sf', template_path, template_target_file })
-                    require('notify')('Created symlink to stylesheet.')
-                end
-
-                if vim.fn.filereadable(bib_path) == 1 and vim.loop.fs_stat(bib_target_file) == nil then
-                    vim.fn.system({ 'ln', '-sf', bib_path, bib_target_file })
-                    require('notify')('Created symlink to bibliography.')
-                end
-            end,
         })
 
         -- Asign highlight groups to user defined latex commands

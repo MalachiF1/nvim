@@ -51,14 +51,6 @@ return {
                 noremap = true,
                 silent = true,
             },
-            keys = {
-                '<leader>pb',
-                ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
-                mode = 'n',
-                desc = 'file browser',
-                noremap = true,
-                silent = true,
-            },
             {
                 '<leader>oc',
                 ':Telescope colorscheme<CR>',
@@ -103,7 +95,7 @@ return {
                     -- borderchars = { '─', '│', '─', '│', '┌', '┐', '┙', '┕' },
                     borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                     winblend = 7,
-                    dynamic_preveiew_title = true,
+                    dynamic_preview_title = true,
                     file_sorter = require('telescope.sorters').get_fuzzy_file,
                     generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
                     path_display = { 'truncate' },
@@ -118,6 +110,8 @@ return {
                         '--smart-case',
                         '--no-ignore-vcs',
                         '--hidden',
+                        '--glob',
+                        '!.git/',
                     },
                 },
                 pickers = {

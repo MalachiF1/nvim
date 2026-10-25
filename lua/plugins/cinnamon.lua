@@ -3,14 +3,15 @@ return {
 
     event = 'BufReadPost',
 
-    keymaps = {
-        -- Enable the provided 'basic' keymaps
-        basic = true,
-        -- Enable the provided 'extra' keymaps
-        extra = true,
-    },
-
     opts = {
+
+        keymaps = {
+            -- Enable the provided 'basic' keymaps
+            basic = true,
+            -- Enable the provided 'extra' keymaps
+            extra = true,
+        },
+
         -- The scrolling mode
         -- `cursor`: animate cursor and window scrolling for any movement
         -- `window`: animate window scrolling ONLY when the cursor moves out of view

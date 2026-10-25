@@ -28,18 +28,18 @@ return {
         lint.linters_by_ft = {
             javascript = { 'eslint_d' },
             typescript = { 'eslint_d' },
-            javasriptreact = { 'eslint_d' },
+            javascriptreact = { 'eslint_d' },
             typescriptreact = { 'eslint_d' },
             svelte = { 'eslint_d' },
             css = { 'stylelint' },
             scss = { 'stylelint' },
             sass = { 'stylelint' },
-            python = { 'pylint' },
+            python = { 'ruff' },
             cpp = { 'clangtidy' },
             cmake = { 'cmakelint' },
+            sh = { 'shellcheck' },
             bash = { 'shellcheck' },
-            zsh = { 'shellcheck' },
-            vimscript = { 'vint' },
+            vim = { 'vint' },
             lua = { 'luacheck' },
         }
 
