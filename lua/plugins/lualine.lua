@@ -8,15 +8,11 @@ return {
     opts = function()
         -- get the colorscheme
         local colorscheme
-        if vim.g.colors_name == 'tokyonight-night' then
+        local name = vim.g.colors_name or ''
+        if name:match('^tokyonight') then
             colorscheme = 'tokyonight'
-        elseif
-            vim.g.colors_name == 'catppuccin-mocha'
-            or vim.g.colors_name == 'catppuccin-frape'
-            or vim.g.colors_name == 'catppuccin-latte'
-            or vim.g.colors_name == 'catppuccin-macchiato'
-        then
-            colorscheme = 'catppuccin'
+        elseif name:match('^catppuccin') then
+            colorscheme = 'catppuccin-nvim'
         else
             colorscheme = 'auto'
         end

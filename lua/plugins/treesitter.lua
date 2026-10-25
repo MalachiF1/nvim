@@ -96,7 +96,13 @@ return {
                         return -- Parser not available, skip silently
                     end
 
-                    local parser_installed = pcall(vim.treesitter.get_parser, bufnr, parser_name)
+                    -- language.add returns true if the parser loads, nil (or errors on older nvim) if not
+                    local function has_parser(lang)
+                        local ok, loaded = pcall(vim.treesitter.language.add, lang)
+                        return ok and loaded == true
+                    end
+
+                    local parser_installed = has_parser(parser_name)
 
                     if not parser_installed then
                         -- If not installed, install parser synchronously
@@ -104,7 +110,7 @@ return {
                     end
 
                     -- let's check again
-                    parser_installed = pcall(vim.treesitter.get_parser, bufnr, parser_name)
+                    parser_installed = has_parser(parser_name)
 
                     if parser_installed and not (opts.disable and vim.tbl_contains(opts.disable, filetype)) then
                         -- Start treesitter for this buffer

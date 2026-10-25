@@ -45,6 +45,7 @@ return {
                 'typescript-language-server',
                 'eslint_d',
                 'prettier',
+                'jsonls',
                 'html-lsp',
                 'css-lsp',
                 'stylelint',
