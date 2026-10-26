@@ -1,7 +1,7 @@
 return {
     'lewis6991/gitsigns.nvim',
 
-    event = 'BufReadPre',
+    event = 'VeryLazy',
 
     keys = {
         { '<leader>gb', '<cmd>Gitsigns toggle_current_line_blame<CR>', mode = 'n', desc = 'blame', noremap = true, silent = true },

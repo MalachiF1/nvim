@@ -6,7 +6,7 @@ return {
         'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
 
-    event = 'BufEnter',
+    event = 'VeryLazy',
 
     keys = {
         { '<leader>bp', ':BufferPin<CR>', mode = 'n', desc = 'pin', noremap = true, silent = true },

@@ -2,10 +2,7 @@ return {
     'mfussenegger/nvim-dap',
 
     dependencies = {
-        {
-            'mfussenegger/nvim-dap-python',
-            ft = 'python',
-        },
+        'mfussenegger/nvim-dap-python',
         'Weissle/persistent-breakpoints.nvim',
         'nvim-telescope/telescope.nvim',
         'nvim-telescope/telescope-dap.nvim',

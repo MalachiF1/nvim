@@ -1,7 +1,7 @@
 return {
     'declancm/cinnamon.nvim',
 
-    event = 'BufReadPost',
+    event = 'VeryLazy',
 
     opts = {
 

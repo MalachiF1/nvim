@@ -1,7 +1,7 @@
 return {
     'kosayoda/nvim-lightbulb',
 
-    event = { 'BufRead', 'BufNewFile' },
+    event = 'VeryLazy',
 
     opts = {
         priority = 1000, -- of the sign

@@ -7,7 +7,7 @@ return {
 
     main = 'ibl',
 
-    event = 'BufReadPre',
+    event = 'VeryLazy',
 
     opts = {
         indent = {

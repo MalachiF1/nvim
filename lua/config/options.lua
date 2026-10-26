@@ -61,7 +61,7 @@ if vim.fn.has('wsl') == 1 then
             ['+'] = 'win32yank.exe -o --lf',
             ['*'] = 'win32yank.exe -o --lf',
         },
-        cache_enabled = 0,
+        cache_enabled = 1, -- copy in the background instead of waiting for win32yank on every yank/delete
     }
 end
 

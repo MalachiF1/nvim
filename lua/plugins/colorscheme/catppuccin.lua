@@ -8,6 +8,7 @@ return {
     config = function()
         require('catppuccin').setup({
             flavour = 'macchiato', -- latte, frappe, macchiato, mocha
+            auto_integrations = false, -- integrations are listed below
             background = { -- :h background
                 light = 'latte',
                 dark = 'mocha',
@@ -223,6 +224,7 @@ return {
                 }
             end,
             integrations = {
+                render_markdown = true,
                 cmp = true,
                 gitsigns = true,
                 treesitter = true,
