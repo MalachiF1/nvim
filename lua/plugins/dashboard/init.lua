@@ -5,6 +5,9 @@ return {
 
     event = 'VimEnter',
 
+    -- only when nvim is started without files (it isn't shown otherwise, but would still load)
+    cond = function() return vim.fn.argc(-1) == 0 end,
+
     opts = function()
         local ascii = require('plugins.dashboard.banner').random_ascii
 

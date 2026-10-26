@@ -4,7 +4,6 @@ return {
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
         'mason-org/mason.nvim',
-        'mason-org/mason-lspconfig.nvim',
     },
 
     cmd = 'LspInfo',
@@ -55,7 +54,7 @@ return {
             )
         end
 
-        -- configure every server before mason-lspconfig enables them
+        -- configure every server before enabling them.
         vim.lsp.config('*', { capabilities = lsp_capabilities })
         -- pyright provides hover in python, ruff's would be shown in the same float
         vim.lsp.config('ruff', {
@@ -66,10 +65,24 @@ return {
             callback = function(event) lsp_attach(vim.lsp.get_client_by_id(event.data.client_id), event.buf) end,
         })
 
-        require('mason-lspconfig').setup({
-            automatic_enable = {
-                exclude = { 'stylua' }, -- stylua is run by conform.nvim, not as a language server
-            },
+        -- servers installed by mason (plugins/lsp/mason.lua), by their nvim-lspconfig names
+        -- (mason-lspconfig enables them one at a time, retrying every server for every open buffer each time)
+        vim.lsp.enable({
+            'bashls',
+            'clangd',
+            'cmake',
+            'cssls',
+            'html',
+            'jsonls',
+            'lua_ls',
+            'matlab_ls',
+            'pyright',
+            'ruff',
+            'sqlls',
+            'taplo',
+            'texlab',
+            'ts_ls',
+            'vimls',
         })
 
         vim.diagnostic.config({

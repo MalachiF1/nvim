@@ -4,7 +4,13 @@ return {
     event = 'BufReadPre',
 
     opts = {
-        filetypes = { '*' },
+        -- the sass parser rescans the whole buffer on every change (~18ms per keystroke in a 2000-line file),
+        -- so it's only enabled where sass variables exist
+        filetypes = {
+            '*',
+            scss = { sass = { enable = true, parsers = { 'css' } } },
+            sass = { sass = { enable = true, parsers = { 'css' } } },
+        },
         user_default_options = {
             RGB = true, -- #RGB hex codes
             RRGGBB = true, -- #RRGGBB hex codes
@@ -21,7 +27,7 @@ return {
             -- True is same as normal
             tailwind = true, -- Enable tailwind colors
             -- parsers can contain values used in |user_default_options|
-            sass = { enable = true, parsers = { 'css' } }, -- Enable sass colors
+            sass = { enable = false, parsers = { 'css' } }, -- sass colors (enabled for scss/sass in `filetypes`
             virtualtext = '■',
             -- update color values even if buffer is not focused
             -- example use: cmp_menu, cmp_docs

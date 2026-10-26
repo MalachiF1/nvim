@@ -6,7 +6,10 @@ return {
         'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
 
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
+    -- before the first screen is drawn: loading later shows the tabline for a frame (setup() always shows it,
+    -- auto_hide hides it on the next render) and, with several buffers, pushes the text down a line
+    event = 'BufEnter',
 
     keys = {
         { '<leader>bp', ':BufferPin<CR>', mode = 'n', desc = 'pin', noremap = true, silent = true },

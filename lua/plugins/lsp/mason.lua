@@ -55,7 +55,7 @@ return {
                 'typescript-language-server',
                 'eslint_d',
                 'prettier',
-                'jsonls',
+                'json-lsp',
                 'html-lsp',
                 'css-lsp',
                 'stylelint',
@@ -78,7 +78,7 @@ return {
             run_on_start = true,
             start_delay = 3000, --ms
             integrations = {
-                ['mason-lspconfig'] = true,
+                ['mason-lspconfig'] = false, -- ensure_installed uses mason package names
                 -- ['mason-null-ls'] = true,
                 -- ['mason-nvim-dap'] = true,
             },

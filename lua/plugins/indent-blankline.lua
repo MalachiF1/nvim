@@ -41,6 +41,7 @@ return {
         },
         exclude = {
             filetypes = {
+                'dashboard',
                 'lspinfo',
                 'packer',
                 'checkhealth',

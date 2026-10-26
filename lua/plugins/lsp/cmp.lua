@@ -13,7 +13,8 @@ return {
         'micangl/cmp-vimtex',
     },
 
-    event = { 'InsertEnter', 'LspAttach' },
+    -- event = { 'InsertEnter', 'LspAttach' },
+    event = { 'InsertEnter', 'CmdlineEnter' },
 
     config = function()
         -- cmp

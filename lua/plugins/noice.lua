@@ -13,7 +13,7 @@ return {
             opts = {
                 fps = 30,
                 render = 'wrapped-compact', -- default, compact, minimal, simple
-                stages = 'fade', -- fade, fade_in_slide_out, slide, static
+                stages = 'static', -- fade, fade_in_slide_out, slide, static
                 timeout = 2000,
                 top_down = true,
                 level = 2,
@@ -22,7 +22,10 @@ return {
         },
     },
 
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
+    -- not lazy-loaded: attaching noice's UI after the first screen is drawn (e.g. on VeryLazy)
+    -- makes nvim clear and redraw the whole screen, which shows as a blink at startup
+    lazy = false,
 
     opts = {
         lsp = {
