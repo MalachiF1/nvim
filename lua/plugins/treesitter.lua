@@ -48,72 +48,37 @@ return {
         },
 
         config = function(_, opts)
-            -- install parsers from custom opts.ensure_installed
-            if opts.ensure_installed and #opts.ensure_installed > 0 then
-                require('nvim-treesitter').install(opts.ensure_installed)
-                -- register and start parsers for filetypes
-                for _, parser in ipairs(opts.ensure_installed) do
-                    local filetypes = parser -- In this case, parser is the filetype/language name
-                    vim.treesitter.language.register(parser, filetypes)
+            local ts = require('nvim-treesitter')
+            ts.install(opts.ensure_installed) -- async, skips parsers that are already installed
 
-                    vim.api.nvim_create_autocmd({ 'FileType' }, {
-                        pattern = filetypes,
-                        callback = function(event) vim.treesitter.start(event.buf, parser) end,
-                    })
-                end
+            local function start(buf, lang)
+                if vim.api.nvim_buf_is_valid(buf) and vim.treesitter.language.add(lang) then vim.treesitter.start(buf, lang) end
             end
 
-            -- Auto-install and start parsers for any buffer
-            vim.api.nvim_create_autocmd({ 'BufRead' }, {
+            -- start treesitter for any filetype with a parser, installing missing parsers in the background
+            local group = vim.api.nvim_create_augroup('malachi_treesitter', { clear = true })
+            vim.api.nvim_create_autocmd('FileType', {
+                group = group,
                 callback = function(event)
-                    local bufnr = event.buf
-                    local filetype = vim.api.nvim_get_option_value('filetype', { buf = bufnr })
+                    local filetype = vim.bo[event.buf].filetype
+                    if vim.b[event.buf].bigfile or vim.tbl_contains(opts.disable, filetype) then return end
+                    local lang = vim.treesitter.language.get_lang(filetype)
+                    if not lang then return end
 
-                    -- Skip if no filetype
-                    if filetype == '' then return end
-
-                    -- -- Skip if in disable list
-                    -- if opts.disable and vim.tbl_contains(opts.disable, filetype) then return end
-
-                    -- Check if this filetype is already handled by explicit opts.ensure_installed config
-                    for _, filetypes in pairs(opts.ensure_installed) do
-                        local ft_table = type(filetypes) == 'table' and filetypes or { filetypes }
-                        if vim.tbl_contains(ft_table, filetype) then
-                            return -- Already handled above
-                        end
-                    end
-
-                    -- Get parser name based on filetype
-                    local parser_name = vim.treesitter.language.get_lang(filetype) -- might return filetype (not helpful)
-                    if not parser_name then return end
-                    -- Try to get existing parser (helpful check if filetype was returned above)
-                    local parser_configs = require('nvim-treesitter.parsers')
-                    if not parser_configs[parser_name] then
-                        return -- Parser not available, skip silently
-                    end
-
-                    -- language.add returns true if the parser loads, nil (or errors on older nvim) if not
-                    local function has_parser(lang)
-                        local ok, loaded = pcall(vim.treesitter.language.add, lang)
-                        return ok and loaded == true
-                    end
-
-                    local parser_installed = has_parser(parser_name)
-
-                    if not parser_installed then
-                        -- If not installed, install parser synchronously
-                        require('nvim-treesitter').install({ parser_name }):wait(30000)
-                    end
-
-                    -- let's check again
-                    parser_installed = has_parser(parser_name)
-
-                    if parser_installed and not (opts.disable and vim.tbl_contains(opts.disable, filetype)) then
-                        -- Start treesitter for this buffer
-                        vim.treesitter.start(bufnr, parser_name)
+                    if vim.treesitter.language.add(lang) then
+                        vim.treesitter.start(event.buf, lang)
+                    elseif require('nvim-treesitter.parsers')[lang] then
+                        ts.install(lang):await(function(err)
+                            if not err then vim.schedule(function() start(event.buf, lang) end) end
+                        end)
                     end
                 end,
             })
+
+            -- buffers opened before this plugin was loaded
+            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                if vim.bo[buf].filetype ~= '' then vim.api.nvim_exec_autocmds('FileType', { group = group, buffer = buf }) end
+            end
 
             -- jump to context (upwards)
             vim.keymap.set(
@@ -134,7 +99,7 @@ return {
             'nvim-treesitter/nvim-treesitter',
         },
 
-        event = { 'BufRead', 'BufNewFile' },
+        ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'markdown' },
 
         opts = {},
     },

@@ -19,7 +19,8 @@ return {
             lineFoldingOnly = true,
         }
         local lsp_attach = function(client, bufnr)
-            local telescope = require('telescope.builtin')
+            -- resolved on first use, so attaching a server doesn't load telescope
+            local telescope = setmetatable({}, { __index = function(_, picker) return require('telescope.builtin')[picker] end })
             local map = vim.keymap.set
             local opts = function(desc) return { buffer = bufnr, remap = false, desc = desc } end
 
@@ -56,13 +57,19 @@ return {
 
         -- configure every server before mason-lspconfig enables them
         vim.lsp.config('*', { capabilities = lsp_capabilities })
+        -- pyright provides hover in python, ruff's would be shown in the same float
+        vim.lsp.config('ruff', {
+            on_attach = function(client) client.server_capabilities.hoverProvider = false end,
+        })
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('malachi_lsp_attach', { clear = true }),
             callback = function(event) lsp_attach(vim.lsp.get_client_by_id(event.data.client_id), event.buf) end,
         })
 
         require('mason-lspconfig').setup({
-            automatic_enable = true,
+            automatic_enable = {
+                exclude = { 'stylua' }, -- stylua is run by conform.nvim, not as a language server
+            },
         })
 
         vim.diagnostic.config({

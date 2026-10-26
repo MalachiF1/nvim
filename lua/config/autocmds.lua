@@ -15,7 +15,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ 'VimResized' }, {
     group = augroup('resize_splits'),
-    callback = function() vim.cmd('tabdo wincmd =') end,
+    callback = function()
+        local current_tab = vim.fn.tabpagenr()
+        vim.cmd('tabdo wincmd =')
+        vim.cmd('tabnext ' .. current_tab) -- tabdo leaves you on the last tab
+    end,
 })
 
 -- go to last loc when opening a buffer
@@ -35,13 +39,10 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.api.nvim_create_autocmd('FileType', {
     group = augroup('close_with_q'),
     pattern = {
-        'PlenaryTestPopup',
         'help',
-        'lspinfo',
         'man',
         'notify',
         'qf',
-        'spectre_panel',
         'startuptime',
         'checkhealth',
     },
@@ -68,6 +69,14 @@ vim.api.nvim_create_autocmd('FileType', {
     group = augroup('no_list'),
     pattern = { 'help', 'qf', 'gitcommit', 'markdown', 'quarto', 'text' },
     callback = function() vim.opt_local.list = false end,
+})
+
+-- mark big files, treesitter (plugins/treesitter.lua) isn't started for them
+vim.api.nvim_create_autocmd('BufReadPre', {
+    group = augroup('bigfile'),
+    callback = function(event)
+        if vim.fn.getfsize(event.match) > 1024 * 1024 then vim.b[event.buf].bigfile = true end
+    end,
 })
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
@@ -99,7 +108,7 @@ vim.filetype.add({
         out = 'out',
         nw = 'nw',
     },
- })
+})
 
 -- don't insert current comment leader automatically
 -- ftplugins run after this autocmd and re-add c/r/o, so defer until they are done

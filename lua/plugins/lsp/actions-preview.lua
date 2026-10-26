@@ -5,10 +5,6 @@ return {
         'nvim-telescope/telescope.nvim',
     },
 
-    cmd = 'LspInfo',
-
-    event = { 'LspAttach' },
-
     opts = function()
         return {
             -- options for vim.diff(): https://neovim.io/doc/user/lua.html#vim.diff()
@@ -18,8 +14,8 @@ return {
             -- priority list of preferred backend
             backend = { 'telescope', 'nui' },
 
-            -- options related to telescope.nvim
-            telescope = require('telescope.builtin'),
+            -- options related to telescope.nvim (picker options, e.g. a theme)
+            telescope = require('telescope.themes').get_dropdown(),
         }
     end,
 }

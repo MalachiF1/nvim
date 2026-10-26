@@ -37,19 +37,17 @@ return {
                 showcmd = false, -- disables the command in the last line of the screen
                 laststatus = 0, -- turn off the statusline in zen mode
             },
-            twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
-            gitsigns = { enabled = false }, -- disables git signs
+            twilight = { enabled = false }, -- twilight.nvim isn't installed
+            gitsigns = { enabled = true }, -- disables git signs
             tmux = { enabled = false }, -- disables the tmux statusline
         },
         -- callback where you can add custom code when the Zen window opens
         on_open = function()
             vim.cmd([[IBLDisable]])
-            vim.cmd([[Gitsigns toggle_signs]])
         end,
         -- callback where you can add custom code when the Zen window closes
         on_close = function()
             vim.cmd([[IBLEnable]])
-            vim.cmd([[Gitsigns toggle_signs]])
         end,
     },
 }

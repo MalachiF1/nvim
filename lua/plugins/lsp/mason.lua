@@ -62,7 +62,7 @@ return {
                 'matlab-language-server',
                 'codelldb',
             },
-            auto_update = true,
+            auto_update = false, -- update manually with :MasonToolsUpdate
             run_on_start = true,
             start_delay = 3000, --ms
             integrations = {

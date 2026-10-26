@@ -36,6 +36,7 @@ return {
                 properties = {},
                 types = {},
                 operators = {},
+                conditionals = {}, -- not italic
             },
             -- color_overrides = {
             --     mocha = {
@@ -267,7 +268,6 @@ return {
                 nvim_surround = true,
                 ufo = true,
                 lsp_trouble = true,
-                copilot_vim = true,
                 -- For more plnugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
             },
         })

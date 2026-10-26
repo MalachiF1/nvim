@@ -1,4 +1,4 @@
-local conditions = require('snippets.conditions')
+local conditions = require('utils.snippets.conditions')
 
 -- Summary: When `LS_SELECT_RAW` is populated with a visual selection, the function
 -- returns an insert node whose initial text is set to the visual selection.
@@ -58,28 +58,28 @@ return {
         { condition = in_mathzone }
     ),
 
-    s(
-        {
-            -- lower priority than the previous one, for no parentheses (exclusion is by priority, not explicit).
-            trig = '([^\\s]+)\\/',
-            regTrig = true,
-            trigEngine = 'ecma',
-            name = 'fraction',
-            snippetType = 'autosnippet',
-            priority = 899999999999,
-        },
-        fmta(
-            [[
-            \f{<>}{<>}<>
-        ]],
-            {
-                f(function(_, snip) return snip.captures[1] end),
-                i(1),
-                i(0),
-            }
-        ),
-        { condition = in_mathzone }
-    ),
+    -- s(
+    --     {
+    --         -- lower priority than the previous one, for no parentheses (exclusion is by priority, not explicit).
+    --         trig = '([^\\s]+)\\/',
+    --         regTrig = true,
+    --         trigEngine = 'ecma',
+    --         name = 'fraction',
+    --         snippetType = 'autosnippet',
+    --         priority = 899999999999,
+    --     },
+    --     fmta(
+    --         [[
+    --         \f{<>}{<>}<>
+    --     ]],
+    --         {
+    --             f(function(_, snip) return snip.captures[1] end),
+    --             i(1),
+    --             i(0),
+    --         }
+    --     ),
+    --     { condition = in_mathzone }
+    -- ),
 
     s(
         {

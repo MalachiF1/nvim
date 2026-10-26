@@ -17,7 +17,7 @@ return require('lazy').setup('plugins', {
         lazy = true,
     },
     install = {
-        install = true,
+        missing = true,
         -- colorscheme = { 'tokyonight' },
         colorscheme = { 'catppuccin' },
     },
@@ -25,9 +25,6 @@ return require('lazy').setup('plugins', {
         notify = false,
     },
     performance = {
-        cache = {
-            enabled = true,
-        },
         reset_packpath = true, -- reset the package path to improve startup time
         rtp = {
             reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
@@ -35,24 +32,11 @@ return require('lazy').setup('plugins', {
             paths = {}, -- add any custom paths here that you want to includes in the rtp
             ---@type string[] list any plugins you want to disable here
             disabled_plugins = {
-                'tohtml',
                 'tutor',
                 'netrwPlugin',
-                'netrwSettings',
-                'netrwFileHandlers',
                 'gzip',
-                'zip',
                 'zipPlugin',
-                'tar',
                 'tarPlugin',
-                'getscript',
-                'getscriptPlugin',
-                'vimball',
-                'vimballPlugin',
-                '2html_plugin',
-                'logipat',
-                'rrhelper',
-                'spellfile_plugin',
                 'matchit',
             },
         },

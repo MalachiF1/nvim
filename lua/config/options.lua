@@ -91,10 +91,10 @@ opt.keymap = 'hebrew'
 opt.iminsert = 0
 opt.imsearch = -1
 
--- disable backups, but let undotree remember lots of changes in a backup file
+-- disable backups, but keep persistent undo history
+-- (undodir is left at neovim's default, stdpath('state')/undo: vim's undo files are incompatible)
 opt.swapfile = false
 opt.backup = false
-opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 opt.undofile = true
 
 -- updatetime affects stuff like cursorhold and some plugins

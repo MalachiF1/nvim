@@ -6,10 +6,7 @@ return {
             'mfussenegger/nvim-dap-python',
             ft = 'python',
         },
-        {
-            'Weissle/persistent-breakpoints.nvim',
-            event = 'BufReadPre',
-        },
+        'Weissle/persistent-breakpoints.nvim',
         'nvim-telescope/telescope.nvim',
         'nvim-telescope/telescope-dap.nvim',
     },

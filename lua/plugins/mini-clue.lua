@@ -30,8 +30,9 @@ return {
                 { mode = 'n', keys = '<leader>t', desc = ' Terminal' },
                 { mode = 'n', keys = '<leader>f', desc = ' Fold' },
                 { mode = 'n', keys = '<leader>o', desc = ' Options' },
-                { mode = 'n', keys = '<leader>n', desc = ' Notes' },
                 { mode = 'n', keys = '<leader>lg', desc = '󰌷 Go to' },
+                { mode = 'n', keys = '<leader>gh', desc = 'Hunk' },
+                { mode = 'x', keys = '<leader>gh', desc = 'Hunk' },
                 { mode = 'n', keys = '<leader>lt', desc = '󰒡 Trouble' },
                 { mode = 'n', keys = '<leader>bm', desc = '󰆾 Move' },
                 { mode = 'n', keys = '<leader>dl', desc = ' List' },
@@ -50,6 +51,23 @@ return {
             -- **Needs to have something in order to show clues**.
             triggers = {
                 { mode = 'n', keys = '<Leader>' },
+                { mode = 'x', keys = '<Leader>' },
+
+                -- triggers for the built-in clue generators above
+                { mode = 'i', keys = '<C-x>' }, -- builtin_completion
+                { mode = 'n', keys = 'g' }, -- g
+                { mode = 'x', keys = 'g' },
+                { mode = 'n', keys = "'" }, -- marks
+                { mode = 'n', keys = '`' },
+                { mode = 'x', keys = "'" },
+                { mode = 'x', keys = '`' },
+                { mode = 'n', keys = '"' }, -- registers
+                { mode = 'x', keys = '"' },
+                { mode = 'i', keys = '<C-r>' },
+                { mode = 'c', keys = '<C-r>' },
+                { mode = 'n', keys = '<C-w>' }, -- windows
+                { mode = 'n', keys = 'z' }, -- z
+                { mode = 'x', keys = 'z' },
             },
 
             -- Clue window settings

@@ -53,5 +53,16 @@ return {
         vim.keymap.set({ 'n', 'x' }, '<C-U>', function() require('cinnamon').scroll('<C-U>zz') end)
         vim.keymap.set({ 'n', 'x' }, '<C-D>', function() require('cinnamon').scroll('<C-D>zz') end)
         vim.keymap.set({ 'n', 'x' }, 'zz', function() require('cinnamon').scroll('zz') end)
+        -- these keymaps remap j/k to plain j/k; restore gj/gk (config/keymaps.lua) when there's no count
+        vim.keymap.set(
+            { 'n', 'x' },
+            'j',
+            function() require('cinnamon').scroll(vim.v.count == 0 and 'gj' or 'j', { count_only = true }) end
+        )
+        vim.keymap.set(
+            { 'n', 'x' },
+            'k',
+            function() require('cinnamon').scroll(vim.v.count == 0 and 'gk' or 'k', { count_only = true }) end
+        )
     end,
 }

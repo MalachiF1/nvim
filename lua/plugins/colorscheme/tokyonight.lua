@@ -4,8 +4,6 @@ return {
     lazy = true, -- set to false if this is the main theme
     -- priority = 1000,
     
-    event = 'VeryLazy',
-
     opts = {
         -- your configuration comes here
         -- or leave it empty to use the default settings
@@ -21,7 +19,6 @@ return {
             functions = {},
             variables = {},
             -- Background styles. Can be "dark", "transparent" or "normal"
-            sidebars = 'dark', -- style for sidebars, see below
             floats = 'transparent', -- style for floating windows
         },
         sidebars = { 'qf' }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`

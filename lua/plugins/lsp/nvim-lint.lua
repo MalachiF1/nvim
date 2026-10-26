@@ -7,13 +7,17 @@ return {
         {
             '<leader>ll',
             function()
-                if not vim.g.linting_enabled then
-                    vim.g.linting_enabled = true
-                    require('lint').try_lint()
+                local lint = require('lint')
+                vim.g.linting_enabled = not vim.g.linting_enabled
+                if vim.g.linting_enabled then
+                    lint.try_lint()
                 else
-                    vim.g.linting_enabled = false
-                    vim.diagnostic.reset()
-                    vim.cmd([[LspRestart]])
+                    -- clear only nvim-lint's diagnostics, LSP diagnostics are left alone
+                    for _, linters in pairs(lint.linters_by_ft) do
+                        for _, name in ipairs(linters) do
+                            vim.diagnostic.reset(lint.get_namespace(name))
+                        end
+                    end
                 end
             end,
             mode = 'n',
@@ -35,7 +39,7 @@ return {
             scss = { 'stylelint' },
             sass = { 'stylelint' },
             python = { 'ruff' },
-            cpp = { 'clangtidy' },
+            -- cpp = { 'clangtidy' },
             cmake = { 'cmakelint' },
             sh = { 'shellcheck' },
             bash = { 'shellcheck' },

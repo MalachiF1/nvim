@@ -6,8 +6,6 @@ return {
         'nvim-telescope/telescope.nvim',
     },
 
-    cmd = { 'Telescope neoclip' },
-
     event = { 'TextYankPost' },
 
     keys = {
