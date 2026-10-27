@@ -63,6 +63,17 @@ if vim.fn.has('wsl') == 1 then
         },
         cache_enabled = 1, -- copy in the background instead of waiting for win32yank on every yank/delete
     }
+elseif vim.env.SSH_TTY then
+    -- over ssh (e.g. on a cluster): copy to the local clipboard with OSC 52, which Windows Terminal (and tmux with
+    -- set-clipboard on) passes through. Windows Terminal doesn't answer OSC 52 paste requests (nvim would wait 10s
+    -- on every paste), so pastes use nvim's last yank; paste text copied on Windows with Ctrl+Shift+V
+    local osc52 = require('vim.ui.clipboard.osc52')
+    local function paste() return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') } end
+    vim.g.clipboard = {
+        name = 'osc52-copy',
+        copy = { ['+'] = osc52.copy('+'), ['*'] = osc52.copy('*') },
+        paste = { ['+'] = paste, ['*'] = paste },
+    }
 end
 
 -- split windows
