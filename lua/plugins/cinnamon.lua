@@ -48,6 +48,23 @@ return {
 
         require('cinnamon').setup(opts)
 
+        -- cinnamon aborts an animation when the cursor's screen position changes between its steps
+        -- (it takes that as the user interrupting). `virtual_lines = { current_line = true }`
+        -- (plugins/lsp/lspconfig.lua) redraws diagnostics on every CursorMoved, so each diagnostic
+        -- line the animated cursor passes adds/removes virtual lines and the scroll stops there.
+        -- Ignore CursorMoved while animating; it fires once at the final position when restored.
+        local group = vim.api.nvim_create_augroup('malachi_cinnamon', { clear = true })
+        vim.api.nvim_create_autocmd('User', {
+            group = group,
+            pattern = 'CinnamonScrollPre',
+            callback = function() vim.opt.eventignore:append('CursorMoved') end,
+        })
+        vim.api.nvim_create_autocmd('User', {
+            group = group,
+            pattern = 'CinnamonScrollPost',
+            callback = function() vim.opt.eventignore:remove('CursorMoved') end,
+        })
+
         vim.keymap.set({ 'n', 'x' }, 'gg', function() require('cinnamon').scroll('ggzz0') end)
         vim.keymap.set({ 'n', 'x' }, 'G', function() require('cinnamon').scroll('Gzz$') end)
         vim.keymap.set({ 'n', 'x' }, '<C-U>', function() require('cinnamon').scroll('<C-U>zz') end)
